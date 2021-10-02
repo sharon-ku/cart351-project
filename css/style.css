@@ -1,6 +1,86 @@
 /*********************************************
 
-Here is a description of any special CSS used.
-By default that's nothing.
+CSS styles
+Because beautiful is wonderful.
 
 **********************************************/
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+body {
+  /* forest green */
+  background: #2f4736;
+  /* light green */
+  color: #95c293;
+
+  font-family: sans-serif;
+}
+
+div#content-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-flow: column;
+  margin: auto;
+  max-width: 800px;
+
+  width: 100%;
+}
+
+section {
+  margin-bottom: 50px;
+}
+
+#title {
+  margin-top: 100px;
+  margin-bottom: 100px;
+  text-align: center;
+}
+
+#title h1 {
+  font-size: 3em;
+  margin-bottom: 20px;
+}
+
+section h2 {
+  margin-bottom: 20px;
+  font-size: 2em;
+}
+
+p {
+  color: white;
+}
+
+#similar-projects div {
+  /* background: blue; */
+  margin-bottom: 40px;
+}
+
+#similar-projects div h3 {
+  margin-bottom: 5px;
+}
+
+footer {
+  /* light green */
+  background: #95c293;
+
+  margin-top: 200px;
+
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  height: 80px;
+}
+
+footer p {
+  /* forest green */
+  color: #2f4736;
+
+  font-weight: bold;
+  font-size: 1.2em;
+}
