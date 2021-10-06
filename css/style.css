@@ -5,6 +5,9 @@ Because beautiful is wonderful.
 
 **********************************************/
 
+/* Epilogue typeface */
+@import url("https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
 * {
   margin: 0px;
   padding: 0px;
@@ -22,13 +25,44 @@ body {
   /* pink */
   color: #e896ee;
 
-  font-family: Poppins, sans-serif;
+  font-family: "Epilogue", sans-serif;
 }
 
 .content-wrapper {
   display: flex;
-  justify-content: center;
   flex-flow: column;
+  justify-content: center;
+
+  /* flex-flow: column;
+  margin: auto;
+  max-width: 800px;
+
+  padding: 0 20px;
+
+  width: 100%; */
+
+  /* dark blue */
+  /* background: #0d253f; */
+
+  /* background: rgb(20, 5, 71); */
+  /* background: rgb(19, 42, 72); */
+
+  z-index: 50;
+
+  padding-top: 100px;
+}
+
+.purple-bg-color {
+  /* dark blue */
+  background: #0d253f;
+
+  background: rgb(20, 5, 71);
+}
+
+section {
+  margin-bottom: 50px;
+  /* background: black; */
+
   margin: auto;
   max-width: 800px;
 
@@ -36,17 +70,30 @@ body {
 
   width: 100%;
 
-  /* background: darkgreen; */
+  /* dark blue */
+  /* background: #0d253f; */
+
+  z-index: 50;
+
+  /* background: green; */
 }
 
-section {
-  margin-bottom: 50px;
-  /* background: black; */
+.section-wrapper {
+  margin-bottom: 200px;
+}
+
+#hero-video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -50;
 }
 
 #title {
   /* background-image: url("../assets/images/glowing-plant.jpg"); */
-  height: 70vh; /* You must set a specified height */
+  height: 90vh; /* You must set a specified height */
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover; /* Resize the background image to cover the entire container */
@@ -54,22 +101,26 @@ section {
   display: flex;
   flex-flow: column;
   justify-content: center;
-  /* align-items: center; */
-  padding-left: 10vw;
+  align-items: center;
+  /* padding-left: 10vw; */
 
   /* dark green */
   /* background: #084755;
 
   background: #091933; */
 
-  margin-bottom: 100px;
-  /* text-align: center; */
+  /* margin-bottom: 100px; */
+  text-align: center;
 
   color: white;
+
+  background: rgba(20, 5, 71, 0.8);
+
+  /* background: rgba(19, 42, 72, 0.7); */
 }
 
 #title h1 {
-  font-size: 5em;
+  font-size: 6em;
   margin-bottom: 20px;
 }
 
@@ -78,9 +129,10 @@ section {
   font-weight: normal;
 }
 
-section h2 {
+h2 {
   margin-bottom: 40px;
-  font-size: 3em;
+  font-size: 6em;
+  color: white;
 }
 
 p {
@@ -99,7 +151,21 @@ p {
   /* color: #e896ee; */
 }
 
+.background-color {
+  /* background: red; */
+  width: 100%;
+}
+
+#blank-space {
+  /* margin: 900px; */
+  /* padding: 300px; */
+  padding-bottom: 0px;
+  /* background: #4044b9; */
+  background: #0d2240;
+}
+
 #project-description {
+  margin-top: 100px;
 }
 
 #project-description p {
@@ -108,7 +174,7 @@ p {
 
 #visual-storyboards {
   /* pale orange */
-  color: #f6aa7f;
+  /* color: #f6aa7f; */
 }
 
 #visual-storyboards figure {
@@ -135,8 +201,12 @@ figcaption {
 }
 
 #similar-projects div h3 {
-  font-size: 2em;
-  margin-bottom: 15px;
+  font-size: 3em;
+  margin-top: 80px;
+  margin-bottom: 20px;
+  /* color: white; */
+  text-align: center;
+  text-transform: uppercase;
 }
 
 #works-cited p {
@@ -149,7 +219,7 @@ footer {
 
   background: white;
 
-  margin-top: 50px;
+  /* margin-top: 50px; */
 
   text-align: center;
   display: flex;
