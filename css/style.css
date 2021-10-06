@@ -12,55 +12,103 @@ Because beautiful is wonderful.
 }
 
 body {
-  /* forest green */
-  background: #2f4736;
+  /* dark grey */
+  background: #1f1f1f;
+  /* dark blue */
+  background: #0d253f;
+
   /* light green */
   color: #95c293;
+  /* pink */
+  color: #e896ee;
 
-  font-family: sans-serif;
+  font-family: Poppins, sans-serif;
 }
 
-div#content-wrapper {
+.content-wrapper {
   display: flex;
   justify-content: center;
   flex-flow: column;
   margin: auto;
   max-width: 800px;
 
+  padding: 0 20px;
+
   width: 100%;
+
+  /* background: darkgreen; */
 }
 
 section {
   margin-bottom: 50px;
+  /* background: black; */
 }
 
 #title {
-  margin-top: 100px;
+  /* background-image: url("../assets/images/glowing-plant.jpg"); */
+  height: 70vh; /* You must set a specified height */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  /* align-items: center; */
+  padding-left: 10vw;
+
+  /* dark green */
+  /* background: #084755;
+
+  background: #091933; */
+
   margin-bottom: 100px;
-  text-align: center;
+  /* text-align: center; */
+
+  color: white;
 }
 
 #title h1 {
-  font-size: 3em;
+  font-size: 5em;
   margin-bottom: 20px;
 }
 
-section h2 {
-  margin-bottom: 20px;
+#title h3 {
   font-size: 2em;
+  font-weight: normal;
+}
+
+section h2 {
+  margin-bottom: 40px;
+  font-size: 3em;
 }
 
 p {
   font-size: 1.2em;
+  line-height: 1.8em;
   /* not so light green */
-  color: #82b87d;
+  /* color: #82b87d; */
+
+  /* pale grey */
+  /* color: #bdbdbd; */
+
+  /* pale pink */
+  /* color: #f2c7f4; */
+
+  /* pink */
+  /* color: #e896ee; */
+}
+
+#project-description {
 }
 
 #project-description p {
-  margin-bottom: 40px;
+  margin-bottom: 70px;
 }
 
 #visual-storyboards {
+  /* pale orange */
+  color: #f6aa7f;
 }
 
 #visual-storyboards figure {
@@ -68,11 +116,17 @@ p {
 
 figure img {
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 figcaption {
-  margin-bottom: 50px;
+  font-size: 1.1em;
+  margin-bottom: 60px;
+}
+
+#similar-projects {
+  /* turquoise */
+  color: #2ee6f0;
 }
 
 #similar-projects div {
@@ -81,7 +135,8 @@ figcaption {
 }
 
 #similar-projects div h3 {
-  margin-bottom: 5px;
+  font-size: 2em;
+  margin-bottom: 15px;
 }
 
 #works-cited p {
@@ -91,6 +146,8 @@ figcaption {
 footer {
   /* light green */
   background: #95c293;
+
+  background: white;
 
   margin-top: 50px;
 
