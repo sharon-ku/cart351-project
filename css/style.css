@@ -84,11 +84,15 @@ figcaption {
   margin-bottom: 5px;
 }
 
+#works-cited p {
+  margin-bottom: 10px;
+}
+
 footer {
   /* light green */
   background: #95c293;
 
-  margin-top: 200px;
+  margin-top: 50px;
 
   text-align: center;
   display: flex;
