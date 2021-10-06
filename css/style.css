@@ -51,7 +51,28 @@ section h2 {
 }
 
 p {
-  color: white;
+  font-size: 1.2em;
+  /* not so light green */
+  color: #82b87d;
+}
+
+#project-description p {
+  margin-bottom: 40px;
+}
+
+#visual-storyboards {
+}
+
+#visual-storyboards figure {
+}
+
+figure img {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+figcaption {
+  margin-bottom: 50px;
 }
 
 #similar-projects div {
