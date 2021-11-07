@@ -1,0 +1,53 @@
+* {
+  color: white;
+}
+
+nav {
+  margin: 5%;
+}
+
+#backBtn {
+  font-size: 2rem;
+  font-family: "gluten", sans-serif;
+}
+
+formPosition {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#newUserForm {
+  display: flex;
+  width: 40%;
+  border: 2px solid white;
+  border-radius: 6px;
+  margin: 10%;
+  padding: 5%;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+::placeholder {
+  color: white;
+}
+
+input {
+  margin-top: 10%;
+  margin-bottom: 10%;
+  background-color: rgb(8, 116, 123, 0);
+  border: 2px solid white;
+  width: 100%;
+  padding: 5px;
+  border-radius: 6px;
+}
+
+input.invalid {
+  background-color: #ffdddd;
+}
+
+.tab {
+  display: none;
+}

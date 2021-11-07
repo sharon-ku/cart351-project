@@ -1,0 +1,40 @@
+/* typefaces */
+@import url("https://fonts.googleapis.com/css2?family=Gluten:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap");
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.form {
+  border: 2px solid white;
+  border-radius: 6px;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 90%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+#inputUsername {
+  background-color: rgb(8, 116, 123, 0);
+  padding: 10px;
+  margin-right: 5%;
+  font-family: "Quicksand", sans-serif;
+  font-size: 2rem;
+  color: white;
+  border: none;
+}
+
+#loginBtn {
+  height: 40px;
+  width: 50px;
+}
+
+#title {
+  font-family: "gluten", sans-serif;
+  color: rgb(45, 227, 240);
+}
