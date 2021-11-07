@@ -25,7 +25,8 @@ let teal = {
   b: 123,
 };
 
-let input;
+let usernameInput;
+let username = "username";
 let button;
 let buttonImg;
 // All possible states:
@@ -33,25 +34,8 @@ let buttonImg;
 let state = `welcome`;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(5000, 5000);
   buttonImg = loadImage("assets/images/arrow.png");
-
-  if (state === `welcome`) {
-    let inputX = windowWidth * (1 / 3);
-    let inputY = windowHeight / 2;
-    let inputSize = 400;
-
-    input = createInput("username");
-    input.position(inputX, inputY);
-    input.size(inputSize);
-
-    // let submitIcon = image(buttonImg, inputX + inputSize * 0.75, inputY, 50, 50);
-
-    button = createImg("assets/images/arrow.png");
-    button.size(100, 100);
-    button.position(inputX + inputSize, inputY);
-    button.mousePressed(changeState);
-  }
 }
 
 function draw() {
@@ -79,13 +63,30 @@ function draw() {
 }
 
 function welcome() {
+  let inputX = windowWidth * (1 / 3);
+  let inputY = windowHeight / 2;
+  let inputSize = 400;
+
+  let welcome = "welcome to Greenhouse hub";
   push();
   fill(aqua.r, aqua.g, aqua.b);
-  textSize(textSettings.size * 3);
+  textSize(textSettings.size * 6);
   textAlign(LEFT, CENTER);
   textFont(textSettings.headerFont);
-  text("Welcome to Greenhouse hub", 50, 100);
+  text(welcome, windowWidth / 2, windowHeight / 2 - 400);
+
   pop();
+
+  usernameInput = createInput("username");
+  usernameInput.position(inputX, inputY);
+  usernameInput.size(inputSize);
+
+  // let submitIcon = image(buttonImg, inputX + inputSize * 0.75, inputY, 50, 50);
+
+  button = createImg("assets/images/arrow.png");
+  button.size(75, 75);
+  button.position(inputX + inputSize, inputY);
+  button.mousePressed(changeState);
 }
 
 function newUserDialog() {
@@ -120,5 +121,6 @@ function plantView() {}
 function changeState() {
   if ((state = `welcome`)) {
     state = `new-user-dialog`;
+    usernameInput.html("hi");
   }
 }
