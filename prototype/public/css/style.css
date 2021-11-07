@@ -22,3 +22,15 @@ body {
   align-items: center;
   justify-content: center;
 }
+
+input {
+  background-color: rgb(8, 116, 123);
+  padding: 10px;
+  border: 2px solid white;
+  border-radius: 6px;
+  color: white;
+
+  font-family: "Quicksand", sans-serif;
+  font-size: 2rem;
+  z-index: 1;
+}
