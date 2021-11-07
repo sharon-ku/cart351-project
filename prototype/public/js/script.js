@@ -32,8 +32,6 @@ let usernameInput;
 // welcome, new-user-dialog, choose-pod, choose-podmate, choose-seed, pod-navigation, plant-view
 let state = `welcome`;
 
-$("loginBtn").click(goToGreenhouse);
-
 function setup() {
   bkg = createCanvas(2000, 2000);
   bkg.position(0, 0);
