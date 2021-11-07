@@ -51,7 +51,7 @@ function setup() {
 function draw() {
   // For testing only (Leanne could change this)
   // background(teal.r, teal.g, teal.b);
-  background(0);
+  background(31, 80, 80);
   ellipse(mouseX, mouseY, 60);
   fill(175);
 
