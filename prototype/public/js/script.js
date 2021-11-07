@@ -39,8 +39,8 @@ function setup() {
   bkg.style("z-index", -1);
 
   for (let i = 0; i < numPods; i++) {
-    let x = random(100, canvasWidth - 100);
-    let y = random(100, canvasWidth - 100);
+    let x = random(100, canvasWidth - 50);
+    let y = random(100, canvasWidth - 50);
     let image = random(podImages);
     let pod = new Greenhouse(x, y, image);
     pods.push(pod);
