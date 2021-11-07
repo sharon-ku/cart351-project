@@ -18,19 +18,60 @@ By default that's nothing.
 body {
   margin: auto;
   height: 100vh;
+  background-color: #08747b;
+
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-input {
-  background-color: rgb(8, 116, 123);
-  padding: 10px;
+.form {
   border: 2px solid white;
   border-radius: 6px;
   color: white;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 85%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+#inputUsername {
+  background-color: rgb(8, 116, 123, 0);
+  padding: 10px;
 
   font-family: "Quicksand", sans-serif;
   font-size: 2rem;
-  z-index: 1;
+  color: white;
+  border: none;
+}
+
+#loginBtn {
+  height: 40px;
+  width: 50px;
+}
+
+#title {
+  font-family: "gluten", sans-serif;
+  color: rgb(45, 227, 240);
+}
+
+/* unvisited link */
+a:link {
+  color: rgb(45, 227, 240);
+  font-family: "Quicksand", sans-serif;
+  text-decoration: none;
+}
+
+/* visited link */
+a:visited {
+  color: rgb(45, 227, 240);
+  font-family: "Quicksand", sans-serif;
+  text-decoration: none;
+}
+
+/* mouse over link */
+a:hover {
+  text-decoration: underline;
 }

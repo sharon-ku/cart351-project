@@ -7,6 +7,7 @@ author, and this description to match your project!
 */
 
 "use strict";
+let bkg;
 let textSettings = {
   bodyFont: "Quicksand",
   headerFont: "Gluten",
@@ -26,16 +27,17 @@ let teal = {
 };
 
 let usernameInput;
-let username = "username";
-let button;
-let buttonImg;
+
 // All possible states:
 // welcome, new-user-dialog, choose-pod, choose-podmate, choose-seed, pod-navigation, plant-view
 let state = `welcome`;
 
+$("loginBtn").click(goToGreenhouse);
+
 function setup() {
-  createCanvas(5000, 5000);
-  buttonImg = loadImage("assets/images/arrow.png");
+  bkg = createCanvas(2000, 2000);
+  bkg.position(0, 0);
+  bkg.style("z-index", -1);
 }
 
 function draw() {
@@ -43,6 +45,7 @@ function draw() {
   background(teal.r, teal.g, teal.b);
 
   ellipse(mouseX, mouseY, 60);
+  fill(175);
 
   // States setup:
   if (state === `welcome`) {
@@ -62,52 +65,11 @@ function draw() {
   }
 }
 
-function welcome() {
-  let inputX = windowWidth * (1 / 3);
-  let inputY = windowHeight / 2;
-  let inputSize = 400;
+function welcome() {}
 
-  let welcome = "welcome to Greenhouse hub";
-  push();
-  fill(aqua.r, aqua.g, aqua.b);
-  textSize(textSettings.size * 6);
-  textAlign(LEFT, CENTER);
-  textFont(textSettings.headerFont);
-  text(welcome, windowWidth / 2, windowHeight / 2 - 400);
+function newUserDialog() {}
 
-  pop();
-
-  usernameInput = createInput("username");
-  usernameInput.position(inputX, inputY);
-  usernameInput.size(inputSize);
-
-  // let submitIcon = image(buttonImg, inputX + inputSize * 0.75, inputY, 50, 50);
-
-  button = createImg("assets/images/arrow.png");
-  button.size(75, 75);
-  button.position(inputX + inputSize, inputY);
-  button.mousePressed(changeState);
-}
-
-function newUserDialog() {
-  push();
-  fill(aqua.r, aqua.g, aqua.b);
-  textSize(textSettings.size * 4);
-  textAlign(CENTER, CENTER);
-  textFont(textSettings.headerFont);
-  text("new User dialog", windowWidth / 2, windowHeight / 2);
-  pop();
-}
-
-function choosePod() {
-  push();
-  fill(aqua.r, aqua.g, aqua.b);
-  textSize(textSettings.size * 4);
-  textAlign(CENTER, CENTER);
-  textFont(textSettings.headerFont);
-  text("choosePod", windowWidth / 2, windowHeight / 2);
-  pop();
-}
+function choosePod() {}
 
 function choosePodmate() {}
 
@@ -116,11 +78,3 @@ function chooseSeed() {}
 function podNavigation() {}
 
 function plantView() {}
-
-// function mousePressed() {}
-function changeState() {
-  if ((state = `welcome`)) {
-    state = `new-user-dialog`;
-    usernameInput.html("hi");
-  }
-}
