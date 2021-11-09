@@ -18,7 +18,6 @@ formPosition {
 }
 
 #newUserForm {
-  display: flex;
   width: 40%;
   border: 2px solid white;
   border-radius: 6px;
@@ -31,7 +30,7 @@ h3 {
 }
 
 ::placeholder {
-  color: white;
+  color: lightgrey;
 }
 
 input {
@@ -42,6 +41,17 @@ input {
   width: 100%;
   padding: 5px;
   border-radius: 6px;
+}
+
+button {
+  display: flex;
+
+  background-color: rgb(8, 116, 123, 0);
+  border: 2px solid white;
+  border-radius: 6px;
+  padding: 20%;
+
+  margin: 20%;
 }
 
 input.invalid {
