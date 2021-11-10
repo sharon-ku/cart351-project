@@ -26,7 +26,7 @@ class Greenhouse {
       mouseY < this.y + this.podImage.height / 2
     ) {
       state = `inside-pod`;
-      console.log("touched");
+      console.log("clicked pod");
 
       // resize canvas to windowWidth and windowHeight on click
       resizeCanvas(this.newCanvasWidth, this.newCanvasHeight);

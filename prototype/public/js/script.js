@@ -10,6 +10,10 @@ author, and this description to match your project!
 let bkg;
 let canvasWidth = 2000;
 
+// All possible states:
+// pod-navigation, inside-pod, plant-view
+let state = `pod-navigation`;
+
 let teal = {
   r: 8,
   g: 116,
@@ -28,17 +32,31 @@ const NUM_PLANT_IMG = 3;
 let num_plants = 6;
 let growthStage = 5;
 
+let iconSize = undefined;
+
+// icon
+// home icon
 let homeIconProperties = {
   x: 50,
   y: 50,
   img: undefined,
-  size: undefined,
 };
 let homeIcon;
 
-// All possible states:
-// welcome, new-user-dialog, choose-pod, choose-podmate, choose-seed, pod-navigation, plant-view
-let state = `pod-navigation`;
+// butterfly icon
+let butterflyIconProperties = {
+  x: -50,
+  y: 50,
+  img: undefined,
+};
+let butterflyIcon;
+
+// teleport icon
+let teleportIconProperties = {
+  y: 75,
+  img: undefined,
+};
+let teleportIcon;
 
 function preload() {
   // load pod images
@@ -47,7 +65,18 @@ function preload() {
     podImages.push(loadPodImage);
   }
 
-  homeIconProperties.img = loadImage(`assets/images/icons/greenhouse.png`);
+  // load home icon image
+  homeIconProperties.img = loadImage(`assets/images/icons/greenhouse_icon.png`);
+
+  // load butterfly icon image
+  butterflyIconProperties.img = loadImage(
+    `assets/images/icons/butterfly_icon.png`
+  );
+
+  // load butterfly icon image
+  teleportIconProperties.img = loadImage(
+    `assets/images/icons/teleport_icon.png`
+  );
 }
 
 function setup() {
@@ -67,14 +96,37 @@ function setup() {
     console.log(pods[i]);
   }
 
-  homeIconProperties.size = windowWidth / 15;
+  // create icons
+  iconSize = windowWidth / 15;
 
   // add home icon
   homeIcon = new HomeIcon(
     homeIconProperties.x,
     homeIconProperties.y,
     homeIconProperties.img,
-    homeIconProperties.size
+    iconSize
+  );
+
+  // draw butterfly icon
+  // place butterfly icon on right side of the screen
+  butterflyIconProperties.x += windowWidth;
+
+  butterflyIcon = new ButterflyIcon(
+    butterflyIconProperties.x,
+    butterflyIconProperties.y,
+    butterflyIconProperties.img,
+    iconSize
+  );
+
+  // draw teleport  icon
+  // place  teleport icon on right side of the screen
+  teleportIconProperties.y += iconSize;
+
+  teleportIcon = new TeleportIcon(
+    butterflyIconProperties.x,
+    teleportIconProperties.y,
+    teleportIconProperties.img,
+    iconSize
   );
 }
 
@@ -105,6 +157,8 @@ function insidePod() {
   text("Welcome Home", 50, windowHeight - 50);
 
   homeIcon.display();
+  butterflyIcon.display();
+  teleportIcon.display();
 }
 
 function plantView() {
@@ -118,4 +172,6 @@ function mousePressed() {
   }
 
   homeIcon.mousePressed();
+  butterflyIcon.mousePressed();
+  teleportIcon.mousePressed();
 }
