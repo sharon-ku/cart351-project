@@ -28,6 +28,14 @@ const NUM_PLANT_IMG = 3;
 let num_plants = 6;
 let growthStage = 5;
 
+let homeIconProperties = {
+  x: 50,
+  y: 50,
+  img: undefined,
+  size: undefined,
+};
+let homeIcon;
+
 // All possible states:
 // welcome, new-user-dialog, choose-pod, choose-podmate, choose-seed, pod-navigation, plant-view
 let state = `pod-navigation`;
@@ -38,6 +46,8 @@ function preload() {
     let loadPodImage = loadImage(`assets/images/pods/pod${i}.png`);
     podImages.push(loadPodImage);
   }
+
+  homeIconProperties.img = loadImage(`assets/images/icons/greenhouse.png`);
 }
 
 function setup() {
@@ -45,15 +55,27 @@ function setup() {
   bkg.position(0, 0);
   bkg.style("z-index", -1);
 
+  // create pods
   for (let i = 0; i < NUM_PODS; i++) {
     let x = random(100, canvasWidth - 50);
     let y = random(100, canvasWidth - 50);
     let image = random(podImages);
 
-    let pod = new Greenhouse(x, y, image);
+    // resize canvas to windowWidth and windowHeight
+    let pod = new Greenhouse(x, y, image, windowWidth, windowHeight);
     pods.push(pod);
     console.log(pods[i]);
   }
+
+  homeIconProperties.size = windowWidth / 15;
+
+  // add home icon
+  homeIcon = new HomeIcon(
+    homeIconProperties.x,
+    homeIconProperties.y,
+    homeIconProperties.img,
+    homeIconProperties.size
+  );
 }
 
 function draw() {
@@ -80,7 +102,9 @@ function podNavigation() {
   }
 }
 function insidePod() {
-  text("inside pod", 100, 100);
+  text("Welcome Home", 50, windowHeight - 50);
+
+  homeIcon.display();
 }
 
 function plantView() {
@@ -92,4 +116,6 @@ function mousePressed() {
     let pod = pods[i];
     pod.mousePressed();
   }
+
+  homeIcon.mousePressed();
 }

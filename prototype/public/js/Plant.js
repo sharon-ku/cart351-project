@@ -13,6 +13,7 @@ class Plant {
   }
 
   display() {
+    push();
     imageMode(CENTER);
 
     // image appearing depends on growth stage
@@ -23,6 +24,7 @@ class Plant {
     } else {
       image(this.bloomPlant, this.x, this.y);
     }
+    pop();
   }
 
   mousePressed() {
