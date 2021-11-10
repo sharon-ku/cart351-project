@@ -1,43 +1,34 @@
 class Plant {
-  constructor(x, y, babyPlant, youngPlant, bloomPlant, growthStage) {
+  constructor(x, y, plantImg) {
     this.x = x;
     this.y = y;
-    this.babyPlant = babyPlant;
-    this.youngPlant = youngPlant;
-    this.bloomPlant = bloomPlant;
-
-    this.height = random(50, 100);
-    this.width = random(40, 60);
-
-    this.growthStage = growthStage; //baby seedling - young plant - blooming plant
+    this.aqua = {
+      r: 45,
+      g: 227,
+      b: 240,
+    };
+    this.font = `quicksand,sans-serif`;
+    this.plantImg = plantImg;
   }
 
   display() {
     push();
     imageMode(CENTER);
+    image(this.plantImg, this.x, this.y);
+    pop();
+  }
 
-    // image appearing depends on growth stage
-    if (this.growthStage < 10) {
-      image(this.babyPlant, this.x, this.y);
-    } else if (this.growthStage >= 10 && this.growthStage < 20) {
-      image(this.youngPlant, this.x, this.y);
-    } else {
-      image(this.bloomPlant, this.x, this.y);
-    }
+  text() {
+    push();
+    textSize(34);
+    textFont(this.font);
+    fill(this.aqua.r, this.aqua.g, this.aqua.b);
+    text("Eugene was sent to you by uwu", 100, 100);
     pop();
   }
 
   mousePressed() {
-    // if mouse touches pod image
-    if (
-      mouseX > this.x - this.podImage.width / 2 &&
-      mouseX < this.x + this.podImage.width / 2 &&
-      mouseY > this.y - this.podImage.height / 2 &&
-      mouseY < this.y + this.podImage.height / 2
-    ) {
-      // this.state = this.newState;
-      state = `plant-view`;
-      console.log("touched");
-    }
+    text();
+    console.log("clicked plant");
   }
 }

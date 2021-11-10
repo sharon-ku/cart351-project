@@ -20,42 +20,38 @@ let teal = {
   b: 123,
 };
 
+let aqua = {
+  r: 45,
+  g: 227,
+  b: 240,
+};
+
+// text properties
+let font = `quicksand, sans-serif`;
+
 let pods = [];
 let podImages = []; //array to store pod images
 let numPodImages = 4; //number pod podImages
 const NUM_POD_IMG = 4;
 const NUM_PODS = 100;
 
-let plants = [];
-let plantImages = [];
-const NUM_PLANT_IMG = 3;
-let num_plants = 6;
+let cactus;
+let cactus_baby_Img;
+let cactus_young_Img;
+let cactus_bloom_Img;
 let growthStage = 5;
-
-let iconSize = undefined;
 
 // icon
 // home icon
-let homeIconProperties = {
-  x: 50,
-  y: 50,
-  img: undefined,
-};
+let homeIconImg;
 let homeIcon;
 
 // butterfly icon
-let butterflyIconProperties = {
-  x: -50,
-  y: 50,
-  img: undefined,
-};
+let butterflyIconImg;
 let butterflyIcon;
 
 // teleport icon
-let teleportIconProperties = {
-  y: 75,
-  img: undefined,
-};
+let teleportIconImg;
 let teleportIcon;
 
 function preload() {
@@ -65,18 +61,19 @@ function preload() {
     podImages.push(loadPodImage);
   }
 
+  // cactus images
+  cactus_baby_Img = loadImage(`assets/images/plants/cactus0.png`); //stage 1
+  cactus_young_Img = loadImage(`assets/images/plants/cactus1.png`); //stage 2
+  cactus_bloom_Img = loadImage(`assets/images/plants/cactus2.png`); //stage 3
+
   // load home icon image
-  homeIconProperties.img = loadImage(`assets/images/icons/greenhouse_icon.png`);
+  homeIconImg = loadImage(`assets/images/icons/greenhouse_icon.png`);
 
   // load butterfly icon image
-  butterflyIconProperties.img = loadImage(
-    `assets/images/icons/butterfly_icon.png`
-  );
+  butterflyIconImg = loadImage(`assets/images/icons/butterfly_icon.png`);
 
   // load butterfly icon image
-  teleportIconProperties.img = loadImage(
-    `assets/images/icons/teleport_icon.png`
-  );
+  teleportIconImg = loadImage(`assets/images/icons/teleport_icon.png`);
 }
 
 function setup() {
@@ -97,53 +94,49 @@ function setup() {
   }
 
   // create icons
-  iconSize = windowWidth / 15;
+  let iconSize = windowWidth / 15;
+  let iconX_R = windowWidth * 0.05;
 
   // add home icon
-  homeIcon = new HomeIcon(
-    homeIconProperties.x,
-    homeIconProperties.y,
-    homeIconProperties.img,
-    iconSize
-  );
+  homeIcon = new HomeIcon(iconX_R, iconX_R, homeIconImg, iconSize);
 
   // draw butterfly icon
   // place butterfly icon on right side of the screen
-  butterflyIconProperties.x += windowWidth;
+  // butterflyIconProperties.x += windowWidth;
+  let iconX_L = windowWidth - iconX_R;
+  let iconY_L = windowHeight * 0.07;
 
   butterflyIcon = new ButterflyIcon(
-    butterflyIconProperties.x,
-    butterflyIconProperties.y,
-    butterflyIconProperties.img,
+    iconX_L,
+    iconY_L,
+    butterflyIconImg,
     iconSize
   );
 
   // draw teleport  icon
   // place  teleport icon on right side of the screen
-  teleportIconProperties.y += iconSize;
+
+  let teleportIcon_Y = iconY_L + iconSize * 1.25;
 
   teleportIcon = new TeleportIcon(
-    butterflyIconProperties.x,
-    teleportIconProperties.y,
-    teleportIconProperties.img,
+    iconX_L,
+    teleportIcon_Y,
+    teleportIconImg,
     iconSize
   );
+
+  cactus = new Plant(windowWidth / 2, windowHeight / 2, cactus_baby_Img);
 }
 
 function draw() {
-  // For testing only (Leanne could change this)
   // background(teal.r, teal.g, teal.b);
   background(31, 80, 80);
-  ellipse(mouseX, mouseY, 60);
-  fill(175);
 
   // States setup:
   if (state === `pod-navigation`) {
     podNavigation();
   } else if (state === `inside-pod`) {
     insidePod();
-  } else if (state === `plant-view`) {
-    plantView();
   }
 }
 
@@ -154,15 +147,23 @@ function podNavigation() {
   }
 }
 function insidePod() {
-  text("Welcome Home", 50, windowHeight - 50);
+  push();
+  textSize(24);
+  textFont(font);
+  fill(aqua.r, aqua.g, aqua.b);
+  text("Welcome Home !", windowWidth * 0.025, windowHeight * 0.95);
+  pop();
 
   homeIcon.display();
   butterflyIcon.display();
   teleportIcon.display();
+
+  cactus.display();
 }
 
 function plantView() {
   text("Plant view", 100, 100);
+  homeIcon.display();
 }
 
 function mousePressed() {
@@ -174,4 +175,6 @@ function mousePressed() {
   homeIcon.mousePressed();
   butterflyIcon.mousePressed();
   teleportIcon.mousePressed();
+
+  cactus.mousePressed();
 }
