@@ -5,8 +5,8 @@ class Greenhouse {
     this.podImage = podImage;
     this.width = 50;
     this.height = this.width * 1.2;
-    this.state = state;
-    this.newState = newState;
+    // this.state = state;
+    // this.newState = newState;
   }
 
   display() {
@@ -21,7 +21,8 @@ class Greenhouse {
       mouseY > this.y - this.podImage.height / 2 &&
       mouseY < this.y + this.podImage.height / 2
     ) {
-      this.state = this.newState;
+      // this.state = this.newState;
+      state = `plant-view`;
       console.log("touched");
     }
   }
