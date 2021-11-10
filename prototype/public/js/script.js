@@ -42,7 +42,8 @@ function setup() {
     let x = random(100, canvasWidth - 50);
     let y = random(100, canvasWidth - 50);
     let image = random(podImages);
-    let pod = new Greenhouse(x, y, image);
+    let newState = `plant-view`;
+    let pod = new Greenhouse(x, y, image, state, newState);
     pods.push(pod);
     console.log(pods[i]);
   }
@@ -69,5 +70,13 @@ function podNavigation() {
     pod.display();
   }
 }
+function plantView() {
+  text("inside pod", 100, 100);
+}
 
-function plantView() {}
+function mousePressed() {
+  for (let i = 0; i < pods.length; i++) {
+    let pod = pods[i];
+    pod.mousePressed();
+  }
+}
