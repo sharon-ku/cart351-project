@@ -22,6 +22,7 @@ class Greenhouse {
       mouseY < this.y + this.podImage.height / 2
     ) {
       this.state = this.newState;
+      console.log("touched");
     }
   }
 }

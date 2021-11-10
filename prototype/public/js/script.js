@@ -68,15 +68,16 @@ function podNavigation() {
   for (let i = 0; i < pods.length; i++) {
     let pod = pods[i];
     pod.display();
+    pod.mousePressed();
   }
 }
 function plantView() {
   text("inside pod", 100, 100);
 }
 
-function mousePressed() {
-  for (let i = 0; i < pods.length; i++) {
-    let pod = pods[i];
-    pod.mousePressed();
-  }
-}
+// function mousePressed() {
+//   for (let i = 0; i < pods.length; i++) {
+//     let pod = pods[i];
+//     pod.mousePressed();
+//   }
+// }
