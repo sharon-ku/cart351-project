@@ -24,4 +24,18 @@ class Plant {
       image(this.bloomPlant, this.x, this.y);
     }
   }
+
+  mousePressed() {
+    // if mouse touches pod image
+    if (
+      mouseX > this.x - this.podImage.width / 2 &&
+      mouseX < this.x + this.podImage.width / 2 &&
+      mouseY > this.y - this.podImage.height / 2 &&
+      mouseY < this.y + this.podImage.height / 2
+    ) {
+      // this.state = this.newState;
+      state = `plant-view`;
+      console.log("touched");
+    }
+  }
 }

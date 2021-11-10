@@ -26,6 +26,7 @@ let plants = [];
 let plantImages = [];
 const NUM_PLANT_IMG = 3;
 let num_plants = 6;
+let growthStage = 5;
 
 // All possible states:
 // welcome, new-user-dialog, choose-pod, choose-podmate, choose-seed, pod-navigation, plant-view
@@ -48,8 +49,7 @@ function setup() {
     let x = random(100, canvasWidth - 50);
     let y = random(100, canvasWidth - 50);
     let image = random(podImages);
-    // let newState = `plant-view`;
-    // let pod = new Greenhouse(x, y, image, state, newState);
+
     let pod = new Greenhouse(x, y, image);
     pods.push(pod);
     console.log(pods[i]);
@@ -66,6 +66,8 @@ function draw() {
   // States setup:
   if (state === `pod-navigation`) {
     podNavigation();
+  } else if (state === `inside-pod`) {
+    insidePod();
   } else if (state === `plant-view`) {
     plantView();
   }
@@ -77,8 +79,12 @@ function podNavigation() {
     pod.display();
   }
 }
-function plantView() {
+function insidePod() {
   text("inside pod", 100, 100);
+}
+
+function plantView() {
+  text("Plant view", 100, 100);
 }
 
 function mousePressed() {

@@ -1,12 +1,10 @@
 class Greenhouse {
-  constructor(x, y, podImage, state, newState) {
+  constructor(x, y, podImage) {
     this.x = x;
     this.y = y;
     this.podImage = podImage;
     this.width = 50;
     this.height = this.width * 1.2;
-    // this.state = state;
-    // this.newState = newState;
   }
 
   display() {
@@ -23,7 +21,7 @@ class Greenhouse {
       mouseY < this.y + this.podImage.height / 2
     ) {
       // this.state = this.newState;
-      state = `plant-view`;
+      state = `inside-pod`;
       console.log("touched");
     }
   }
