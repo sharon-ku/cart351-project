@@ -15,6 +15,7 @@ class Greenhouse {
   }
 
   mousePressed() {
+    // if mouse touches pod image
     if (
       mouseX > this.x - this.podImage.width / 2 &&
       mouseX < this.x + this.podImage.width / 2 &&

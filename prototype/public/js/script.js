@@ -19,7 +19,13 @@ let teal = {
 let pods = [];
 let podImages = []; //array to store pod images
 let numPodImages = 4; //number pod podImages
-let numPods = 100;
+const NUM_POD_IMG = 4;
+const NUM_PODS = 100;
+
+let plants = [];
+let plantImages = [];
+const NUM_PLANT_IMG = 3;
+let num_plants = 6;
 
 // All possible states:
 // welcome, new-user-dialog, choose-pod, choose-podmate, choose-seed, pod-navigation, plant-view
@@ -27,7 +33,7 @@ let state = `pod-navigation`;
 
 function preload() {
   // load pod images
-  for (let i = 0; i < numPodImages; i++) {
+  for (let i = 0; i < NUM_POD_IMG; i++) {
     let loadPodImage = loadImage(`assets/images/pods/pod${i}.png`);
     podImages.push(loadPodImage);
   }
@@ -38,7 +44,7 @@ function setup() {
   bkg.position(0, 0);
   bkg.style("z-index", -1);
 
-  for (let i = 0; i < numPods; i++) {
+  for (let i = 0; i < NUM_PODS; i++) {
     let x = random(100, canvasWidth - 50);
     let y = random(100, canvasWidth - 50);
     let image = random(podImages);
@@ -69,7 +75,6 @@ function podNavigation() {
   for (let i = 0; i < pods.length; i++) {
     let pod = pods[i];
     pod.display();
-    // pod.mousePressed();
   }
 }
 function plantView() {
