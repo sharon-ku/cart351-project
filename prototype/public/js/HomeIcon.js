@@ -1,6 +1,9 @@
 class HomeIcon extends Icon {
-  constructor(x, y, iconImg, size) {
+  constructor(x, y, iconImg, size, newCanvasWidth, newCanvasHeight) {
     super(x, y, iconImg, size);
+
+    this.newCanvasWidth = newCanvasWidth;
+    this.newCanvasHeight = newCanvasHeight;
   }
 
   display() {
@@ -35,6 +38,7 @@ class HomeIcon extends Icon {
     ) {
       state = `pod-navigation`;
       console.log("clicked on Home Icon");
+      resizeCanvas(this.newCanvasWidth, this.newCanvasHeight);
     }
   }
 }

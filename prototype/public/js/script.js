@@ -8,7 +8,7 @@ author, and this description to match your project!
 
 "use strict";
 let bkg;
-let canvasWidth = 2000;
+let canvasWidth = 3000;
 
 // All possible states:
 // pod-navigation, inside-pod, plant-view
@@ -101,7 +101,14 @@ function setup() {
   let iconX_R = windowWidth * 0.01;
 
   // add home icon
-  homeIcon = new HomeIcon(iconX_R, iconX_R, homeIconImg, homeIconSize);
+  homeIcon = new HomeIcon(
+    iconX_R,
+    iconX_R,
+    homeIconImg,
+    homeIconSize,
+    canvasWidth,
+    canvasWidth
+  );
 
   // draw butterfly icon
   // place butterfly icon on right side of the screen
