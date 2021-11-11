@@ -27,7 +27,7 @@ let aqua = {
 };
 
 let stars = [];
-const NUM_STARS = 50;
+const NUM_STARS = 100;
 
 // text properties
 let font = `quicksand, sans-serif`;
@@ -150,8 +150,8 @@ function setup() {
 // blueprint for a star
 function createStar() {
   let star = {
-    x: random(0, windowWidth),
-    y: random(0, windowHeight),
+    x: random(0, canvasWidth),
+    y: random(0, canvasWidth),
     alpha: 125,
     vx: 0,
     vy: 0,
@@ -191,8 +191,16 @@ function podNavigation() {
 
   for (let i = 0; i < pods.length; i++) {
     let pod = pods[i];
-    pod.display();
-    pod.overlap();
+    pod.update();
+
+    // if (pod.overlap()) {
+    //   console.log("overlap");
+    //   // change cursor type
+    //   // cursor("pointer");
+    //   noCursor();
+    // } else {
+    //   cursor("default");
+    // }
   }
 }
 
@@ -251,8 +259,8 @@ function moveStar(star) {
     star.vy = random(-star.speed, star.speed);
   }
 
-  star.x = constrain(star.x, 0, width);
-  star.y = constrain(star.y, 0, height);
+  star.x = constrain(star.x, 0, canvasWidth);
+  star.y = constrain(star.y, 0, canvasWidth);
 
   star.x += star.vx;
   star.y += star.vy;
@@ -271,9 +279,9 @@ function mousePressed() {
   cactus.mousePressed();
 }
 
-function windowResized() {
-  console.log(`resized`);
-  // if (state === `inside-pod`) {
-  resizeCanvas(windowWidth, windowHeight);
-  // }
-}
+// function windowResized() {
+//   console.log(`resized`);
+//   // if (state === `inside-pod`) {
+//   resizeCanvas(windowWidth, windowHeight);
+//   // }
+// }

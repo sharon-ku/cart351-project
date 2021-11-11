@@ -10,6 +10,18 @@ class Greenhouse {
     this.newCanvasHeight = newCanvasHeight;
   }
 
+  update() {
+    this.display();
+
+    if (this.overlap()) {
+      this.width = 60;
+      this.height = this.width * 1.2;
+    } else {
+      this.width = 50;
+      this.height = this.width * 1.2;
+    }
+  }
+
   display() {
     // looking for reference point
     // push();
@@ -32,11 +44,9 @@ class Greenhouse {
       mouseY > this.y &&
       mouseY < this.y + this.podImage.height / 8
     ) {
-      this.width = 60;
-      this.height = this.width * 1.2;
+      return true;
     } else {
-      this.width = 50;
-      this.height = this.width * 1.2;
+      return false;
     }
   }
 
