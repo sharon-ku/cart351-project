@@ -83,8 +83,9 @@ function setup() {
 
   // create pods
   for (let i = 0; i < NUM_PODS; i++) {
-    let x = random(100, canvasWidth - 50);
-    let y = random(100, canvasWidth - 50);
+    // keep some distance from borders
+    let x = random(10, canvasWidth - 10);
+    let y = random(10, canvasWidth - 10);
     let image = random(podImages);
 
     // resize canvas to windowWidth and windowHeight
@@ -146,6 +147,7 @@ function podNavigation() {
   for (let i = 0; i < pods.length; i++) {
     let pod = pods[i];
     pod.display();
+    pod.overlap();
   }
 }
 function insidePod() {

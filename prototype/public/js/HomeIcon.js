@@ -28,10 +28,10 @@ class HomeIcon extends Icon {
   mousePressed() {
     // if mouse touches icon
     if (
-      mouseX > this.x - this.size / 2 &&
-      mouseX < this.x + this.size / 2 &&
-      mouseY > this.y - this.size / 2 &&
-      mouseY < this.y + this.size / 2
+      mouseX > this.x &&
+      mouseX < this.x + this.size &&
+      mouseY > this.y &&
+      mouseY < this.y + this.size
     ) {
       state = `pod-navigation`;
       console.log("clicked on Home Icon");
