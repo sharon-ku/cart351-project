@@ -38,6 +38,8 @@ class HomeIcon extends Icon {
     ) {
       state = `pod-navigation`;
       console.log("clicked on Home Icon");
+
+      // resize canvas
       resizeCanvas(this.newCanvasWidth, this.newCanvasHeight);
     }
   }
