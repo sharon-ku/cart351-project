@@ -17,11 +17,12 @@ class Icon {
   }
 
   display() {
-    push();
-    stroke(0);
-    strokeWeight(8);
-    point(this.x, this.y);
-    pop();
+    // looking for reference point
+    // push();
+    // stroke(0);
+    // strokeWeight(8);
+    // point(this.x, this.y);
+    // pop();
 
     push();
     imageMode(CORNER);
