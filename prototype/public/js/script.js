@@ -26,6 +26,9 @@ let aqua = {
   b: 240,
 };
 
+let stars = [];
+const NUM_STARS = 50;
+
 // text properties
 let font = `quicksand, sans-serif`;
 
@@ -136,6 +139,28 @@ function setup() {
   );
 
   cactus = new Plant(windowWidth / 2, windowHeight / 2, cactus_baby_Img);
+
+  // Create sparkling stars!
+  for (let i = 0; i < NUM_STARS; i++) {
+    let star = createStar();
+    stars.push(star);
+  }
+}
+
+// blueprint for a star
+function createStar() {
+  let star = {
+    x: random(0, windowWidth),
+    y: random(0, windowHeight),
+    alpha: 125,
+    vx: 0,
+    vy: 0,
+    speed: 0.5,
+    size: 10,
+    fill: 255,
+  };
+
+  return star;
 }
 
 function draw() {
@@ -152,14 +177,39 @@ function draw() {
 
 function podNavigation() {
   background(31, 80, 80);
+
+  // draw stars
+  for (let i = 0; i < stars.length; i++) {
+    let star = stars[i];
+
+    // make star size smaller
+    star.size = 5;
+
+    moveStar(star);
+    displayStar(star);
+  }
+
   for (let i = 0; i < pods.length; i++) {
     let pod = pods[i];
     pod.display();
     pod.overlap();
   }
 }
+
 function insidePod() {
   background(31, 80, 80);
+
+  // draw stars
+  for (let i = 0; i < stars.length; i++) {
+    let star = stars[i];
+
+    // increase star size
+    star.size = 10;
+
+    moveStar(star);
+    displayStar(star);
+  }
+
   push();
   textSize(24);
   textFont(font);
@@ -177,6 +227,35 @@ function insidePod() {
   teleportIcon.overlap();
 
   cactus.display();
+}
+
+// Display star as circle
+function displayStar(star) {
+  push();
+  noStroke();
+  fill(21, 136, 146, star.alpha);
+
+  if (random() < 0.5) {
+    star.alpha -= 20;
+  } else {
+    star.alpha += 20;
+  }
+
+  ellipse(star.x, star.y, star.size);
+  pop();
+}
+
+function moveStar(star) {
+  if (random() < 0.05) {
+    star.vx = random(-star.speed, star.speed);
+    star.vy = random(-star.speed, star.speed);
+  }
+
+  star.x = constrain(star.x, 0, width);
+  star.y = constrain(star.y, 0, height);
+
+  star.x += star.vx;
+  star.y += star.vy;
 }
 
 function mousePressed() {
