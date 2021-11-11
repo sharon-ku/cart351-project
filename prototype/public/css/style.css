@@ -21,6 +21,13 @@ body {
   height: 100vh;
 
   background-color: #08747b;
+
+  background-image: url("../assets/images/welcome/leaves-background2.jpg");
+  background-repeat: no-repeat;
+  background-size: auto;
+  /* background-blend-mode: overlay; */
+
+  /* background-color: rgb(8, 116, 123, 1); */
   font-family: "Quicksand", sans-serif;
   color: white;
 }

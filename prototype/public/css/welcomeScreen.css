@@ -35,7 +35,7 @@ body {
 }
 ::placeholder {
   /* light grey with 60% opacity */
-  color: rgb(176, 174, 174, 0.6);
+  color: rgb(176, 174, 174, 0.8);
   opacity: 1; /* Firefox */
 }
 

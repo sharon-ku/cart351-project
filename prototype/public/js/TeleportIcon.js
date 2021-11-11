@@ -16,7 +16,7 @@ class TeleportIcon extends Icon {
       mouseY < this.y + this.size
     ) {
       push();
-      textSize(10);
+      textSize(15);
       textFont(this.font);
       fill(this.aqua.r, this.aqua.g, this.aqua.b);
       text("Teleport", this.x, this.textY);

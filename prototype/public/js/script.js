@@ -113,7 +113,7 @@ function setup() {
   // draw butterfly icon
   // place butterfly icon on right side of the screen
   // butterflyIconProperties.x += windowWidth;
-  let iconX_L = windowWidth - iconSize * 1.1;
+  let iconX_L = windowWidth - iconSize * 1.1 - 30;
   let iconY_L = windowHeight * 0.1;
 
   butterflyIcon = new ButterflyIcon(
@@ -151,6 +151,7 @@ function draw() {
 }
 
 function podNavigation() {
+  background(31, 80, 80);
   for (let i = 0; i < pods.length; i++) {
     let pod = pods[i];
     pod.display();
@@ -158,6 +159,7 @@ function podNavigation() {
   }
 }
 function insidePod() {
+  background(31, 80, 80);
   push();
   textSize(24);
   textFont(font);
@@ -188,4 +190,11 @@ function mousePressed() {
   teleportIcon.mousePressed();
 
   cactus.mousePressed();
+}
+
+function windowResized() {
+  console.log(`resized`);
+  // if (state === `inside-pod`) {
+  resizeCanvas(windowWidth, windowHeight);
+  // }
 }
