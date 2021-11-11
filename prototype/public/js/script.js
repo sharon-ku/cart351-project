@@ -8,7 +8,7 @@ author, and this description to match your project!
 
 "use strict";
 let bkg;
-let canvasWidth = 2000;
+let canvasWidth = 3000;
 
 // All possible states:
 // pod-navigation, inside-pod, plant-view
