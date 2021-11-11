@@ -279,9 +279,9 @@ function mousePressed() {
   cactus.mousePressed();
 }
 
-// function windowResized() {
-//   console.log(`resized`);
-//   // if (state === `inside-pod`) {
-//   resizeCanvas(windowWidth, windowHeight);
-//   // }
-// }
+function windowResized() {
+  console.log(`resized`);
+  if (state === `inside-pod`) {
+    resizeCanvas(windowWidth, windowHeight);
+  }
+}

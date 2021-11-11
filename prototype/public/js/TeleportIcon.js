@@ -21,6 +21,13 @@ class TeleportIcon extends Icon {
       fill(this.aqua.r, this.aqua.g, this.aqua.b);
       text("Teleport", this.x, this.textY);
       pop();
+
+      push();
+      textSize(30);
+      textFont(this.font);
+      fill(255);
+      text("Nothing here yet!", width / 2, 100);
+      pop();
     }
   }
 
