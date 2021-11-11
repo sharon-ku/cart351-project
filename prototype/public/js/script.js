@@ -95,20 +95,22 @@ function setup() {
 
   // create icons
   let iconSize = windowWidth / 15;
-  let iconX_R = windowWidth * 0.05;
+  let homeIconSize = iconSize - 20;
+
+  let iconX_R = windowWidth * 0.01;
 
   // add home icon
-  homeIcon = new HomeIcon(iconX_R, iconX_R, homeIconImg, iconSize);
+  homeIcon = new HomeIcon(iconX_R, iconX_R, homeIconImg, homeIconSize);
 
   // draw butterfly icon
   // place butterfly icon on right side of the screen
   // butterflyIconProperties.x += windowWidth;
-  let iconX_L = windowWidth - iconX_R;
-  let iconY_L = windowHeight * 0.07;
+  let iconX_L = windowWidth - iconSize * 1.1;
+  let iconY_L = windowHeight * 0.1;
 
   butterflyIcon = new ButterflyIcon(
     iconX_L,
-    iconY_L,
+    iconX_R,
     butterflyIconImg,
     iconSize
   );
@@ -116,7 +118,7 @@ function setup() {
   // draw teleport  icon
   // place  teleport icon on right side of the screen
 
-  let teleportIcon_Y = iconY_L + iconSize * 1.25;
+  let teleportIcon_Y = iconX_R + iconSize * 1.4;
 
   teleportIcon = new TeleportIcon(
     iconX_L,
@@ -155,15 +157,15 @@ function insidePod() {
   pop();
 
   homeIcon.display();
+  homeIcon.overlap();
+
   butterflyIcon.display();
+  butterflyIcon.overlap();
+
   teleportIcon.display();
+  teleportIcon.overlap();
 
   cactus.display();
-}
-
-function plantView() {
-  text("Plant view", 100, 100);
-  homeIcon.display();
 }
 
 function mousePressed() {

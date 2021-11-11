@@ -18,17 +18,13 @@ class Plant {
     pop();
   }
 
-  text() {
+  mousePressed() {
     push();
     textSize(34);
     textFont(this.font);
     fill(this.aqua.r, this.aqua.g, this.aqua.b);
     text("Eugene was sent to you by uwu", 100, 100);
     pop();
-  }
-
-  mousePressed() {
-    text();
     console.log("clicked plant");
   }
 }
