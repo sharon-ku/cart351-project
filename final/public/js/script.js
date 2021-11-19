@@ -7,6 +7,11 @@ author, and this description to match your project!
 */
 
 "use strict";
+
+// To allow client to connect to socket
+let socket;
+let portNumber = 2;
+
 let bkg;
 let canvasWidth = 3000;
 
@@ -83,6 +88,10 @@ function setup() {
   bkg = createCanvas(canvasWidth, canvasWidth);
   bkg.position(0, 0);
   bkg.style("z-index", -1);
+
+  // socket = socket.io.connect(`http://localhost:${portNumber}`);
+  socket = io.connect("http://localhost:2");
+  // const socket = io();
 
   // create pods
   for (let i = 0; i < NUM_PODS; i++) {
