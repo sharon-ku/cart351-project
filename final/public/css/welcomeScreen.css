@@ -1,0 +1,84 @@
+/* typefaces */
+@import url("https://fonts.googleapis.com/css2?family=Gluten:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap");
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  width: 50%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  margin-left: 10%;
+
+  position: relative;
+}
+
+#inputUsername {
+  background-color: rgb(8, 116, 123, 0);
+  padding: 10px;
+  margin-right: 5%;
+  font-family: "Quicksand", sans-serif;
+  font-size: 2rem;
+  color: white;
+  border: none;
+  border: 2px solid white;
+  border-radius: 6px;
+  margin-top: 2.5%;
+  margin-bottom: 2.5%;
+}
+::placeholder {
+  /* light grey with 60% opacity */
+  color: rgb(176, 174, 174, 0.8);
+  opacity: 1; /* Firefox */
+}
+
+#loginBtn {
+  position: absolute;
+  /* left: 20%; */
+  /* top: 58%; */
+  /* top: 0px; */
+  margin-left: 100%;
+  /* margin-right: 100%; */
+  width: 30px;
+}
+
+#firstTime {
+  font-size: 1.3rem;
+  /* padding-top: 500px; */
+  text-decoration: underline;
+}
+
+/* unvisited link */
+/* a:link {
+  color: rgb(45, 227, 240);
+  font-family: "Quicksand", sans-serif;
+
+} */
+
+/* visited link */
+/* a:visited {
+  color: rgb(45, 227, 240);
+  font-family: "Quicksand", sans-serif;
+  text-decoration: none;
+} */
+
+#welcome {
+  font-size: 2em;
+  /* highlighter blue */
+  color: rgb(45, 227, 240);
+  margin-bottom: 10px;
+}
+
+#title {
+  font-size: 3.5em;
+  font-family: "gluten", sans-serif;
+  /* highlighter blue */
+  color: rgb(45, 227, 240);
+}

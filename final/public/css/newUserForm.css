@@ -1,0 +1,145 @@
+/* * {
+  color: white;
+}
+
+nav {
+  margin: 5%;
+}
+
+#backBtn {
+  font-size: 2rem;
+  font-family: "gluten", sans-serif;
+}
+
+formPosition {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#newUserForm {
+  width: 40%;
+  border: 2px solid white;
+  border-radius: 6px;
+  margin: 10%;
+  padding: 5%;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+::placeholder {
+  color: lightgrey;
+}
+
+input {
+  margin-top: 10%;
+  margin-bottom: 10%;
+  background-color: rgb(8, 116, 123, 0);
+  border: 2px solid white;
+  width: 100%;
+  padding: 5px;
+  border-radius: 6px;
+}
+
+button {
+  display: flex;
+
+  background-color: rgb(8, 116, 123, 0);
+  border: 2px solid white;
+  border-radius: 6px;
+  padding: 20%;
+
+  margin: 20%;
+}
+
+input.invalid {
+  background-color: #ffdddd;
+}
+
+.tab {
+  display: none;
+} */
+
+/* typefaces */
+@import url("https://fonts.googleapis.com/css2?family=Gluten:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap");
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#backBtn {
+  font-size: 2rem;
+  font-family: "gluten", sans-serif;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+button {
+  display: flex;
+
+  background-color: rgb(8, 116, 123, 0);
+  border: 2px solid white;
+  border-radius: 6px;
+  padding: 20%;
+
+  margin: 20%;
+  margin-top: 40px;
+  color: white;
+}
+
+h3 {
+  margin-top: 40px;
+  font-size: 2em;
+  font-weight: normal;
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  width: 50%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  margin-left: 10%;
+
+  position: relative;
+}
+
+#inputUsername {
+  background-color: rgb(8, 116, 123, 0);
+  padding: 10px;
+  margin-right: 5%;
+  font-family: "Quicksand", sans-serif;
+  font-size: 2rem;
+  color: white;
+  border: none;
+  border: 2px solid white;
+  border-radius: 6px;
+  margin-top: 2.5%;
+  margin-bottom: 2.5%;
+}
+::placeholder {
+  /* light grey with 60% opacity */
+  color: rgb(176, 174, 174, 0.8);
+  opacity: 1; /* Firefox */
+}
+
+#loginBtn {
+  margin-left: 100%;
+  /* height: 40px; */
+  width: 40px;
+}
+
+#firstTime {
+  font-size: 1.5rem;
+}
+#title {
+  font-family: "gluten", sans-serif;
+  color: rgb(45, 227, 240);
+}
