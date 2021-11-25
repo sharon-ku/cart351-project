@@ -43,11 +43,16 @@ let numPodImages = 4; //number pod podImages
 const NUM_POD_IMG = 4;
 const NUM_PODS = 100;
 
+const NUM_PLANT_IMG = 4;
+let cactusImages = [];
+let dragonImages = [];
+let cherryImages = [];
+
+// used temporarily to randomly select a plant
+let allPlantImages = [];
+
 let cactus;
-let cactus_baby_Img;
-let cactus_young_Img;
-let cactus_bloom_Img;
-let growthStage = 5;
+// let growthStage = 5;
 
 // icon
 // home icon
@@ -70,18 +75,34 @@ function preload() {
   }
 
   // cactus images
-  cactus_baby_Img = loadImage(`assets/images/plants/cactus0.png`); //stage 1
-  cactus_young_Img = loadImage(`assets/images/plants/cactus1.png`); //stage 2
-  cactus_bloom_Img = loadImage(`assets/images/plants/cactus2.png`); //stage 3
+  for (let i = 0; i < NUM_PLANT_IMG; i++) {
+    let plantImage = loadImage(`assets/images/plants/cactus${i}.png`);
+    cactusImages.push(plantImage);
+  }
+
+  // cherry images
+  for (let i = 0; i < NUM_PLANT_IMG; i++) {
+    let plantImage = loadImage(`assets/images/plants/cherry${i}.png`);
+    cherryImages.push(plantImage);
+  }
+
+  // dragon images
+  for (let i = 0; i < NUM_PLANT_IMG; i++) {
+    let plantImage = loadImage(`assets/images/plants/dragon${i}.png`);
+    dragonImages.push(plantImage);
+  }
+
+  // allPlantImages used to temporarily store plant images
+  allPlantImages.push(cactusImages, cherryImages, dragonImages);
 
   // load home icon image
-  homeIconImg = loadImage(`assets/images/icons/greenhouse_icon.png`);
+  homeIconImg = loadImage(`assets/images/icons/greenhouse-icon.png`);
 
   // load butterfly icon image
-  butterflyIconImg = loadImage(`assets/images/icons/butterfly_icon.png`);
+  butterflyIconImg = loadImage(`assets/images/icons/butterfly-icon.png`);
 
   // load butterfly icon image
-  teleportIconImg = loadImage(`assets/images/icons/teleport_icon.png`);
+  teleportIconImg = loadImage(`assets/images/icons/teleport-icon.png`);
 }
 
 function setup() {
@@ -90,7 +111,7 @@ function setup() {
   bkg.style("z-index", -1);
 
   // socket = socket.io.connect(`http://localhost:${portNumber}`);
-  socket = io.connect("http://localhost:2");
+  // socket = io.connect("http://localhost:2");
   // const socket = io();
 
   // create pods
@@ -147,13 +168,16 @@ function setup() {
     iconSize
   );
 
-  cactus = new Plant(windowWidth / 2, windowHeight / 2, cactus_baby_Img);
-
   // Create sparkling stars!
   for (let i = 0; i < NUM_STARS; i++) {
     let star = createStar();
     stars.push(star);
   }
+
+  // Create plant
+  // cactus = new Plant(windowWidth / 2, windowHeight / 2, cactusImages);
+  // For now, cactus stores a random plant image
+  cactus = new Plant(windowWidth / 2, windowHeight / 2, random(allPlantImages));
 }
 
 // blueprint for a star

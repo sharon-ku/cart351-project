@@ -1,5 +1,5 @@
 class Plant {
-  constructor(x, y, plantImg) {
+  constructor(x, y, plantImages) {
     this.x = x;
     this.y = y;
     this.aqua = {
@@ -8,13 +8,14 @@ class Plant {
       b: 240,
     };
     this.font = `quicksand,sans-serif`;
-    this.plantImg = plantImg;
+    this.plantImages = plantImages;
+    this.imageIndex = 1;
   }
 
   display() {
     push();
     imageMode(CENTER);
-    image(this.plantImg, this.x, this.y);
+    image(this.plantImages[this.imageIndex], this.x, this.y);
     pop();
   }
 
