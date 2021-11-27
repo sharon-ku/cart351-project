@@ -8,7 +8,7 @@ let express = require("express");
 // Create an instance of the Express object to access its methods and properties
 const app = express();
 
-const portNumber = 2;
+const portNumber = 3000;
 
 // Listen on port 2 (view on browser using "localhost:2")
 let server = app.listen(portNumber);
@@ -31,9 +31,9 @@ let io = socket(server);
 // Event for when we have a new connection:
 // - connection is the name of the event
 // - newConnection is the callback function
-io.sockets.on('connection', newConnection);
+io.sockets.on("connection", newConnection);
 
 function newConnection(socket) {
   console.log(socket);
-  console.log(`new connection: ` + socket.id)
+  console.log(`new connection: ` + socket.id);
 }

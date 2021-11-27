@@ -9,8 +9,12 @@ author, and this description to match your project!
 "use strict";
 
 // To allow client to connect to socket
-let socket;
-let portNumber = 2;
+// let socket;
+let clientSocket;
+let socketId = -1;
+let running = false;
+
+// let portNumber = 2;
 
 let bkg;
 let canvasWidth = 3000;
@@ -110,6 +114,8 @@ function setup() {
   bkg.position(0, 0);
   bkg.style("z-index", -1);
 
+  let clientSocket = io.connect("http://localhost:3000");
+
   // socket = socket.io.connect(`http://localhost:${portNumber}`);
   // socket = io.connect("http://localhost:2");
   // const socket = io();
@@ -196,15 +202,32 @@ function createStar() {
   return star;
 }
 
-function draw() {
-  // background(teal.r, teal.g, teal.b);
-  background(31, 80, 80);
+clientSocket.on("connect", function (data) {
+  console.log("connected");
+  // put code here that should only execute once the client is connected
+  /*********************************************************************************************/
+  // NEW:: pass the userID from db so server can CONNECT the userID and socket id together ... */
+  /********************************************************************************************/
+  clientSocket.emit("join", userInfo);
+  // handler for receiving client id
+  clientSocket.on("joinedClientId", function (data) {
+    socketId = data;
+    console.log("myId " + socketId);
+    running = true;
+  });
+});
 
-  // States setup:
-  if (state === `pod-navigation`) {
-    podNavigation();
-  } else if (state === `inside-pod`) {
-    insidePod();
+function draw() {
+  if (running) {
+    // background(teal.r, teal.g, teal.b);
+    background(31, 80, 80);
+
+    // States setup:
+    if (state === `pod-navigation`) {
+      podNavigation();
+    } else if (state === `inside-pod`) {
+      insidePod();
+    }
   }
 }
 
