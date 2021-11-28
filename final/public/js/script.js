@@ -114,7 +114,23 @@ function setup() {
   bkg.position(0, 0);
   bkg.style("z-index", -1);
 
-  let clientSocket = io.connect("http://localhost:3000");
+  // clientSocket = io.connect("http://localhost:3000");
+  clientSocket = io.connect("http://localhost:3000/%22");
+
+  clientSocket.on("connect", function (data) {
+    console.log("connected");
+    // put code here that should only execute once the client is connected
+    /*********************************************************************************************/
+    // NEW:: pass the userID from db so server can CONNECT the userID and socket id together ... */
+    /********************************************************************************************/
+    clientSocket.emit("join");
+    // handler for receiving client id
+    clientSocket.on("joinedClientId", function (data) {
+      socketId = data;
+      console.log("myId " + socketId);
+      running = true;
+    });
+  });
 
   // socket = socket.io.connect(`http://localhost:${portNumber}`);
   // socket = io.connect("http://localhost:2");
@@ -201,21 +217,6 @@ function createStar() {
 
   return star;
 }
-
-clientSocket.on("connect", function (data) {
-  console.log("connected");
-  // put code here that should only execute once the client is connected
-  /*********************************************************************************************/
-  // NEW:: pass the userID from db so server can CONNECT the userID and socket id together ... */
-  /********************************************************************************************/
-  clientSocket.emit("join", userInfo);
-  // handler for receiving client id
-  clientSocket.on("joinedClientId", function (data) {
-    socketId = data;
-    console.log("myId " + socketId);
-    running = true;
-  });
-});
 
 function draw() {
   if (running) {
