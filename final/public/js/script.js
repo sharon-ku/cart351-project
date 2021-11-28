@@ -114,8 +114,8 @@ function setup() {
   bkg.position(0, 0);
   bkg.style("z-index", -1);
 
-  // clientSocket = io.connect("http://localhost:3000");
-  clientSocket = io.connect("http://localhost:3000/%22");
+  clientSocket = io.connect("http://localhost:3000");
+  // clientSocket = io.connect("http://localhost:3000/%22");
 
   clientSocket.on("connect", function (data) {
     console.log("connected");
