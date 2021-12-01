@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title> SAMPLE FORM POST PAGE LOGIN </title>
+    <link rel="stylesheet" href="css/test.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/client.js" > </script>
+    <script src = "js/clientPost.js"></script>
+  </head>
+  <body>
+  <div id ="form-wrapper">
+  <h1> LOGIN USER </h1>
+  <div id = "container">
+  <form id = "form_login"  action="">
+  <p><label> USERNAME:</label> <input id = "username" type = "text" value="default" name = "username" /></p>
+  <p><label> NAME:</label> <input id = "name" type = "text" value="default" name ="name" /></p>
+    <p><label> PASS:</label> <input id = "password" type = "password" value="default" name ="password" /></p>
+  <p><input id = "login" type ="submit" value ="LOGIN" />
+</form>
+<p id = "mess">  a message </p>
+</div>
+</div>
+<div id  = "mainCanvas" class = "mainOne isHidden">
+  <h1> JSON TEST </h1>
+  <div class = "wrapper">
+  <form id = "fruitTest">
+    <!-- make the names of fields synonymous with db schema --- is helpful -->
+    <p><label>Fruit:</label><input type = "text" size="24" maxlength = "40"  name = "fruit_name" required></p>
+    <p><label>Description:</label><input type = "text" size="24" maxlength = "40"  name = "fruit_description" required></p>
+    <p><label>Liking</label><input type = "number" size="24" maxlength = "40"  name = "like_rating" min="1" max="100" required></p>
+    <p><input type = "submit" name = "submit" value = "send" id =buttonS /></p>
+  </form>
+
+  <p><input type = "submit" name = "submit" value = "get data!" id ="buttonQ" /></p>
+  <p><input type = "submit" name = "submit" value = "get my data!" id ="buttonR" /></p>
+  <p><input type = "submit" name = "submit" value = "get data of other!" id ="buttonW" /></p>
+  <div id = "resultSet" class = "results"></div>
+ <div id = "resultSetOther" class = "results"></div>
+  </div>
+
+ </div>
+</body>
+</html>

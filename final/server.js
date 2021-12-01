@@ -38,40 +38,38 @@ Implementing our http server
 //   console.log(`new connection: ` + socket.id);
 // }
 
-let express = require('express');
-const portNumber =3000;
+let express = require("express");
+const portNumber = 3000;
 let app = express(); //make an insatnce of express
-let httpServer = require('http').createServer(app);
+let httpServer = require("http").createServer(app);
 // create a server (using the Express framework object)
 // declare io which mounts to our httpServer object (runs on top ... )
-let io = require('socket.io')(httpServer);
+let io = require("socket.io")(httpServer);
 // serving static files
-let static = require('node-static'); // for serving static files (i.e. css,js,html...)
+let static = require("node-static"); // for serving static files (i.e. css,js,html...)
 
 // make server listen for incoming messages
-httpServer.listen(portNumber, function(){
-  console.log('listening on port:: '+portNumber);
-})
+httpServer.listen(portNumber, function () {
+  console.log("listening on port:: " + portNumber);
+});
 
+/*** THIS ONLY HAPPENS ONCE A CLIENT HAS SUCCESSFULLY LOGGED IN *****/
+io.on("connect", newConnection);
 
-io.on('connect', newConnection);
-  function newConnection(socket) {
-    console.log(socket);
-    console.log(`new connection: ` + socket.id);
-    socket.on('join', function (data) {
-     socket.emit('joinedClientId','temp');
+function newConnection(socket) {
+  console.log(socket);
+  console.log(`new connection: ` + socket.id);
+  socket.on("join", function (data) {
+    socket.emit("joinedClientId", "temp");
   });
+}
 
-  }
+// serve anything from this dir ...
+app.use(express.static(__dirname + "/public"));
+// for the client...
+app.use(express.static(__dirname + "/node_modules"));
 
-
-  // serve anything from this dir ...
-  app.use(express.static(__dirname + '/public'));
-  // for the client...
-  app.use(express.static(__dirname + '/node_modules'));
-
-
-  //make a route
-  app.get('/', function(req, res) {
-      res.sendFile(__dirname + '/public/index.html');
-  });
+//make a route
+app.get("/", function (req, res) {
+  res.sendFile(__dirname + "/public/index.html");
+});

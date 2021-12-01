@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title> Animation and Collaboration with sockets</title>
+
+        <!-- The stylesheets -->
+        <link rel="stylesheet" href="css/test.css" />
+
+       <script src="/socket.io/socket.io.js"></script>
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+       <script src="js/client.js" > </script>
+    </head>
+
+    <body>
+      <h1> JSON TEST </h1>
+      <div class = "wrapper">
+      <form id = "fruitTest">
+        <!-- make the names of fields synonymous with db schema --- is helpful -->
+        <p><label>Fruit:</label><input type = "text" size="24" maxlength = "40"  name = "fruit_name" required></p>
+        <p><label>Description:</label><input type = "text" size="24" maxlength = "40"  name = "fruit_description" required></p>
+        <p><label>Liking</label><input type = "number" size="24" maxlength = "40"  name = "like_rating" min="1" max="100" required></p>
+        <p><input type = "submit" name = "submit" value = "send" id =buttonS /></p>
+      </form>
+
+      <p><input type = "submit" name = "submit" value = "get data!" id =buttonQ /></p>
+      <p><input type = "submit" name = "submit" value = "get some data!" id =buttonR /></p>
+      <div class = "results"> mY results ::</div>
+      </div>
+
+  </body>
+</html>
