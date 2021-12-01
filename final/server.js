@@ -66,7 +66,7 @@ const password = process.argv[2];
 //database name is myFirstDatabase (creates)
 
 // const url = `mongodb+srv://sab-comp:${password}@cluster0.7p8bo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
-const url = `mongodb+srv://sharon:${password}@cluster0.kdjyl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+const url = `mongodb+srv://ben:${password}@cluster0.kdjyl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 
 mongoose.connect(url);
 let db = mongoose.connection;
