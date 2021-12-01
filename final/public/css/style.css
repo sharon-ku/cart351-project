@@ -35,6 +35,18 @@ https://unsplash.com/photos/xljtGZ2-P3Y
   color: white;
 }
 
+/* #scripts {
+  display: none;
+} */
+
+/* .isHidden {
+  display: none;
+} */
+
+#defaultCanvas0 {
+  display: none;
+}
+
 /* unvisited link */
 a:link {
   color: rgb(45, 227, 240);
