@@ -6,15 +6,30 @@ const mongoose = require("mongoose");
 //The definition is as follows:
 
 const userSchema = new mongoose.Schema({
-  user: String,
+  username: String,
   // name: String,
   passwordHash: String,
-  fruits: [
+  podId: Number,
+  seeds: [
     {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Fruit",
+      plantName: String,
+      planted: Boolean,
+    },
+    {
+      plantName: String,
+      planted: Boolean,
+    },
+    {
+      plantName: String,
+      planted: Boolean,
     },
   ],
+  // fruits: [
+  //   {
+  //     type: mongoose.Schema.Types.ObjectId,
+  //     ref: "Fruit",
+  //   },
+  // ],
 });
 
 userSchema.set("toJSON", {
