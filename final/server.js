@@ -38,6 +38,46 @@ Implementing our http server
 //   console.log(`new connection: ` + socket.id);
 // }
 
+/****************************************
+MongoDB set up
+*****************************************/
+
+// for parsing
+let bodyParser = require("body-parser");
+
+//new get user module
+const User = require("./user");
+
+//new get fruit node_module
+const Fruit = require("./fruit");
+//5: add the connection code:
+const mongoose = require("mongoose");
+
+if (process.argv.length < 3) {
+  console.log(
+    "Please provide the password as an argument: node mongo.js <password>"
+  );
+  process.exit(1);
+}
+
+const password = process.argv[2];
+
+//good idea to put in the password when running from the terminal (for testing and PLEASE do not share :: (mine is XML2asp))
+//database name is myFirstDatabase (creates)
+
+// const url = `mongodb+srv://sab-comp:${password}@cluster0.7p8bo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+const url = `mongodb+srv://sharon:${password}@cluster0.kdjyl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+
+mongoose.connect(url);
+let db = mongoose.connection;
+
+//bind to error event
+//Bind connection to error event (to get notification of connection errors)
+db.on("error", console.error.bind(console, "MongoDB connection error:"));
+
+/****************************************
+ *****************************************/
+
 let express = require("express");
 const portNumber = 3000;
 let app = express(); //make an insatnce of express
