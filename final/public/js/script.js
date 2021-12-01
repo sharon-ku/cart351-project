@@ -9,12 +9,9 @@ author, and this description to match your project!
 "use strict";
 
 // To allow client to connect to socket
-// let socket;
 let clientSocket;
 let socketId = -1;
 let running = false;
-
-// let portNumber = 2;
 
 let bkg;
 let canvasWidth = 3000;
@@ -115,7 +112,6 @@ function setup() {
   bkg.style("z-index", -1);
 
   clientSocket = io.connect("http://localhost:3000");
-  // clientSocket = io.connect("http://localhost:3000/%22");
 
   clientSocket.on("connect", function (data) {
     console.log("connected");
@@ -131,10 +127,6 @@ function setup() {
       running = true;
     });
   });
-
-  // socket = socket.io.connect(`http://localhost:${portNumber}`);
-  // socket = io.connect("http://localhost:2");
-  // const socket = io();
 
   // create pods
   for (let i = 0; i < NUM_PODS; i++) {

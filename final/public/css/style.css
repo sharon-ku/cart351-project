@@ -35,14 +35,7 @@ https://unsplash.com/photos/xljtGZ2-P3Y
   color: white;
 }
 
-/* #scripts {
-  display: none;
-} */
-
-/* .isHidden {
-  display: none;
-} */
-
+/* on log in, hide the canvas */
 #defaultCanvas0 {
   display: none;
 }

@@ -9,7 +9,6 @@ window.onload = function () {
       "/registerIn",
       {
         username: document.getElementById("username").value,
-        // name: document.getElementById("name").value,
         password: document.getElementById("password").value,
       },
       function (data, status) {
@@ -36,7 +35,6 @@ window.onload = function () {
       "/logIn",
       {
         username: document.getElementById("username").value,
-        // name: document.getElementById("name").value,
         password: document.getElementById("password").value,
       },
       function (data, status) {
@@ -53,7 +51,6 @@ window.onload = function () {
           document.getElementById("form-wrapper").remove();
           $("#defaultCanvas0").css("display", "block");
           $("#content").remove();
-          // $("#mainCanvas").removeClass("isHidden");
           /**** NOW WE CAN START CLIENT SOCKET CONNECTION ****/
           // startClientSocketConnection(data);
         }
