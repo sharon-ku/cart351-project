@@ -88,6 +88,78 @@ let io = require("socket.io")(httpServer);
 // serving static files
 let static = require("node-static"); // for serving static files (i.e. css,js,html...)
 
+let clientIdIncrementing = 0;
+let clientIds = [];
+
+//https://www.npmjs.com/package/body-parser
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+
+//default route
+app.get("/", function (req, res) {
+  res.send("<h1>Hello world</h1>");
+});
+
+// new when user posts data register
+
+app.post("/registerIn", async (request, response) => {
+  const body = request.body;
+  console.log(body);
+  const saltRounds = 10;
+  // const passwordHash = await bcrypt.hash(body.password, saltRounds);
+
+  //is user already in?
+  User.find({ username: body.username }).then((result) => {
+    //result.forEach(fruit => {
+    // console.log(fruit)
+    console.log(result);
+
+    if (result.length == 0) {
+      //response.json("no user");
+
+      const user = new User({
+        username: body.username,
+        // name: body.name,
+        passwordHash: body.password,
+      });
+      //save to db
+      user.save().then((result) => {
+        response.json(result);
+      });
+    } //not in
+    else {
+      response.json("ALREADY IN");
+    }
+    //find
+  });
+  //done
+});
+
+//when user posts data -logIn:
+app.post("/logIn", async (request, response) => {
+  const body = request.body;
+  console.log(body);
+  // for now just do opposite of register ... do not worry about testing for password
+  //is user already in?
+  User.find({ username: body.username }).then((result) => {
+    if (result.length == 1) {
+      response.json(result);
+    } else {
+      response.json("WRONG INFO");
+    }
+  });
+});
+
+//for user register page
+app.get("/userRegister", function (req, res) {
+  response.sendFile(__dirname + "/public/newUser.html");
+});
+
+//for user login page
+app.get("/userLogin", function (req, res) {
+  response.sendFile(__dirname + "/public/index.html");
+});
+
 // make server listen for incoming messages
 httpServer.listen(portNumber, function () {
   console.log("listening on port:: " + portNumber);

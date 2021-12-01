@@ -21,6 +21,7 @@
     <script src="js/libraries/p5.sound.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
+    <script src="js/clientPost.js"></script>
   </head>
 
   <body>
@@ -28,17 +29,54 @@
       <!-- HTML would go here if needed. -->
       <h1 id="welcome">Welcome to</h1>
       <h1 id="title">Greenhouse Hub</h1>
-      <div class="form">
+
+      <div id="form-wrapper">
+        <h1>LOGIN USER</h1>
+        <div id="container">
+          <form id="form_login" action="">
+            <p>
+              <label> USERNAME:</label>
+              <input
+                id="username"
+                type="text"
+                value="default"
+                name="username"
+              />
+            </p>
+            <!-- <p>
+              <label> NAME:</label>
+              <input id="name" type="text" value="default" name="name" />
+            </p> -->
+            <p>
+              <label> PASS:</label>
+              <input
+                id="password"
+                type="password"
+                value="default"
+                name="password"
+              />
+            </p>
+            <p><input id="login" type="submit" value="LOGIN" /></p>
+          </form>
+
+          <p id="mess">a message</p>
+        </div>
+      </div>
+
+      <!-- <div class="form">
         <input type="text" id="inputUsername" placeholder="username" /> <br />
         <input type="text" id="inputUsername" placeholder="password" /> <br />
-        <a href="greenhouses.html">
-          <img
-            id="loginBtn"
-            alt="login"
-            src="assets/images/welcome/leaf-arrow.png"
-          />
-        </a>
-      </div>
+        <form id="form_login" action="">
+          <input id="login" type="submit" value="LOGIN" />
+          <a href="greenhouses.html">
+            <img
+              id="loginBtn"
+              alt="login"
+              src="assets/images/welcome/leaf-arrow.png"
+            />
+          </a>
+        </form>
+      </div> -->
 
       <div>
         <!-- fake button to be replaced to validate username input -->
