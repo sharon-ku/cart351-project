@@ -50,6 +50,10 @@ const User = require("./user");
 
 //new get fruit node_module
 const Fruit = require("./fruit");
+
+// new greenhouse module
+const Greenhouse = require("./greenhouse");
+
 //5: add the connection code:
 const mongoose = require("mongoose");
 
@@ -173,6 +177,16 @@ function newConnection(socket) {
   console.log(`new connection: ` + socket.id);
   socket.on("join", function (data) {
     socket.emit("joinedClientId", "temp");
+  });
+
+  // request Greenhouses from MondoDB into server
+  socket.on("requestGreenhouses", function (data) {
+    Greenhouse.find({}).then((result) => {
+      result.forEach((greenhouse) => {
+        console.log(greenhouse);
+      });
+      socket.emit("newGreenhouses", result);
+    });
   });
 }
 

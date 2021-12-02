@@ -124,23 +124,29 @@ function setup() {
     clientSocket.on("joinedClientId", function (data) {
       socketId = data;
       console.log("myId " + socketId);
+
+      clientSocket.emit("requestGreenhouses");
+
       running = true;
     });
   });
 
-  // create pods
-  for (let i = 0; i < NUM_PODS; i++) {
-    // keep some distance from borders
-    let x = random(10, canvasWidth - 10);
-    let y = random(10, canvasWidth - 10);
-    let image = random(podImages);
+  clientSocket.on("newGreenhouses", function (results) {
+    // create pods
+    for (let i = 0; i < results.length; i++) {
+      // keep some distance from borders
 
-    // resize canvas to windowWidth and windowHeight
-    let pod = new Greenhouse(x, y, image, windowWidth, windowHeight);
-    pods.push(pod);
-    console.log(pods[i]);
-  }
+      let x = results[i].x;
+      let y = results[i].y;
+      let image = random(podImages);
+      let taken = results[i].taken;
 
+      // resize canvas to windowWidth and windowHeight
+      let pod = new Greenhouse(x, y, image, windowWidth, windowHeight, taken);
+      pods.push(pod);
+      // console.log(pods[i]);
+    }
+  });
   // create icons
   let iconSize = windowWidth / 15;
   let homeIconSize = iconSize - 20;

@@ -1,10 +1,11 @@
 class Greenhouse {
-  constructor(x, y, podImage, newCanvasWidth, newCanvasHeight) {
+  constructor(x, y, podImage, newCanvasWidth, newCanvasHeight, taken) {
     this.x = x;
     this.y = y;
     this.podImage = podImage;
     this.width = 50;
     this.height = this.width * 1.2;
+    this.taken = taken;
 
     this.newCanvasWidth = newCanvasWidth;
     this.newCanvasHeight = newCanvasHeight;
@@ -33,7 +34,16 @@ class Greenhouse {
     push();
     // imageMode(CENTER);
     imageMode(CORNER);
+    // if taken = false
+    if (!this.taken) {
+      tint(255, 255);
+    } else {
+      // if taken = true
+      tint(255, 0, 0);
+    }
+
     image(this.podImage, this.x, this.y, this.width, this.height);
+
     pop();
   }
 
@@ -59,7 +69,7 @@ class Greenhouse {
       mouseY < this.y + this.podImage.height / 8
     ) {
       state = `inside-pod`;
-      console.log("clicked pod");
+      // console.log("clicked pod");
 
       // resize canvas to windowWidth and windowHeight on click
       resizeCanvas(this.newCanvasWidth, this.newCanvasHeight);

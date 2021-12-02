@@ -26,6 +26,6 @@ class Plant {
     fill(this.aqua.r, this.aqua.g, this.aqua.b);
     text("Eugene was sent to you by uwu", 100, 100);
     pop();
-    console.log("clicked plant");
+    // console.log("clicked plant");
   }
 }
