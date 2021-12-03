@@ -20,6 +20,7 @@
     <script src="js/libraries/p5.min.js"></script>
     <script src="js/libraries/p5.sound.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="js/clientPost.js"></script>
     <script src="/socket.io/socket.io.js"></script>
   </head>
 
@@ -38,10 +39,7 @@
             <label> USERNAME:</label>
             <input id="username" type="text" value="default" name="username" />
           </p>
-          <p>
-            <label> NAME:</label>
-            <input id="name" type="text" value="default" name="name" />
-          </p>
+
           <p>
             <label> PASS:</label>
             <input
@@ -58,23 +56,24 @@
       </div>
 
       <!-- OLD CODE BELOW -->
-      <div class="form">
+      <!-- <div class="form">
         <input type="text" id="inputUsername" placeholder="new username" />
         <br />
         <input type="text" id="inputUsername" placeholder="new password" />
         <br />
-      </div>
+      </div> -->
 
-      <div>
-        <!-- fake button to be replaced to validate username input -->
-        <a href="greenhouses.html">
+      <!-- <div> -->
+      <!-- fake button to be replaced to validate username input -->
+      <!-- <a href="greenhouses.html">
           <img
             id="loginBtn"
             alt="login"
             src="assets/images/welcome/leaf-arrow.png"
           />
         </a>
-      </div>
+      </div> -->
+
       <nav>
         <a id="backBtn" href="index.html"> < back</a>
       </nav>
