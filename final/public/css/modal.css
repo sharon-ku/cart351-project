@@ -56,7 +56,7 @@
   padding-bottom: 20%;
 }
 
-#submitMsg {
+.submitBtn {
   padding: 1%;
   color: white;
   border-radius: 10px;
@@ -65,6 +65,29 @@
   background-color: rgba(0, 0, 0, 0);
 }
 
-#submitMsg:hover {
+.submitBtn:hover {
   background-color: #08747b;
+}
+
+.sr-only {
+  clip: rect(0 0 0 0);
+  clip-path: inset(100%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.seedOptions label {
+  cursor: pointer;
+  filter: grayscale(100%);
+}
+
+.seedOptions label:hover {
+  filter: grayscale(0);
+}
+
+.seedOptions input[type="radio"]:checked + label {
+  filter: grayscale(0);
 }

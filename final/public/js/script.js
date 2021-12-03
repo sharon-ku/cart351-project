@@ -68,6 +68,10 @@ let butterflyIcon;
 let teleportIconImg;
 let teleportIcon;
 
+// seed icon
+let seedIconImg;
+let seedIcon;
+
 function preload() {
   // load pod images
   for (let i = 0; i < NUM_POD_IMG; i++) {
@@ -102,8 +106,11 @@ function preload() {
   // load butterfly icon image
   butterflyIconImg = loadImage(`assets/images/icons/butterfly-icon.png`);
 
-  // load butterfly icon image
+  // load teleport icon image
   teleportIconImg = loadImage(`assets/images/icons/teleport-icon.png`);
+
+  // load seed icon image
+  seedIconImg = loadImage(`assets/images/icons/seed_icon.png`);
 }
 
 function setup() {
@@ -188,6 +195,8 @@ function setup() {
     teleportIconImg,
     iconSize
   );
+
+  seedIcon = new SeedIcon(100, 100, seedIconImg, iconSize);
 
   // Create sparkling stars!
   for (let i = 0; i < NUM_STARS; i++) {
@@ -290,6 +299,9 @@ function insidePod() {
   teleportIcon.display();
   teleportIcon.overlap();
 
+  seedIcon.display();
+  seedIcon.overlap();
+
   cactus.display();
 }
 
@@ -333,6 +345,7 @@ function mousePressed() {
   teleportIcon.mousePressed();
 
   cactus.mousePressed();
+  seedIcon.mousePressed();
 }
 
 function windowResized() {
