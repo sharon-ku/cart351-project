@@ -48,8 +48,8 @@ let bodyParser = require("body-parser");
 //new get user module
 const User = require("./user");
 
-//new get fruit node_module
-const Fruit = require("./fruit");
+// //new get fruit node_module
+// const Fruit = require("./fruit");
 
 // new greenhouse module
 const Greenhouse = require("./greenhouse");
