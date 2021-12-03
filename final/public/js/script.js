@@ -174,8 +174,7 @@ function setup() {
     iconX_L,
     iconX_R,
     butterflyIconImg,
-    iconSize,
-    $("#MessagingForm")
+    iconSize
   );
 
   // draw teleport  icon
@@ -323,14 +322,14 @@ function moveStar(star) {
   star.y += star.vy;
 }
 
-function mouseReleased() {
+function mousePressed() {
   for (let i = 0; i < pods.length; i++) {
     let pod = pods[i];
     pod.mousePressed();
   }
 
   // homeIcon.mousePressed();
-  butterflyIcon.mouseReleased();
+  butterflyIcon.mousePressed();
   teleportIcon.mousePressed();
 
   cactus.mousePressed();
