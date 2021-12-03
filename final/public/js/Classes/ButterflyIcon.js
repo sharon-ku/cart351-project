@@ -40,6 +40,8 @@ class ButterflyIcon extends Icon {
       mouseY < this.y + this.size
     ) {
       console.log("send butterflies");
+
+      $("#MessagingForm").toggle();
     }
   }
 }

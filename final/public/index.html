@@ -15,7 +15,7 @@
     <!-- CSS stylesheets -->
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <link rel="stylesheet" type="text/css" href="css/welcomeScreen.css" />
-
+    <link rel="stylesheet" type="text/css" href="css/modal.css" />
     <!-- Library scripts -->
     <script src="js/libraries/p5.min.js"></script>
     <script src="js/libraries/p5.sound.min.js"></script>
@@ -56,6 +56,36 @@
           </form>
 
           <p id="mess">a message</p>
+        </div>
+      </div>
+
+      <div id="MessagingForm" class="modal">
+        <div class="form_content">
+          <span id="close" class="close">&times;</span>
+          <h2>Send message</h2>
+
+          <form action="">
+            <section class="messageBody">
+              <p>
+                <label id="sender">Sender : </label> <br />
+                <input id="sender" type="text" name="sender" required />
+              </p>
+
+              <p>
+                <label id="message"> Message : </label> <br />
+                <input id="message" type="text" name="message" required />
+              </p>
+
+              <p>
+                <input
+                  type="submit"
+                  name="submit"
+                  value="Submit"
+                  id="submitMsg"
+                />
+              </p>
+            </section>
+          </form>
         </div>
       </div>
 
