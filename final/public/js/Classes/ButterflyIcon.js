@@ -1,6 +1,7 @@
 class ButterflyIcon extends Icon {
-  constructor(x, y, iconImg, size) {
+  constructor(x, y, iconImg, size, jqueryModal) {
     super(x, y, iconImg, size);
+    this.modal = jqueryModal;
   }
 
   display() {
@@ -31,7 +32,7 @@ class ButterflyIcon extends Icon {
     }
   }
 
-  mousePressed() {
+  mouseReleased() {
     // if mouse touches icon
     if (
       mouseX > this.x &&
@@ -40,8 +41,10 @@ class ButterflyIcon extends Icon {
       mouseY < this.y + this.size
     ) {
       console.log("send butterflies");
+      console.log(this.modal);
 
-      $("#MessagingForm").toggle();
+      //  this.modal.toggle();
+      document.getElementById("MessagingForm").style.display = "block";
     }
   }
 }
