@@ -10,20 +10,6 @@ const userSchema = new mongoose.Schema({
   // name: String,
   passwordHash: String,
   podId: Number,
-  seeds: [
-    {
-      plantName: String,
-      planted: Boolean,
-    },
-    {
-      plantName: String,
-      planted: Boolean,
-    },
-    {
-      plantName: String,
-      planted: Boolean,
-    },
-  ],
   // fruits: [
   //   {
   //     type: mongoose.Schema.Types.ObjectId,
