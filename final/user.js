@@ -9,7 +9,12 @@ const userSchema = new mongoose.Schema({
   username: String,
   // name: String,
   passwordHash: String,
-  podId: Number,
+  podId: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Greenhouse",
+    },
+  ],
   // fruits: [
   //   {
   //     type: mongoose.Schema.Types.ObjectId,
