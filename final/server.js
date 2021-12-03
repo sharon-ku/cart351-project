@@ -179,7 +179,7 @@ function newConnection(socket) {
     socket.emit("joinedClientId", "temp");
   });
 
-  // request Greenhouses from MondoDB into server
+  // request Greenhouses from MongoDB into server
   socket.on("requestGreenhouses", function (data) {
     Greenhouse.find({}).then((result) => {
       result.forEach((greenhouse) => {
