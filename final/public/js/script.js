@@ -120,6 +120,12 @@ function preload() {
 function startClientSocketConnection(userInfoFromDb) {
   userInfo = userInfoFromDb;
   console.log(userInfo);
+
+  console.log(`logged in here`);
+
+  // Check if user is new using their pod id value:
+
+  // Set state based on whether the user is new
 }
 
 /* ----------------------------------------
