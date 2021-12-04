@@ -276,7 +276,36 @@ function draw() {
 
 // Allow user to select a new greenhouse and cue intro story
 function newUser() {
+  // background(31, 80, 80);
   background(0);
+
+  // draw stars
+  for (let i = 0; i < stars.length; i++) {
+    let star = stars[i];
+
+    // make star size smaller
+    star.size = 5;
+
+    moveStar(star);
+    displayStar(star);
+  }
+
+  for (let i = 0; i < pods.length; i++) {
+    let pod = pods[i];
+    pod.update();
+  }
+
+  push();
+  textSize(25);
+  textAlign(CENTER);
+  textFont(font);
+  fill(aqua.r, aqua.g, aqua.b);
+  text(
+    "Choose a pod that will be your new home",
+    windowWidth / 2,
+    windowHeight / 2
+  );
+  pop();
 }
 
 function podNavigation() {
@@ -379,12 +408,14 @@ function mousePressed() {
     pod.mousePressed();
   }
 
-  // homeIcon.mousePressed();
-  butterflyIcon.mousePressed();
-  teleportIcon.mousePressed();
+  if (state === `inside-pod`) {
+    // homeIcon.mousePressed();
+    butterflyIcon.mousePressed();
+    teleportIcon.mousePressed();
 
-  cactus.mousePressed();
-  seedIcon.mousePressed();
+    cactus.mousePressed();
+    seedIcon.mousePressed();
+  }
 }
 
 function windowResized() {
