@@ -122,12 +122,12 @@ class Greenhouse {
       if (state === `new-user`) {
         // let user choose a new pod
         this.chooseNewPod(userInfo);
-      } else if (state === `pod-navigation`) {
+      } else if (state === `pod-navigation` && this.taken) {
         state = `inside-pod`;
-        // console.log("clicked pod");
-
         // resize canvas to windowWidth and windowHeight on click
         resizeCanvas(this.newCanvasWidth, this.newCanvasHeight);
+      } else if (state === `pod-navigation` && !this.taken) {
+        console.log("no one lives here");
       } // if pod-navigation
     } // if overlap
   }

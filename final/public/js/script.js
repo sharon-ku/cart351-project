@@ -375,7 +375,7 @@ function mousePressed() {
   }
 
   if (state === `inside-pod`) {
-    // homeIcon.mousePressed();
+    homeIcon.mousePressed();
     butterflyIcon.mousePressed();
     teleportIcon.mousePressed();
 
