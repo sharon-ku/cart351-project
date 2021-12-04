@@ -52,7 +52,7 @@ window.onload = function () {
           $("#defaultCanvas0").css("display", "block");
           $("#content").remove();
           /**** NOW WE CAN START CLIENT SOCKET CONNECTION ****/
-          // startClientSocketConnection(data);
+          startClientSocketConnection(data);
         }
       }
     );

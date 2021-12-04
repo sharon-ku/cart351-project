@@ -13,11 +13,14 @@ let clientSocket;
 let socketId = -1;
 let running = false;
 
+// Stores user info from DB
+let userInfo = undefined;
+
 let bkg;
 let canvasWidth = 3000;
 
 // All possible states:
-// pod-navigation, inside-pod, plant-view
+// new-user, pod-navigation, inside-pod, plant-view
 let state = `pod-navigation`;
 
 let teal = {
@@ -113,6 +116,15 @@ function preload() {
   seedIconImg = loadImage(`assets/images/icons/seed_icon.png`);
 }
 
+// Get user info from Db; only works once logged in
+function startClientSocketConnection(userInfoFromDb) {
+  userInfo = userInfoFromDb;
+  console.log(userInfo);
+}
+
+/* ----------------------------------------
+setup()
+-----------------------------------------*/
 function setup() {
   bkg = createCanvas(canvasWidth, canvasWidth);
   bkg.position(0, 0);
@@ -129,8 +141,9 @@ function setup() {
     clientSocket.emit("join");
     // handler for receiving client id
     clientSocket.on("joinedClientId", function (data) {
-      socketId = data;
-      console.log("myId " + socketId);
+      // socketId = data;
+      // console.log("myId " + socketId);
+      console.log(data);
 
       clientSocket.emit("requestGreenhouses");
 
@@ -226,6 +239,9 @@ function createStar() {
   return star;
 }
 
+/* ----------------------------------------
+draw()
+-----------------------------------------*/
 function draw() {
   if (running) {
     // background(teal.r, teal.g, teal.b);
