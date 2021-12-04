@@ -37,7 +37,7 @@ https://unsplash.com/photos/xljtGZ2-P3Y
 
 /* on log in, hide the canvas */
 #defaultCanvas0 {
-  display: none;
+  /* display: none; */
 }
 
 /* unvisited link */

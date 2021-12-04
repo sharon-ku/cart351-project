@@ -141,8 +141,8 @@ function newConnection(socket) {
 
   socket.on("join", function (data) {
     socket.emit("joinedClientId", "temp");
-    // console.log(data);
-    // userDB = data[0];
+    console.log(data);
+    userDB = data[0];
   });
 
   // request Greenhouses from MongoDB into server

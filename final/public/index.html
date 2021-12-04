@@ -61,7 +61,7 @@
             </p>
           </form>
 
-          <p id="mess">a message</p>
+          <p id="mess"></p>
         </div>
       </div>
 
@@ -93,107 +93,7 @@
       <a id="firstTime" href="newUser.html">This is my first time visiting!</a>
     </div>
 
-    <div id="MessagingForm" class="modal">
-      <div class="form_content">
-        <span id="closeMessageForm" class="close">&times;</span>
-        <h2>Send message</h2>
-
-        <form action="">
-          <section class="messageBody">
-            <p id="sendTo">
-              <label>Send to : </label>
-              <input type="text" name="sender" required />
-            </p>
-
-            <p id="messageBox">
-              <label> Message : </label>
-              <input type="text" name="message" required />
-            </p>
-
-            <p>
-              <input
-                type="submit"
-                name="submit"
-                value="Submit"
-                id="submitMsg"
-                class="submitBtn"
-              />
-            </p>
-          </section>
-        </form>
-      </div>
-    </div>
-
-    <!-- Seed form -->
-    <!-- how to use an image in a form -->
-    <!-- https://stackoverflow.com/questions/46654941/how-to-use-an-image-as-an-option-in-a-form/46655088 -->
-    <!-- https://www.sarasoueidan.com/blog/inclusively-hiding-and-styling-checkboxes-and-radio-buttons/ -->
-    <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/radio -->
-
-    <div id="SeedForm" class="modal">
-      <div class="form_content">
-        <span id="closeSeedForm" class="close">&times;</span>
-        <h2>Choose a seed</h2>
-
-        <section class="seedOptions">
-          <form action="">
-            <input type="radio" name="seed" class="sr-only" id="seed1" />
-            <label for="seed1">
-              <img src="assets/images/plants/cactus0.png" alt="seed1" />
-            </label>
-            <input type="radio" name="seed" class="sr-only" id="seed2" />
-            <label for="seed2">
-              <img src="assets/images/plants/cherry0.png" alt="seed2" />
-            </label>
-            <input type="radio" name="seed" class="sr-only" id="seed3" />
-            <label for="seed3">
-              <img src="assets/images/plants/dragon0.png" alt="seed3" />
-            </label>
-
-            <!-- submit button -->
-            <p>
-              <input
-                type="submit"
-                name="submit"
-                value="Submit"
-                id="submitMsg"
-                class="submitBtn"
-              />
-            </p>
-          </form>
-        </section>
-      </div>
-    </div>
-
-    <!-- Receive message modal window -->
-
-    <div id="receivedMessageForm" class="modal">
-      <div class="form_content">
-        <span id="closeReceivedMessageForm" class="close">&times;</span>
-        <h2>Send message</h2>
-
-        <section class="messageBody">
-          <h2 id="senderName">Name of sender :</h2>
-          <p id="messageReceived">
-            message goes here <br />
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet
-            quis laboriosam odit suscipit sed, dolores mollitia distinctio,
-            dolor similique, doloremque rerum. Accusamus quis cum natus velit,
-            beatae dolorem tempora cupiditate!
-          </p>
-        </section>
-      </div>
-    </div>
     <!-- My script(s) -->
-    <section id="scripts">
-      <script src="js/Classes/Greenhouse.js"></script>
-      <script src="js/Classes/Plant.js"></script>
-      <script src="js/Classes/Icon.js"></script>
-      <script src="js/Classes/HomeIcon.js"></script>
-      <script src="js/Classes/ButterflyIcon.js"></script>
-      <script src="js/Classes/TeleportIcon.js"></script>
-      <script src="js/Classes/SeedIcon.js"></script>
-      <script src="js/script.js" class="isHidden"></script>
-    </section>
+    <script src="js/script.js" class="isHidden"></script>
   </body>
 </html>
