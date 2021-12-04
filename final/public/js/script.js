@@ -21,7 +21,8 @@ let canvasWidth = 3000;
 
 // All possible states:
 // new-user, pod-navigation, inside-pod, plant-view
-let state = `pod-navigation`;
+// let state = `pod-navigation`;
+let state = undefined;
 
 let teal = {
   r: 8,
@@ -122,9 +123,18 @@ function startClientSocketConnection(userInfoFromDb) {
   console.log(userInfo);
 
   console.log(`logged in here`);
+  console.log(`pod length: ${userInfo[0].podId.length}`);
 
   // Check if user is new using their pod id value:
-
+  if (userInfo[0].podId.length === 0) {
+    // user does not have a pod
+    console.log(`no greenhouse`);
+    state = `new-user`;
+  } else {
+    // user already has a greenhouse
+    console.log(`yes greenhouse`);
+    state = `pod-navigation`;
+  }
   // Set state based on whether the user is new
 }
 
@@ -254,12 +264,19 @@ function draw() {
     background(31, 80, 80);
 
     // States setup:
-    if (state === `pod-navigation`) {
+    if (state === `new-user`) {
+      newUser();
+    } else if (state === `pod-navigation`) {
       podNavigation();
     } else if (state === `inside-pod`) {
       insidePod();
     }
   }
+}
+
+// Allow user to select a new greenhouse and cue intro story
+function newUser() {
+  background(0);
 }
 
 function podNavigation() {
