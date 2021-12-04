@@ -158,7 +158,7 @@ function setup() {
   bkg.style("z-index", -1);
 
   // grab user data from local storage and store it in userInfo variable
-  userInfo = JSON.parse(localStorage.getItem(`user`));
+  userInfo = JSON.parse(localStorage.getItem(`user`))[0];
   console.log(userInfo);
   // now delete user data from local storage
   localStorage.removeItem(`user`);
@@ -257,7 +257,7 @@ function setup() {
   cactus = new Plant(windowWidth / 2, windowHeight / 2, random(allPlantImages));
 
   // Check if user is new using their pod id value:
-  if (userInfo[0].podId.length === 0) {
+  if (userInfo.podId.length === 0) {
     // user does not have a pod
     console.log(`no greenhouse`);
     state = `new-user`;

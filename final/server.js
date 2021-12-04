@@ -142,7 +142,7 @@ function newConnection(socket) {
   socket.on("join", function (data) {
     socket.emit("joinedClientId", "temp");
     console.log(data);
-    userDB = data[0];
+    userDB = data;
   });
 
   // request Greenhouses from MongoDB into server
@@ -160,18 +160,54 @@ function newConnection(socket) {
     let tempUser = data.userInfo;
     let x = data.x;
     let y = data.y;
-    // Greenhouse.find({}).then((result) => {
-    //   result.forEach((greenhouse) => {
-    //     console.log(greenhouse);
-    //   });
-    //   socket.emit("newGreenhouses", result);
-    // });
-
+    console.log(userDB);
     Greenhouse.updateOne({ x: x, y: y }, { taken: true }).then((result) => {
-      result.forEach((greenhouse) => {
-        console.log(greenhouse);
+      console.log(`greenhouse updated`);
+      console.log(x, y);
+      console.log(result);
+
+      Greenhouse.findOne({ x: x, y: y }).then((result) => {
+        console.log(`hello new`);
+        // console.log(result[0].toJSON());
+        console.log(tempUser);
+        console.log(tempUser.username);
+
+        User.findOne({ username: tempUser.username }).then((resultUser) => {
+          resultUser.podId = resultUser.podId.concat(result._id);
+          console.log(resultUser);
+
+          resultUser.save().then((result) => {
+            console.log("done");
+          });
+        });
+
+        // User.updateOne(
+        //   { username: tempUser.username },
+        //   { podId: result[0].id }
+        // ).then((userResult) => {
+        //   // userResult.forEach((user) => {
+        //   console.log(userResult);
+        //   // });
+        //   // socket.emit("new_data_other", fruitResult);
+        // });
       });
     });
+
+    // User.find({ user: tempUser }).then((result) => {
+    //   console.log("teststtstsgt");
+    //   console.log(result[0].toJSON());
+    //
+    //   Fruit.find({ user: result[0].id }).then((fruitResult) => {
+    //     fruitResult.forEach((fruit) => {
+    //       console.log(fruit);
+    //     });
+    //     socket.emit("new_data_other", fruitResult);
+    //   });
+    //   //back to client
+    //   // socket.emit('new_data', result);
+    //
+    //   //now get the fruits that match another user
+    // });
 
     console.log("hello");
     console.log(userDB);
