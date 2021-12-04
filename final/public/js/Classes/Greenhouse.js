@@ -94,7 +94,7 @@ class Greenhouse {
   }
 
   // let new user select an unoccupied pod
-  chooseNewPod() {
+  chooseNewPod(userInfo) {
     // If pod has not been taken, make this the new home
     if (!this.taken) {
       console.log(`new home`);
@@ -103,7 +103,11 @@ class Greenhouse {
       // update narration text:
       narrationText = "Welcome, this is your new home!";
       // update greenhouse data's taken property
-      clientSocket.emit("updateTakenGreenhouse");
+      clientSocket.emit("updateTakenGreenhouse", {
+        userInfo: userInfo,
+        x: this.x,
+        y: this.y,
+      });
 
       // change tint color to magenta
       this.setUserPodTint();
@@ -112,12 +116,12 @@ class Greenhouse {
     }
   }
 
-  mousePressed() {
+  mousePressed(userInfo) {
     // if mouse touches pod image
     if (this.overlap()) {
       if (state === `new-user`) {
         // let user choose a new pod
-        this.chooseNewPod();
+        this.chooseNewPod(userInfo);
       } else if (state === `pod-navigation`) {
         state = `inside-pod`;
         // console.log("clicked pod");

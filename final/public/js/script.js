@@ -371,7 +371,7 @@ function insidePod() {
 function mousePressed() {
   for (let i = 0; i < pods.length; i++) {
     let pod = pods[i];
-    pod.mousePressed();
+    pod.mousePressed(userInfo);
   }
 
   if (state === `inside-pod`) {

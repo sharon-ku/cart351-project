@@ -157,6 +157,22 @@ function newConnection(socket) {
 
   // update Greenhouse's taken value in MongoDB
   socket.on("updateTakenGreenhouse", function (data) {
+    let tempUser = data.userInfo;
+    let x = data.x;
+    let y = data.y;
+    // Greenhouse.find({}).then((result) => {
+    //   result.forEach((greenhouse) => {
+    //     console.log(greenhouse);
+    //   });
+    //   socket.emit("newGreenhouses", result);
+    // });
+
+    Greenhouse.updateOne({ x: x, y: y }, { taken: true }).then((result) => {
+      result.forEach((greenhouse) => {
+        console.log(greenhouse);
+      });
+    });
+
     console.log("hello");
     console.log(userDB);
   });
