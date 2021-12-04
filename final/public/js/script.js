@@ -80,6 +80,9 @@ let teleportIcon;
 let seedIconImg;
 let seedIcon;
 
+// bkg Music
+let bkgMusic;
+
 // close modal windows
 $("#closeMessageForm").click(function () {
   $("#MessagingForm").toggle();
@@ -147,6 +150,9 @@ function preload() {
 
   // load seed icon image
   seedIconImg = loadImage(`assets/images/icons/seed_icon.png`);
+
+  // load background Music
+  bkgMusic = loadSound(`assets/music/Sugar_Cookie/sugar_cookie.mp3`);
 }
 
 /* ----------------------------------------
@@ -277,7 +283,7 @@ function draw() {
   if (running) {
     // background(teal.r, teal.g, teal.b);
     background(31, 80, 80);
-
+    music();
     // States setup:
     if (state === `new-user`) {
       newUser();
@@ -389,5 +395,12 @@ function windowResized() {
   console.log(`resized`);
   if (state === `inside-pod`) {
     resizeCanvas(windowWidth, windowHeight);
+  }
+}
+
+//Loop background music
+function music() {
+  if (!bkgMusic.isPlaying()) {
+    bkgMusic.loop();
   }
 }
