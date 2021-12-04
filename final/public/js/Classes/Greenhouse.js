@@ -116,17 +116,23 @@ class Greenhouse {
     }
   }
 
+  visitPod(userInfo) {}
+
   mousePressed(userInfo) {
     // if mouse touches pod image
     if (this.overlap()) {
       if (state === `new-user`) {
         // let user choose a new pod
         this.chooseNewPod(userInfo);
+        // if inside taken greenhouse
       } else if (state === `pod-navigation` && this.taken) {
         state = `inside-pod`;
+
         // resize canvas to windowWidth and windowHeight on click
         resizeCanvas(this.newCanvasWidth, this.newCanvasHeight);
-      } else if (state === `pod-navigation` && !this.taken) {
+      }
+      // if inside empty greenhouse
+      else if (state === `pod-navigation` && !this.taken) {
         console.log("no one lives here");
       } // if pod-navigation
     } // if overlap

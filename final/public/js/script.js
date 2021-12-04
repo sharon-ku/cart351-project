@@ -234,7 +234,7 @@ function setup() {
   // draw teleport  icon
   // place  teleport icon on right side of the screen
 
-  let teleportIcon_Y = iconX_R + iconSize * 1.4;
+  let teleportIcon_Y = iconX_R + iconSize * 2.7;
 
   teleportIcon = new TeleportIcon(
     iconX_L,
@@ -243,7 +243,8 @@ function setup() {
     iconSize
   );
 
-  seedIcon = new SeedIcon(100, 100, seedIconImg, iconSize);
+  let seedIcon_Y = iconX_R + iconSize * 1.4;
+  seedIcon = new SeedIcon(iconX_L, seedIcon_Y, seedIconImg, iconSize);
 
   // Create sparkling stars!
   for (let i = 0; i < NUM_STARS; i++) {

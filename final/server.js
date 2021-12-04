@@ -212,6 +212,16 @@ function newConnection(socket) {
     console.log("hello");
     console.log(userDB);
   });
+
+  socket.on("visitPod", function (data) {
+    User.findOne({ pod_Id: userDB.user }).then((result) => {
+      result.forEach((greenhouse) => {
+        console.log(greenhouse);
+      });
+    });
+
+    Greenhouse.findOne({});
+  });
 }
 
 // serve anything from this dir ...
