@@ -1,3 +1,11 @@
+/**
+script.js
+Sharon Ku & Leanne Suen Fa
+
+All our p5 stuff
+Linked to greenhouses.html
+*/
+
 "use strict";
 
 // To allow client to connect to socket
@@ -239,7 +247,7 @@ function setup() {
 
   // Create sparkling stars!
   for (let i = 0; i < NUM_STARS; i++) {
-    let star = createStar();
+    let star = new Star();
     stars.push(star);
   }
 
@@ -259,22 +267,6 @@ function setup() {
     state = `pod-navigation`;
   }
   // Set state based on whether the user is new
-}
-
-// blueprint for a star
-function createStar() {
-  let star = {
-    x: random(0, canvasWidth),
-    y: random(0, canvasWidth),
-    alpha: 125,
-    vx: 0,
-    vy: 0,
-    speed: 0.5,
-    size: 10,
-    fill: 255,
-  };
-
-  return star;
 }
 
 /* ----------------------------------------
@@ -304,12 +296,7 @@ function newUser() {
   // draw stars
   for (let i = 0; i < stars.length; i++) {
     let star = stars[i];
-
-    // make star size smaller
-    star.size = 5;
-
-    moveStar(star);
-    displayStar(star);
+    star.update();
   }
 
   for (let i = 0; i < pods.length; i++) {
@@ -332,12 +319,7 @@ function podNavigation() {
   // draw stars
   for (let i = 0; i < stars.length; i++) {
     let star = stars[i];
-
-    // make star size smaller
-    star.size = 5;
-
-    moveStar(star);
-    displayStar(star);
+    star.update();
   }
 
   for (let i = 0; i < pods.length; i++) {
@@ -361,12 +343,7 @@ function insidePod() {
   // draw stars
   for (let i = 0; i < stars.length; i++) {
     let star = stars[i];
-
-    // increase star size
-    star.size = 10;
-
-    moveStar(star);
-    displayStar(star);
+    star.update();
   }
 
   push();
@@ -389,35 +366,6 @@ function insidePod() {
   seedIcon.overlap();
 
   cactus.display();
-}
-
-// Display star as circle
-function displayStar(star) {
-  push();
-  noStroke();
-  fill(21, 136, 146, star.alpha);
-
-  if (random() < 0.5) {
-    star.alpha -= 20;
-  } else {
-    star.alpha += 20;
-  }
-
-  ellipse(star.x, star.y, star.size);
-  pop();
-}
-
-function moveStar(star) {
-  if (random() < 0.05) {
-    star.vx = random(-star.speed, star.speed);
-    star.vy = random(-star.speed, star.speed);
-  }
-
-  star.x = constrain(star.x, 0, canvasWidth);
-  star.y = constrain(star.y, 0, canvasWidth);
-
-  star.x += star.vx;
-  star.y += star.vy;
 }
 
 function mousePressed() {
