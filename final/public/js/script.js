@@ -76,6 +76,34 @@ let teleportIcon;
 let seedIconImg;
 let seedIcon;
 
+// close modal windows
+$("#closeMessageForm").click(function () {
+  $("#MessagingForm").toggle();
+});
+$("#closeSeedForm").click(function () {
+  $("#SeedForm").toggle();
+});
+$("#closeReceivedMessageForm").click(function () {
+  $("#receivedMessageForm").toggle();
+});
+
+let sendMessage = document.getElementById("MessagingForm");
+let chooseSeed = document.getElementById("SeedForm");
+let receiveMessage = document.getElementById("receivedMessageForm");
+
+// click anywhere on window to close modal
+window.onclick = function (event) {
+  if (event.target == sendMessage) {
+    sendMessage.style.display = "none";
+  }
+  if (event.target == chooseSeed) {
+    chooseSeed.style.display = "none";
+  }
+  if (event.target == receiveMessage) {
+    receiveMessage.style.display = "none";
+  }
+};
+
 function preload() {
   // load pod images
   for (let i = 0; i < NUM_POD_IMG; i++) {
