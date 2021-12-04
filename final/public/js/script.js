@@ -36,6 +36,10 @@ let aqua = {
   b: 240,
 };
 
+// narrative string
+// this first string will appear in new-user state
+let narrationText = "Choose a pod that will be your new home";
+
 let stars = [];
 const NUM_STARS = 100;
 
@@ -328,11 +332,7 @@ function newUser() {
   textAlign(CENTER);
   textFont(font);
   fill(aqua.r, aqua.g, aqua.b);
-  text(
-    "Choose a pod that will be your new home",
-    windowWidth / 2,
-    windowHeight / 2
-  );
+  text(narrationText, windowWidth / 2, windowHeight / 2);
   pop();
 }
 

@@ -5,8 +5,14 @@ class Greenhouse {
     this.podImage = podImage;
     this.width = 50;
     this.height = this.width * 1.2;
-    this.alpha = undefined; // image transparency
+    // this.alpha = undefined; // image transparency
     this.taken = taken;
+    this.tint = {
+      r: 255,
+      g: 255,
+      b: 255,
+      alpha: undefined, // image transparency
+    };
 
     this.newCanvasWidth = newCanvasWidth;
     this.newCanvasHeight = newCanvasHeight;
@@ -40,30 +46,37 @@ class Greenhouse {
       // if taken = false
       if (!this.taken) {
         // full opacity
-        this.alpha = 95;
+        this.tint.alpha = 255;
       } else {
         // if taken = true
         // transparent
-        this.alpha = 255;
+        this.tint.alpha = 95;
       }
     }
     // Else if pod-navigation, occupied is full opacity and unoccupied is transparent
     else if (state === `pod-navigation`) {
       // if taken = false
       if (!this.taken) {
-        // full opacity
-        this.alpha = 255;
+        // transparent
+        this.tint.alpha = 95;
       } else {
         // if taken = true
-        // transparent
-        this.alpha = 95;
+        // full opacity
+        this.tint.alpha = 255;
       }
     }
 
-    tint(255, this.alpha);
+    tint(this.tint.r, this.tint.g, this.tint.b, this.tint.alpha);
     image(this.podImage, this.x, this.y, this.width, this.height);
 
     pop();
+  }
+
+  // set user pod tint to magenta
+  setUserPodTint() {
+    this.tint.r = 241;
+    this.tint.g = 47;
+    this.tint.b = 101;
   }
 
   // Check if mouse overlaps pod
@@ -80,23 +93,31 @@ class Greenhouse {
     }
   }
 
+  // let new user select an unoccupied pod
+  chooseNewPod() {
+    // If pod has not been taken, make this the new home
+    if (!this.taken) {
+      console.log(`new home`);
+      // assign this pod to new user:
+
+      // update narration text:
+      narrationText = "Welcome, this is your new home!";
+      // update greenhouse data's taken property
+      clientSocket.emit("updateTakenGreenhouse");
+
+      // change tint color to magenta
+      this.setUserPodTint();
+    } else {
+      console.log(`sorry, pod is taken already`);
+    }
+  }
+
   mousePressed() {
     // if mouse touches pod image
     if (this.overlap()) {
       if (state === `new-user`) {
-        console.log(`new home`);
-        // assign this pod to new user
-        push();
-        textSize(25);
-        textAlign(CENTER);
-        textFont(font);
-        fill(aqua.r, aqua.g, aqua.b);
-        text(
-          "Welcome, this is now your new home!",
-          windowWidth / 2,
-          windowHeight / 2
-        );
-        pop();
+        // let user choose a new pod
+        this.chooseNewPod();
       } else if (state === `pod-navigation`) {
         state = `inside-pod`;
         // console.log("clicked pod");

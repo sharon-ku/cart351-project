@@ -154,6 +154,12 @@ function newConnection(socket) {
       socket.emit("newGreenhouses", result);
     });
   });
+
+  // update Greenhouse's taken value in MongoDB
+  socket.on("updateTakenGreenhouse", function (data) {
+    console.log("hello");
+    console.log(userDB);
+  });
 }
 
 // serve anything from this dir ...
