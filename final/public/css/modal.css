@@ -16,7 +16,7 @@
 }
 
 .form_content {
-  background-color: #black;
+  background-color: rgba(0, 0, 0, 0.7);
   border-radius: 25px;
   margin: auto;
   padding: 20px;
@@ -90,4 +90,8 @@
 
 .seedOptions input[type="radio"]:checked + label {
   filter: grayscale(0);
+}
+
+.messageBody p {
+  margin: 2%;
 }

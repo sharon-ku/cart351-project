@@ -40,6 +40,8 @@ class TeleportIcon extends Icon {
       mouseY < this.y + this.size
     ) {
       console.log("teleport somewhere");
+
+      document.getElementById("receivedMessageForm").style.display = "block";
     }
   }
 }
