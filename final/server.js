@@ -261,8 +261,6 @@ function newConnection(socket) {
     Greenhouse.findOne({ x: x, y: y }).then((visitPodResult) => {
       console.log("visiting a pod:" + visitPodResult);
 
-      console.log("id of visited pod :" + visitPodResult.id);
-
       // if (visitPodResult.id != userInfo) {
       socket.emit("foundPodVisited", visitPodResult);
       //

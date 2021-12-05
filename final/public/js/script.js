@@ -245,8 +245,6 @@ function setup() {
   clientSocket.on("foundPodVisited", function (result) {
     visitPodX = result.x;
     visitPodY = result.y;
-
-    console.log(visitPodX, visitPodY);
   });
 
   // create icons
