@@ -213,10 +213,13 @@ function newConnection(socket) {
       // greenhouse id that we're inside: greenhouseResult._id
 
       User.findOne({ username: userDB.username }).then((userResult) => {
-        console.log(userResult);
-        if (greenhouseResult._id === userResult.podId) {
+        console.log(userResult.podId[0]);
+        console.log(greenhouseResult._id);
+        if (greenhouseResult._id === userResult.podId[0]) {
           console.log(`match!`);
           socket.emit("changeTintOfUserGreenhouse", result);
+        } else {
+          console.log(`no match`);
         }
 
         // resultUser.podId = resultUser.podId.concat(result._id);

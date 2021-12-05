@@ -207,7 +207,7 @@ function setup() {
     }
   });
 
-  clienSocket.on("changeTintOfUserGreenhouse", function (result) {
+  clientSocket.on("changeTintOfUserGreenhouse", function (result) {
     let x = result.x;
     let y = result.y;
 
