@@ -203,48 +203,56 @@ function newConnection(socket) {
     console.log(userDB);
   });
 
-  socket.on("visitPod", function (data) {
-    console.log(`visiting`);
-    let x = data.x;
-    let y = data.y;
+  socket.on("getUserPodPositions", function () {
+    // console.log(`visiting`);
+    // let x = data.x;
+    // let y = data.y;
 
-    Greenhouse.findOne({ x: x, y: y }).then((greenhouseResult) => {
+    // BAD ATTEMPT NUMBER 1
+    // Greenhouse.findOne({ x: x, y: y }).then((greenhouseResult) => {
+    //   // console.log(greenhouseResult.id);
+    //   // greenhouse id that we're inside: greenhouseResult._id
+    //
+    //   User.findOne({ username: userDB.username }).then((userResult) => {
+    //     console.log(greenhouseResult._id);
+    //     if (greenhouseResult._id === userResult.podId[0]) {
+    //       console.log(`match!`);
+    //       socket.emit("changeTintOfUserGreenhouse", result);
+    //     } else {
+    //       console.log(`no match`);
+    //     }
+    //
+    //     // resultUser.podId = resultUser.podId.concat(result._id);
+    //     // console.log(resultUser);
+    //   });
+    //
+    // });
+
+    User.findOne({ username: userDB.username }).then((userResult) => {
+      console.log(`user's pod id`);
+      console.log(userResult.podId[0]);
       // console.log(greenhouseResult.id);
       // greenhouse id that we're inside: greenhouseResult._id
 
-      User.findOne({ username: userDB.username }).then((userResult) => {
-        console.log(userResult.podId[0]);
-        console.log(greenhouseResult._id);
-        if (greenhouseResult._id === userResult.podId[0]) {
-          console.log(`match!`);
-          socket.emit("changeTintOfUserGreenhouse", result);
-        } else {
-          console.log(`no match`);
+      Greenhouse.findOne({ _id: userResult.podId[0] }).then(
+        (greenhouseResult) => {
+          console.log(greenhouseResult._id);
+          console.log(greenhouseResult.x);
+          console.log(greenhouseResult.y);
+
+          socket.emit("foundUserGreenhousePositions", greenhouseResult);
+
+          // // underneath code still does not work
+          // if (greenhouseResult._id === userResult.podId[0]) {
+          //   console.log(`match!`);
+          //   // socket.emit("changeTintOfUserGreenhouse", result);
+          // } else {
+          //   console.log(`no match`);
+          // }
         }
-
-        // resultUser.podId = resultUser.podId.concat(result._id);
-        // console.log(resultUser);
-      });
-
-      // User.findOne({ podId: result._id }).then((resultUser) => {
-      //   resultUser.podId = resultUser.podId.concat(result._id);
-      //   console.log(resultUser);
-      //
-      //   resultUser.save().then((result) => {
-      //     console.log("done");
-      //   });
-      // });
-    });
-
-    // User.findOne({ pod_Id: userDB.username }).then((result) => {
-    //   result.forEach((greenhouse) => {
-    //     console.log(`grab greenhouse`);
-    //     console.log(greenhouse);
-    //   });
-    // });
-
-    Greenhouse.findOne({});
-  });
+      ); // greenhouse find one
+    }); // user find one
+  }); // socket on
 }
 
 // serve anything from this dir ...

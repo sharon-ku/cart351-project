@@ -16,6 +16,10 @@ let running = false;
 // Stores user info from DB
 let userInfo = undefined;
 
+// User's pod positions
+let userPodX = undefined;
+let userPodY = undefined;
+
 let bkg;
 let canvasWidth = 3000;
 
@@ -23,6 +27,9 @@ let canvasWidth = 3000;
 // new-user, pod-navigation, inside-pod, plant-view
 // let state = `pod-navigation`;
 let state = undefined;
+
+// state when inside pod: can either be `visiting` or `home`
+let podState = undefined;
 
 let teal = {
   r: 8,
@@ -186,10 +193,12 @@ function setup() {
 
       clientSocket.emit("requestGreenhouses");
 
+      // only start draw once running is true
       running = true;
     });
   });
 
+  // display greenhouses from database
   clientSocket.on("newGreenhouses", function (results) {
     // create pods
     for (let i = 0; i < results.length; i++) {
@@ -204,17 +213,26 @@ function setup() {
       let pod = new Greenhouse(x, y, image, windowWidth, windowHeight, taken);
       pods.push(pod);
       // console.log(pods[i]);
+
+      // Request the user greenhouse positions to be found
+      clientSocket.emit("getUserPodPositions");
     }
   });
 
-  clientSocket.on("changeTintOfUserGreenhouse", function (result) {
-    let x = result.x;
-    let y = result.y;
+  // Once the user's pod has been found, change its tint
+  clientSocket.on("foundUserGreenhousePositions", function (result) {
+    let userPodX = result.x;
+    let userPodY = result.y;
 
+    console.log(userPodX, userPodY);
+
+    // change tint color of user greenhouse
     for (let i = 0; i < pods.length; i++) {
       let pod = pods[i];
-      if (pod.x === x && pod.y === y) {
+      if (pod.x === userPodX && pod.y === userPodY) {
         pod.setUserPodTint();
+        // set pod's taken value to true
+        pod.taken = true;
       }
     }
   });
@@ -285,7 +303,6 @@ function setup() {
     console.log(`yes greenhouse`);
     state = `pod-navigation`;
   }
-  // Set state based on whether the user is new
 }
 
 /* ----------------------------------------

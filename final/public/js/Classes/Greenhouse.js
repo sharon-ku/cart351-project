@@ -109,11 +109,24 @@ class Greenhouse {
         y: this.y,
       });
 
+      // Request the user greenhouse positions to be found
+      clientSocket.emit("getUserPodPositions");
+
+      // wait 5 seconds to cue next state
+      // fyi when using setInterval inside a class, we need to add ".bind(this)" to end of function
+      setInterval(this.changeStateToPodNavigation.bind(this), 5000);
+
       // change tint color to magenta
       this.setUserPodTint();
     } else {
       console.log(`sorry, pod is taken already`);
     }
+  }
+
+  // change state from `new-user` to `pod-navigation`
+  changeStateToPodNavigation() {
+    // change state
+    state = `pod-navigation`;
   }
 
   mousePressed(userInfo) {
@@ -122,13 +135,16 @@ class Greenhouse {
       if (state === `new-user`) {
         // let user choose a new pod
         this.chooseNewPod(userInfo);
-        // if inside taken greenhouse
-      } else if (state === `pod-navigation` && this.taken) {
-        clientSocket.emit("visitPod", {
-          // userInfo: userInfo,
-          x: this.x,
-          y: this.y,
-        });
+      }
+      // else if inside taken greenhouse
+      else if (state === `pod-navigation` && this.taken) {
+        // TO DO: check if `podState` is `visiting` or `home`
+
+        // clientSocket.emit("visitPod", {
+        //   // userInfo: userInfo,
+        //   x: this.x,
+        //   y: this.y,
+        // });
 
         state = `inside-pod`;
 
