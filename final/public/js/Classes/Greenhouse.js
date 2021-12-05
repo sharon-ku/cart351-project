@@ -138,7 +138,7 @@ class Greenhouse {
       }
       // else if inside taken greenhouse
       else if (state === `pod-navigation` && this.taken) {
-        // TO DO: check if `podState` is `visiting` or `home`
+        // TO DO: check if `podState` (global variable defined in script.js) is `visiting` or `home`
 
         // clientSocket.emit("visitPod", {
         //   // userInfo: userInfo,

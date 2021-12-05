@@ -221,8 +221,8 @@ function setup() {
 
   // Once the user's pod has been found, change its tint
   clientSocket.on("foundUserGreenhousePositions", function (result) {
-    let userPodX = result.x;
-    let userPodY = result.y;
+    userPodX = result.x;
+    userPodY = result.y;
 
     console.log(userPodX, userPodY);
 
