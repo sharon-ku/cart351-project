@@ -306,9 +306,10 @@ function setup() {
   // display greenhouses from database
   clientSocket.on("displayPlant", function (results) {
     // create pods
-    let plantType = results[0].name;
+
     for (let i = 0; i < results.length; i++) {
       console.log(results[i]);
+      let plantType = results[i].name;
       console.log(plantType);
 
       // if (plantType ==="cherry") {
