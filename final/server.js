@@ -253,7 +253,25 @@ function newConnection(socket) {
       ); // greenhouse find one
     }); // user find one
   }); // socket on
-}
+
+  socket.on("visitPod", function (data) {
+    let x = data.x;
+    let y = data.y;
+    let userInfo = userDB.podID;
+    Greenhouse.findOne({ x: x, y: y }).then((visitPodResult) => {
+      console.log("visiting a pod:" + visitPodResult);
+
+      console.log("id of visited pod :" + visitPodResult.id);
+
+      // if (visitPodResult.id != userInfo) {
+      socket.emit("foundPodVisited", visitPodResult);
+      //
+      // console.log("my home" + userDB.podID);
+      // console.log("this is not my home");
+      // }
+    });
+  });
+} //io.on
 
 // serve anything from this dir ...
 app.use(express.static(__dirname + "/public"));

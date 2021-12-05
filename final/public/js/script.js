@@ -20,6 +20,10 @@ let userInfo = undefined;
 let userPodX = undefined;
 let userPodY = undefined;
 
+// visitor pod coordinates
+let visitPodX = undefined;
+let visitPodY = undefined;
+
 let bkg;
 let canvasWidth = 3000;
 
@@ -237,6 +241,14 @@ function setup() {
     }
   });
 
+  // get visiting pod coordinates
+  clientSocket.on("foundPodVisited", function (result) {
+    visitPodX = result.x;
+    visitPodY = result.y;
+
+    console.log(visitPodX, visitPodY);
+  });
+
   // create icons
   let iconSize = windowWidth / 15;
   let homeIconSize = iconSize - 20;
@@ -312,7 +324,8 @@ function draw() {
   if (running) {
     // background(teal.r, teal.g, teal.b);
     background(31, 80, 80);
-    music();
+    // add music - to activate later
+    // music();
     // States setup:
     if (state === `new-user`) {
       newUser();
@@ -389,17 +402,23 @@ function insidePod() {
   text("Welcome Home !", windowWidth * 0.025, windowHeight * 0.95);
   pop();
 
-  homeIcon.display();
-  homeIcon.overlap();
+  // if at home
+  if (userPodX === visitPodX && userPodY == visitPodY) {
+    homeIcon.display();
+    homeIcon.overlap();
+  } else {
+    homeIcon.display();
+    homeIcon.overlap();
 
-  butterflyIcon.display();
-  butterflyIcon.overlap();
+    butterflyIcon.display();
+    butterflyIcon.overlap();
 
-  teleportIcon.display();
-  teleportIcon.overlap();
+    teleportIcon.display();
+    teleportIcon.overlap();
 
-  seedIcon.display();
-  seedIcon.overlap();
+    seedIcon.display();
+    seedIcon.overlap();
+  }
 
   cactus.display();
 }
