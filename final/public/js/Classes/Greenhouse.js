@@ -116,8 +116,6 @@ class Greenhouse {
     }
   }
 
-  visitPod(userInfo) {}
-
   mousePressed(userInfo) {
     // if mouse touches pod image
     if (this.overlap()) {
@@ -126,6 +124,12 @@ class Greenhouse {
         this.chooseNewPod(userInfo);
         // if inside taken greenhouse
       } else if (state === `pod-navigation` && this.taken) {
+        clientSocket.emit("visitPod", {
+          // userInfo: userInfo,
+          x: this.x,
+          y: this.y,
+        });
+
         state = `inside-pod`;
 
         // resize canvas to windowWidth and windowHeight on click

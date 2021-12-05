@@ -180,16 +180,6 @@ function newConnection(socket) {
             console.log("done");
           });
         });
-
-        // User.updateOne(
-        //   { username: tempUser.username },
-        //   { podId: result[0].id }
-        // ).then((userResult) => {
-        //   // userResult.forEach((user) => {
-        //   console.log(userResult);
-        //   // });
-        //   // socket.emit("new_data_other", fruitResult);
-        // });
       });
     });
 
@@ -214,11 +204,41 @@ function newConnection(socket) {
   });
 
   socket.on("visitPod", function (data) {
-    User.findOne({ pod_Id: userDB.user }).then((result) => {
-      result.forEach((greenhouse) => {
-        console.log(greenhouse);
+    console.log(`visiting`);
+    let x = data.x;
+    let y = data.y;
+
+    Greenhouse.findOne({ x: x, y: y }).then((greenhouseResult) => {
+      // console.log(greenhouseResult.id);
+      // greenhouse id that we're inside: greenhouseResult._id
+
+      User.findOne({ username: userDB.username }).then((userResult) => {
+        console.log(userResult);
+        if (greenhouseResult._id === userResult.podId) {
+          console.log(`match!`);
+          socket.emit("changeTintOfUserGreenhouse", result);
+        }
+
+        // resultUser.podId = resultUser.podId.concat(result._id);
+        // console.log(resultUser);
       });
+
+      // User.findOne({ podId: result._id }).then((resultUser) => {
+      //   resultUser.podId = resultUser.podId.concat(result._id);
+      //   console.log(resultUser);
+      //
+      //   resultUser.save().then((result) => {
+      //     console.log("done");
+      //   });
+      // });
     });
+
+    // User.findOne({ pod_Id: userDB.username }).then((result) => {
+    //   result.forEach((greenhouse) => {
+    //     console.log(`grab greenhouse`);
+    //     console.log(greenhouse);
+    //   });
+    // });
 
     Greenhouse.findOne({});
   });

@@ -207,6 +207,18 @@ function setup() {
     }
   });
 
+  clienSocket.on("changeTintOfUserGreenhouse", function (result) {
+    let x = result.x;
+    let y = result.y;
+
+    for (let i = 0; i < pods.length; i++) {
+      let pod = pods[i];
+      if (pod.x === x && pod.y === y) {
+        pod.setUserPodTint();
+      }
+    }
+  });
+
   // create icons
   let iconSize = windowWidth / 15;
   let homeIconSize = iconSize - 20;
