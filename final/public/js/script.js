@@ -301,7 +301,23 @@ function setup() {
   // Create plant
   // cactus = new Plant(windowWidth / 2, windowHeight / 2, cactusImages);
   // For now, cactus stores a random plant image
-  cactus = new Plant(windowWidth / 2, windowHeight / 2, random(allPlantImages));
+  cactus = new Plant(random(allPlantImages));
+
+  // display greenhouses from database
+  clientSocket.on("displayPlant", function (results) {
+    // create pods
+    let plantType = results[0].name;
+    for (let i = 0; i < results.length; i++) {
+      console.log(results[i]);
+      console.log(plantType);
+
+      // if (plantType ==="cherry") {
+      //   cactus = new Plant(cherryImages);
+      // } else if (plantType ==="dragon") {
+      //   cactus = new
+      // }
+    }
+  });
 
   // Check if user is new using their pod id value:
   if (userInfo.podId.length === 0) {

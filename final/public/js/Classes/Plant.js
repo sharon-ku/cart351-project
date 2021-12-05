@@ -1,7 +1,7 @@
 class Plant {
-  constructor(x, y, plantImages) {
-    this.x = x;
-    this.y = y;
+  constructor(plantImages) {
+    this.x = random(windowWidth / 8, (windowWidth / 8) * 7);
+    this.y = random(windowHeight / 8, (windowHeight / 8) * 7);
     this.aqua = {
       r: 45,
       g: 227,

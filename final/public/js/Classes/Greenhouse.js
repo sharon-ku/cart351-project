@@ -141,7 +141,12 @@ class Greenhouse {
         // TO DO: check if `podState` (global variable defined in script.js) is `visiting` or `home`
 
         clientSocket.emit("visitPod", {
-          // userInfo: userInfo,
+          x: this.x,
+          y: this.y,
+        });
+
+        // Request plant info
+        clientSocket.emit("seePlants", {
           x: this.x,
           y: this.y,
         });

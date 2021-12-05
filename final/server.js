@@ -14,6 +14,9 @@ const User = require("./user");
 // new greenhouse module
 const Greenhouse = require("./greenhouse");
 
+// new plant module
+const Plant = require("./plants");
+
 //5: add the connection code:
 const mongoose = require("mongoose");
 
@@ -204,51 +207,10 @@ function newConnection(socket) {
   });
 
   socket.on("getUserPodPositions", function () {
-    // console.log(`visiting`);
-    // let x = data.x;
-    // let y = data.y;
-
-    // BAD ATTEMPT NUMBER 1
-    // Greenhouse.findOne({ x: x, y: y }).then((greenhouseResult) => {
-    //   // console.log(greenhouseResult.id);
-    //   // greenhouse id that we're inside: greenhouseResult._id
-    //
-    //   User.findOne({ username: userDB.username }).then((userResult) => {
-    //     console.log(greenhouseResult._id);
-    //     if (greenhouseResult._id === userResult.podId[0]) {
-    //       console.log(`match!`);
-    //       socket.emit("changeTintOfUserGreenhouse", result);
-    //     } else {
-    //       console.log(`no match`);
-    //     }
-    //
-    //     // resultUser.podId = resultUser.podId.concat(result._id);
-    //     // console.log(resultUser);
-    //   });
-    //
-    // });
-
     User.findOne({ username: userDB.username }).then((userResult) => {
-      console.log(`user's pod id`);
-      console.log(userResult.podId[0]);
-      // console.log(greenhouseResult.id);
-      // greenhouse id that we're inside: greenhouseResult._id
-
       Greenhouse.findOne({ _id: userResult.podId[0] }).then(
         (greenhouseResult) => {
-          console.log(greenhouseResult._id);
-          console.log(greenhouseResult.x);
-          console.log(greenhouseResult.y);
-
           socket.emit("foundUserGreenhousePositions", greenhouseResult);
-
-          // // underneath code still does not work
-          // if (greenhouseResult._id === userResult.podId[0]) {
-          //   console.log(`match!`);
-          //   // socket.emit("changeTintOfUserGreenhouse", result);
-          // } else {
-          //   console.log(`no match`);
-          // }
         }
       ); // greenhouse find one
     }); // user find one
@@ -259,16 +221,23 @@ function newConnection(socket) {
     let y = data.y;
     let userInfo = userDB.podID;
     Greenhouse.findOne({ x: x, y: y }).then((visitPodResult) => {
-      console.log("visiting a pod:" + visitPodResult);
-
-      // if (visitPodResult.id != userInfo) {
       socket.emit("foundPodVisited", visitPodResult);
-      //
-      // console.log("my home" + userDB.podID);
-      // console.log("this is not my home");
-      // }
+    }); //greenhouse find one
+  }); //socket on
+
+  socket.on("seePlants", function (data) {
+    let x = data.x;
+    let y = data.y;
+    Greenhouse.findOne({ x: x, y: y }).then((visitPod) => {
+      console.log("visitPod :" + visitPod);
+      console.log(visitPod._id);
+      Plant.find({ userId: visitPod._id }).then((findPlant) => {
+        console.log("findPlant :" + findPlant);
+        console.log("the first plant:" + findPlant[0]);
+        socket.emit("foundPlants", findPlant);
+      });
     });
-  });
+  }); //socket on
 } //io.on
 
 // serve anything from this dir ...
