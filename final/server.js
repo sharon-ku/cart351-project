@@ -221,6 +221,19 @@ function newConnection(socket) {
         }); // plant find
       }); // user find one
     }); //greenhouse find one
+
+    socket.on("sendMessage", function (data) {
+      console.log(data);
+
+      // User.findOne({ username: tempUser.username }).then((resultUser) => {
+      //   resultUser.podId = resultUser.podId.concat(result._id);
+      //   console.log(resultUser);
+      //
+      //   resultUser.save().then((result) => {
+      //     console.log("done");
+      //   });
+      // });
+    });
   }); //socket on
 } //io.on
 

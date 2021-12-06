@@ -492,10 +492,18 @@ function music() {
 }
 
 $("#submitMsg").click(function () {
+  event.preventDefault();
   let closeMessageForm = new FormData($("#messageForm")[0]);
+
+  let message = {};
 
   // Display the key/value pairs
   for (var pair of closeMessageForm.entries()) {
     console.log(pair[0] + ", " + pair[1]);
+    message[pair[0]] = pair[1];
   }
+
+  console.log(message);
+
+  clientSocket.emit(`sendMessage`, message);
 });
