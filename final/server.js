@@ -8,9 +8,6 @@ let bodyParser = require("body-parser");
 //new get user module
 const User = require("./user");
 
-// //new get fruit node_module
-// const Fruit = require("./fruit");
-
 // new greenhouse module
 const Greenhouse = require("./greenhouse");
 
@@ -186,22 +183,6 @@ function newConnection(socket) {
       });
     });
 
-    // User.find({ user: tempUser }).then((result) => {
-    //   console.log("teststtstsgt");
-    //   console.log(result[0].toJSON());
-    //
-    //   Fruit.find({ user: result[0].id }).then((fruitResult) => {
-    //     fruitResult.forEach((fruit) => {
-    //       console.log(fruit);
-    //     });
-    //     socket.emit("new_data_other", fruitResult);
-    //   });
-    //   //back to client
-    //   // socket.emit('new_data', result);
-    //
-    //   //now get the fruits that match another user
-    // });
-
     console.log("hello");
     console.log(userDB);
   });
@@ -216,29 +197,26 @@ function newConnection(socket) {
     }); // user find one
   }); // socket on
 
-  socket.on("visitPod", function (data) {
+  // get the visit pod's data: user info and pod info
+  socket.on("getAllVisitPodData", function (data) {
     let x = data.x;
     let y = data.y;
-    let userInfo = userDB.podId;
+
+    // Find pod data
     Greenhouse.findOne({ x: x, y: y }).then((visitPodResult) => {
+      // console.log("visitPod :" + visitPodResult);
       socket.emit("foundPodVisited", visitPodResult);
-    }); //greenhouse find one
-  }); //socket on
 
-  socket.on("seePlants", function (data) {
-    let x = data.x;
-    let y = data.y;
-    Greenhouse.findOne({ x: x, y: y }).then((visitPod) => {
-      console.log("visitPod :" + visitPod);
-      console.log(visitPod._id);
+      // Find user data who lives in pod
+      User.findOne({ podId: visitPodResult._id }).then((visitUserResult) => {
+        socket.emit("foundUserVisited", visitUserResult);
 
-      User.findOne({ podId: visitPod._id }).then((visitUser) => {
-        Plant.find({ userId: visitUser._id }).then((findPlant) => {
-          console.log("findPlant :" + findPlant);
-          console.log("the first plant:" + findPlant[0]);
-          socket.emit("foundPlants", findPlant);
+        // Find plant data that has user id
+        Plant.find({ userId: visitUserResult._id }).then((plantResults) => {
+          // console.log("plantResults :" + plantResults);
+          socket.emit("foundPlants", plantResults);
         }); // plant find
-      }); // user find
+      }); // user find one
     }); //greenhouse find one
   }); //socket on
 } //io.on

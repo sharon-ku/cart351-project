@@ -37,7 +37,9 @@ class HomeIcon extends Icon {
       mouseY < this.y + this.size
     ) {
       state = `pod-navigation`;
-      // console.log("clicked on Home Icon");
+
+      // empty out visit garden array plants
+      visitGarden = [];
 
       // resize canvas
       resizeCanvas(this.newCanvasWidth, this.newCanvasHeight);

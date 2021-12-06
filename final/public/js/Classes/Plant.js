@@ -1,7 +1,7 @@
 class Plant {
-  constructor(plantImages) {
-    this.x = random(windowWidth / 8, (windowWidth / 8) * 7);
-    this.y = random(windowHeight / 8, (windowHeight / 8) * 7);
+  constructor(plantImages, growthStage, numMessagesNeededToGrow, position) {
+    this.x = position.x;
+    this.y = position.y;
     this.aqua = {
       r: 45,
       g: 227,
@@ -9,7 +9,8 @@ class Plant {
     };
     this.font = `quicksand,sans-serif`;
     this.plantImages = plantImages;
-    this.imageIndex = 1;
+    this.growthStage = growthStage;
+    this.numMessagesNeededToGrow = numMessagesNeededToGrow;
     this.move = random(-10, 10);
 
     // to add to constructor
@@ -26,7 +27,7 @@ class Plant {
       translate(random(-2, 2), random(-2, 2));
     }
 
-    image(this.plantImages[this.imageIndex], this.x, this.y);
+    image(this.plantImages[this.growthStage], this.x, this.y);
 
     pop();
   }
@@ -42,6 +43,5 @@ class Plant {
     fill(this.aqua.r, this.aqua.g, this.aqua.b);
     text("Eugene was sent to you by uwu", 100, 100);
     pop();
-    // console.log("clicked plant");
   }
 }

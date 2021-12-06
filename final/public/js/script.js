@@ -20,9 +20,23 @@ let userInfo = undefined;
 let userPodX = undefined;
 let userPodY = undefined;
 
-// visitor pod coordinates
-let visitPodX = undefined;
-let visitPodY = undefined;
+// stores data related to pod we're visiting
+let visitPodData = {
+  // id
+  id: undefined,
+  // visitor pod coordinates
+  x: undefined,
+  y: undefined,
+};
+
+// stores all data on user we're visiting
+let visitUserData = {
+  username: undefined,
+  id: undefined,
+};
+
+// stores all plants in current visited pod
+let visitGarden = [];
 
 let bkg;
 let canvasWidth = 3000;
@@ -67,15 +81,6 @@ const NUM_PLANT_IMG = 4;
 let cactusImages = [];
 let dragonImages = [];
 let cherryImages = [];
-
-// used temporarily to randomly select a plant
-let allPlantImages = [];
-// all plants in a single pod
-let garden = [];
-let displayGarden;
-
-let cactus;
-// let growthStage = 5;
 
 // icon
 // home icon
@@ -150,9 +155,6 @@ function preload() {
     dragonImages.push(plantImage);
   }
 
-  // allPlantImages used to temporarily store plant images
-  allPlantImages.push(cactusImages, cherryImages, dragonImages);
-
   // load home icon image
   homeIconImg = loadImage(`assets/images/icons/greenhouse-icon.png`);
 
@@ -219,7 +221,6 @@ function setup() {
       // resize canvas to windowWidth and windowHeight
       let pod = new Greenhouse(x, y, image, windowWidth, windowHeight, taken);
       pods.push(pod);
-      // console.log(pods[i]);
 
       // Request the user greenhouse positions to be found
       clientSocket.emit("getUserPodPositions");
@@ -246,8 +247,8 @@ function setup() {
 
   // get visiting pod coordinates
   clientSocket.on("foundPodVisited", function (result) {
-    visitPodX = result.x;
-    visitPodY = result.y;
+    visitPodData.x = result.x;
+    visitPodData.y = result.y;
   });
 
   // create icons
@@ -301,34 +302,40 @@ function setup() {
     stars.push(star);
   }
 
-  //++++ To remove
-  // Create plant
-  // cactus = new Plant(windowWidth / 2, windowHeight / 2, cactusImages);
-  // For now, cactus stores a random plant image
-
-  cactus = new Plant(random(allPlantImages));
-
-  // ****does not work
-  // display greenhouses from database
+  // display plants from database
   clientSocket.on("foundPlants", function (results) {
-    console.log(results);
     for (let i = 0; i < results.length; i++) {
       console.log(results[i]);
-      let plantType = results[i].name;
-      let growthStage = results[i].growthStage;
+      let plant = {
+        name: results[i].name,
+        images: undefined,
+        growthStage: results[i].growthStage,
+        numMessagesNeededToGrow: results[i].numMessagesNeededToGrow,
+        position: {
+          x: results[i].position.x,
+          y: results[i].position.y,
+        },
+      };
 
-      console.log(plantType);
-
-      // fill garden with plants and their growth stages
-      if (plantType === "cherry") {
-        garden[i] = cherryImages[growthStage];
-      } else if (plantType === "dragon") {
-        garden[i] = dragonImages[growthStage];
-      } else if (plantType === "cactus") {
-        garden[i] = cactusImages[growthStage];
+      // set images based on plant type
+      if (plant.name === "cherry") {
+        plant.images = cherryImages;
+      } else if (plant.name === "dragon") {
+        plant.images = dragonImages;
+      } else if (plant.name === "cactus") {
+        plant.images = cactusImages;
       }
-      displayGarden = new Plant(garden);
-      console.log(garden);
+
+      // create a new plant
+      let newPlant = new Plant(
+        plant.images,
+        plant.growthStage,
+        plant.numMessagesNeededToGrow,
+        plant.position
+      );
+
+      // add this plant to visitGarden
+      visitGarden.push(newPlant);
     }
   });
 
@@ -430,9 +437,11 @@ function insidePod() {
   pop();
 
   // if at home
-  if (userPodX === visitPodX && userPodY == visitPodY) {
+  if (userPodX === visitPodData.x && userPodY == visitPodData.y) {
     homeIcon.display();
     homeIcon.overlap();
+
+    // EMIT USER MESSAGES HERE
   } else {
     homeIcon.display();
     homeIcon.overlap();
@@ -447,11 +456,11 @@ function insidePod() {
     seedIcon.overlap();
   }
 
-  //++++ To remove
-  cactus.display();
-
   // display garden
-  // displayGarden.display();
+  for (let i = 0; i < visitGarden.length; i++) {
+    let plant = visitGarden[i];
+    plant.display();
+  }
 }
 
 function mousePressed() {
@@ -464,7 +473,6 @@ function mousePressed() {
     homeIcon.mousePressed();
     butterflyIcon.mousePressed();
     teleportIcon.mousePressed();
-    cactus.mousePressed();
     seedIcon.mousePressed();
   }
 }
