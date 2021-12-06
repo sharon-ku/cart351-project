@@ -14,6 +14,9 @@ const Greenhouse = require("./greenhouse");
 // new plant module
 const Plant = require("./plants");
 
+// new message module
+const Message = require("./message");
+
 //5: add the connection code:
 const mongoose = require("mongoose");
 
