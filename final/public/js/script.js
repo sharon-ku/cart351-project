@@ -448,8 +448,9 @@ function insidePod() {
 
   //++++ To remove
   cactus.display();
+
   // display garden
-  displayGarden.display();
+  // displayGarden.display();
 }
 
 function mousePressed() {

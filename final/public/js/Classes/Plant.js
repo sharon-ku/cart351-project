@@ -10,12 +10,24 @@ class Plant {
     this.font = `quicksand,sans-serif`;
     this.plantImages = plantImages;
     this.imageIndex = 1;
+    this.move = random(-10, 10);
+
+    // to add to constructor
+    this.message = true;
   }
 
   display() {
     push();
     imageMode(CENTER);
+
+    // shake and change color
+    if (this.message) {
+      tint(255, 240, 0);
+      translate(random(-2, 2), random(-2, 2));
+    }
+
     image(this.plantImages[this.imageIndex], this.x, this.y);
+
     pop();
   }
 
