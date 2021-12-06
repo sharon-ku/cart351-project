@@ -490,3 +490,12 @@ function music() {
     bkgMusic.loop();
   }
 }
+
+$("#submitMsg").click(function () {
+  let closeMessageForm = new FormData($("#messageForm")[0]);
+
+  // Display the key/value pairs
+  for (var pair of closeMessageForm.entries()) {
+    console.log(pair[0] + ", " + pair[1]);
+  }
+});
