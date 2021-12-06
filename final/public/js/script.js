@@ -310,7 +310,8 @@ function setup() {
 
   // ****does not work
   // display greenhouses from database
-  clientSocket.on("displayPlant", function (results) {
+  clientSocket.on("foundPlants", function (results) {
+    console.log(results);
     for (let i = 0; i < results.length; i++) {
       console.log(results[i]);
       let plantType = results[i].name;

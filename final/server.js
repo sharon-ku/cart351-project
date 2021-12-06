@@ -152,7 +152,7 @@ function newConnection(socket) {
   socket.on("requestGreenhouses", function (data) {
     Greenhouse.find({}).then((result) => {
       result.forEach((greenhouse) => {
-        console.log(greenhouse);
+        // console.log(greenhouse);
       });
       socket.emit("newGreenhouses", result);
     });
@@ -219,7 +219,7 @@ function newConnection(socket) {
   socket.on("visitPod", function (data) {
     let x = data.x;
     let y = data.y;
-    let userInfo = userDB.podID;
+    let userInfo = userDB.podId;
     Greenhouse.findOne({ x: x, y: y }).then((visitPodResult) => {
       socket.emit("foundPodVisited", visitPodResult);
     }); //greenhouse find one
@@ -231,12 +231,15 @@ function newConnection(socket) {
     Greenhouse.findOne({ x: x, y: y }).then((visitPod) => {
       console.log("visitPod :" + visitPod);
       console.log(visitPod._id);
-      Plant.find({ userId: visitPod._id }).then((findPlant) => {
-        console.log("findPlant :" + findPlant);
-        console.log("the first plant:" + findPlant[0]);
-        socket.emit("foundPlants", findPlant);
-      });
-    });
+
+      User.findOne({ podId: visitPod._id }).then((visitUser) => {
+        Plant.find({ userId: visitUser._id }).then((findPlant) => {
+          console.log("findPlant :" + findPlant);
+          console.log("the first plant:" + findPlant[0]);
+          socket.emit("foundPlants", findPlant);
+        }); // plant find
+      }); // user find
+    }); //greenhouse find one
   }); //socket on
 } //io.on
 
