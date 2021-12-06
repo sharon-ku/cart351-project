@@ -19,6 +19,10 @@ class Plant {
     pop();
   }
 
+  grow() {
+    // if messages received, emit data to growthStage in Plant collection
+  }
+
   mousePressed() {
     push();
     textSize(34);

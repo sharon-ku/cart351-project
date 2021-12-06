@@ -70,6 +70,9 @@ let cherryImages = [];
 
 // used temporarily to randomly select a plant
 let allPlantImages = [];
+// all plants in a single pod
+let garden = [];
+let displayGarden;
 
 let cactus;
 // let growthStage = 5;
@@ -298,25 +301,33 @@ function setup() {
     stars.push(star);
   }
 
+  //++++ To remove
   // Create plant
   // cactus = new Plant(windowWidth / 2, windowHeight / 2, cactusImages);
   // For now, cactus stores a random plant image
+
   cactus = new Plant(random(allPlantImages));
 
+  // ****does not work
   // display greenhouses from database
   clientSocket.on("displayPlant", function (results) {
-    // create pods
-
     for (let i = 0; i < results.length; i++) {
       console.log(results[i]);
       let plantType = results[i].name;
+      let growthStage = results[i].growthStage;
+
       console.log(plantType);
 
-      // if (plantType ==="cherry") {
-      //   cactus = new Plant(cherryImages);
-      // } else if (plantType ==="dragon") {
-      //   cactus = new
-      // }
+      // fill garden with plants and their growth stages
+      if (plantType === "cherry") {
+        garden[i] = cherryImages[growthStage];
+      } else if (plantType === "dragon") {
+        garden[i] = dragonImages[growthStage];
+      } else if (plantType === "cactus") {
+        garden[i] = cactusImages[growthStage];
+      }
+      displayGarden = new Plant(garden);
+      console.log(garden);
     }
   });
 
@@ -435,7 +446,10 @@ function insidePod() {
     seedIcon.overlap();
   }
 
+  //++++ To remove
   cactus.display();
+  // display garden
+  displayGarden.display();
 }
 
 function mousePressed() {
