@@ -462,7 +462,6 @@ function mousePressed() {
     homeIcon.mousePressed();
     butterflyIcon.mousePressed();
     teleportIcon.mousePressed();
-
     cactus.mousePressed();
     seedIcon.mousePressed();
   }
