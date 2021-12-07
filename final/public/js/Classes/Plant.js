@@ -14,6 +14,9 @@ class Plant {
 
     // to add to constructor
     this.readState = true;
+
+    this.imageWidth = this.plantImages[this.growthStage].width / 2;
+    this.imageHeight = this.plantImages[this.growthStage].height / 2;
   }
 
   display() {
@@ -32,15 +35,13 @@ class Plant {
   }
 
   mousePressed() {
-    this.imageWidth = this.plantImages[this.growthStage].width / 2;
-    this.imageHeight = this.plantImages[this.growthStage].height / 2;
-
     if (
       mouseX > this.x - this.imageWidth &&
       mouseX < this.x + this.imageWidth &&
       mouseY > this.y - this.imageHeight &&
       mouseY < this.y + this.imageHeight
     ) {
+      clientSocket.emit("getAllPlantData");
       // if message has not been read, display message received on click
       if (!this.readState) {
         document.getElementById("receivedMessageForm").style.display = "block";
