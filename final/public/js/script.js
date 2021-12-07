@@ -20,6 +20,9 @@ let userInfo = undefined;
 let userPodX = undefined;
 let userPodY = undefined;
 
+// Store all of user's messages
+let userMessagesReceived = [];
+
 // stores data related to pod we're visiting
 let visitPodData = {
   // id
@@ -242,11 +245,13 @@ function setup() {
     userPodX = result.x;
     userPodY = result.y;
 
-    console.log(`user pod positions:${userPodX}, ${userPodY}`);
+    console.log(`user pod positions: ${userPodX}, ${userPodY}`);
 
     // change tint color of user greenhouse
     for (let i = 0; i < pods.length; i++) {
       let pod = pods[i];
+
+      // if this is the user's greenhouse
       if (pod.x === userPodX && pod.y === userPodY) {
         pod.setUserPodTint();
         // set pod's taken value to true
@@ -302,6 +307,13 @@ function setup() {
   clientSocket.on("foundUserVisited", function (result) {
     visitUserData = result;
     console.log(`currently visiting:` + visitUserData.username);
+
+    // if this is the user's pod:
+    if (userPodX === visitPodData.x && userPodY == visitPodData.y) {
+      // check if there are messages
+      console.log(`this is user's house`);
+      clientSocket.emit("getUserMessages");
+    }
   });
 
   // display plants from database
@@ -528,6 +540,7 @@ $("#submitMsg").click(function () {
   });
 
   // deletes text in search bar
+  document.getElementById(`messageForm`).reset();
   // $("#messageBox").empty();
 });
 

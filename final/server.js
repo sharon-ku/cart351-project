@@ -188,7 +188,7 @@ function newConnection(socket) {
 
     console.log("hello");
     console.log(userDB);
-  });
+  }); // update taken greenhouse
 
   socket.on("getUserPodPositions", function () {
     User.findOne({ username: userDB.username }).then((userResult) => {
@@ -222,6 +222,14 @@ function newConnection(socket) {
     }); //greenhouse find one
   }); //socket on
 
+  // grab all messages belonging to the user
+  socket.on("getUserMessages", function () {
+    Message.find({ receiverId: userDB.id }).then((messageResults) => {
+      console.log(messageResults);
+      socket.emit("foundUserMessages", messageResults);
+    }); // message find
+  }); // socket on
+
   // send messages to database
   socket.on("sendMessage", function (data) {
     let messageToSend = data.message;
@@ -238,7 +246,7 @@ function newConnection(socket) {
           receiverUsername: userResult.username,
           senderId: userDB.id,
           senderUsername: userDB.username,
-          plantID: plantResult._id,
+          plantId: plantResult._id,
           readState: false,
           message: messageToSend.message,
         });
@@ -253,20 +261,16 @@ function newConnection(socket) {
   socket.on("selectSeed", function (data) {
     let seedChosen = data.seed.seed;
     let visitUser = data.visitUser;
-    console.log(data);
-    console.log("seedChosen " + seedChosen);
-    console.log("visitUser : " + visitUser.username);
+    // console.log(data);
+    // console.log("seedChosen " + seedChosen);
+    // console.log("visitUser : " + visitUser.username);
 
     let counter = 0;
 
     User.findOne({ username: visitUser.username }).then((seedRecipient) => {
       // User.findById(visitUser.id).then((seedRecipient) => {
-      // console.log(user);
-      // console.log(error);
 
-      console.log("seedRecipient" + seedRecipient);
-      counter++;
-      console.log(counter);
+      // console.log("seedRecipient" + seedRecipient);
 
       const addSeed = new Plant({
         userId: seedRecipient._id,
@@ -282,7 +286,12 @@ function newConnection(socket) {
       // save to database
       addSeed.save().then((result) => {});
     }); //user findone
-  });
+  }); // socket on select seed
+
+  // get the visit plant's data
+  socket.on("getAllPlantData", function (data) {
+    console.log(data);
+  }); //socket on getallplantdata
 } //io.on
 
 // serve anything from this dir ...
