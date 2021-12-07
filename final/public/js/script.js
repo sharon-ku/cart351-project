@@ -274,27 +274,33 @@ function setup() {
   let iconY_L = windowHeight * 0.1;
   //console.log($("#MessagingForm"));
 
-  butterflyIcon = new ButterflyIcon(
-    iconX_L,
-    iconX_R,
-    butterflyIconImg,
-    iconSize
-  );
+  // butterflyIcon = new ButterflyIcon(
+  //   iconX_L,
+  //   iconX_R,
+  //   butterflyIconImg,
+  //   iconSize
+  // );
 
   // draw teleport  icon
   // place  teleport icon on right side of the screen
-
-  let teleportIcon_Y = iconX_R + iconSize * 2.7;
-
-  teleportIcon = new TeleportIcon(
-    iconX_L,
-    teleportIcon_Y,
-    teleportIconImg,
-    iconSize
-  );
+  //
+  // let teleportIcon_Y = iconX_R + iconSize * 2.7;
+  //
+  // teleportIcon = new TeleportIcon(
+  //   iconX_L,
+  //   teleportIcon_Y,
+  //   teleportIconImg,
+  //   iconSize
+  // );
 
   let seedIcon_Y = iconX_R + iconSize * 1.4;
-  seedIcon = new SeedIcon(iconX_L, seedIcon_Y, seedIconImg, iconSize);
+  seedIcon = new SeedIcon(
+    iconX_L,
+    seedIcon_Y,
+    seedIconImg,
+    iconSize,
+    visitGarden.length
+  );
 
   // Create sparkling stars!
   for (let i = 0; i < NUM_STARS; i++) {
@@ -496,6 +502,7 @@ function music() {
   }
 }
 
+// submit message
 $("#submitMsg").click(function () {
   event.preventDefault();
   let closeMessageForm = new FormData($("#messageForm")[0]);
