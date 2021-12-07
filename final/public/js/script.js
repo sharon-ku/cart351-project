@@ -23,7 +23,7 @@ let userPodY = undefined;
 // stores data related to pod we're visiting
 let visitPodData = {
   // id
-  id: undefined,
+  _id: undefined,
   // visitor pod coordinates
   x: undefined,
   y: undefined,
@@ -31,7 +31,7 @@ let visitPodData = {
 
 // stores all data on user we're visiting
 let visitUserData = {
-  id: undefined,
+  _id: undefined,
   username: undefined,
   podId: [],
 };
