@@ -249,9 +249,10 @@ function newConnection(socket) {
 
     // get seed choice
     socket.on("selectSeed", function (data) {
-      let seedChosen = data.seed[0];
+      let seedChosen = data.seed.seed;
       let visitUser = data.visitUser;
       console.log(data);
+      console.log("seedChosen " + seedChosen);
       console.log("visitUser : " + visitUser.username);
 
       User.findOne({ _id: data.visitUser.id }).then((seedRecipient) => {

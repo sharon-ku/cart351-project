@@ -550,4 +550,9 @@ $("#submitSeedChoice").click(function () {
     seedX: seedX,
     seedY: seedY,
   });
+  // get the visit pod's data: user info, plant info, pod info
+  clientSocket.emit("getAllVisitPodData", {
+    x: visitPodData.x,
+    y: visitPodData.y,
+  });
 });
