@@ -1,7 +1,7 @@
 class SeedIcon extends Icon {
   constructor(x, y, iconImg, size, gardenSize) {
     this.gardenSize = gardenSize;
-    const MAXPLANTS = 3;
+    const MAXPLANTS = 15;
     super(x, y, iconImg, size);
   }
 
