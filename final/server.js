@@ -207,7 +207,6 @@ function newConnection(socket) {
 
     // Find pod data
     Greenhouse.findOne({ x: x, y: y }).then((visitPodResult) => {
-      // console.log("visitPod :" + visitPodResult);
       socket.emit("foundPodVisited", visitPodResult);
 
       // Find user data who lives in pod
@@ -216,23 +215,20 @@ function newConnection(socket) {
 
         // Find plant data that has user id
         Plant.find({ userId: visitUserResult._id }).then((plantResults) => {
-          // console.log("plantResults :" + plantResults);
           socket.emit("foundPlants", plantResults);
         }); // plant find
       }); // user find one
     }); //greenhouse find one
 
+    // send messages to database
     socket.on("sendMessage", function (data) {
       console.log(data);
 
+      // find all plant data
       Plant.findOne({}).then((result) => {
-        console.log("allaboutplant" + result);
-        console.log(userDB);
-        console.log(userDB.id);
+        // find user data
         User.findOne({ _id: result.userId }).then((userResult) => {
-          // if (data.length != 0) {
-          //   //response.json("no user");
-
+          // create a new message entry in database
           const message = new Message({
             receiverId: result.userId,
             receiverUsername: userResult.username,
@@ -242,27 +238,12 @@ function newConnection(socket) {
             readState: false,
             message: data.message,
           });
-          console.log(message);
-          //save to db
-          message.save().then((result) => {
-            // response.json(result);
-          });
-          // } //not in
-          // else {
-          // response.json("Write a message");
-          // }
-          //find
-        });
-      });
-      // User.findOne({ username: tempUser.username }).then((resultUser) => {
-      //   resultUser.podId = resultUser.podId.concat(result._id);
-      //   console.log(resultUser);
-      //
-      //   resultUser.save().then((result) => {
-      //     console.log("done");
-      //   });
-      // });
-    });
+
+          // save to database
+          message.save().then((result) => {});
+        }); //user findOne
+      }); //plant findOne
+    }); //socket on sendMessage
   }); //socket on
 } //io.on
 
