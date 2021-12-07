@@ -47,8 +47,6 @@ class Plant {
       mouseY > this.y - this.imageHeight &&
       mouseY < this.y + this.imageHeight
     ) {
-      console.log("clicked plant");
-      console.log(this.plantImages[this.growthStage].width);
       document.getElementById("MessagingForm").style.display = "block";
     }
   }
