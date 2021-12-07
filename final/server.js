@@ -225,6 +225,35 @@ function newConnection(socket) {
     socket.on("sendMessage", function (data) {
       console.log(data);
 
+      Plant.findOne({}).then((result) => {
+        console.log("allaboutplant" + result);
+        console.log(userDB);
+        console.log(userDB.id);
+        User.findOne({ _id: result.userId }).then((userResult) => {
+          // if (data.length != 0) {
+          //   //response.json("no user");
+
+          const message = new Message({
+            receiverId: result.userId,
+            receiverUsername: userResult.username,
+            senderId: userDB.id,
+            senderUsername: userDB.username,
+            plantID: result._id,
+            readState: false,
+            message: data.message,
+          });
+          console.log(message);
+          //save to db
+          message.save().then((result) => {
+            // response.json(result);
+          });
+          // } //not in
+          // else {
+          // response.json("Write a message");
+          // }
+          //find
+        });
+      });
       // User.findOne({ username: tempUser.username }).then((resultUser) => {
       //   resultUser.podId = resultUser.podId.concat(result._id);
       //   console.log(resultUser);
