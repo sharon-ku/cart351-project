@@ -11,13 +11,19 @@ class Plant {
     this.plantImages = plantImages;
     this.growthStage = growthStage;
     this.numMessagesNeededToGrow = numMessagesNeededToGrow;
-    this.move = random(-10, 10);
 
     // to add to constructor
     this.message = true;
   }
 
   display() {
+    // looking for reference point
+    push();
+    stroke(0);
+    strokeWeight(8);
+    point(this.x, this.y);
+    pop();
+
     push();
     imageMode(CENTER);
 
@@ -32,16 +38,18 @@ class Plant {
     pop();
   }
 
-  grow() {
-    // if messages received, emit data to growthStage in Plant collection
-  }
-
   mousePressed() {
-    push();
-    textSize(34);
-    textFont(this.font);
-    fill(this.aqua.r, this.aqua.g, this.aqua.b);
-    text("Eugene was sent to you by uwu", 100, 100);
-    pop();
+    this.imageWidth = this.plantImages[this.growthStage].width / 2;
+    this.imageHeight = this.plantImages[this.growthStage].height / 2;
+    if (
+      mouseX > this.x - this.imageWidth &&
+      mouseX < this.x + this.imageWidth &&
+      mouseY > this.y - this.imageHeight &&
+      mouseY < this.y + this.imageHeight
+    ) {
+      console.log("clicked plant");
+      console.log(this.plantImages[this.growthStage].width);
+      document.getElementById("MessagingForm").style.display = "block";
+    }
   }
 }

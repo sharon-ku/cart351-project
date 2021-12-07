@@ -446,8 +446,8 @@ function insidePod() {
     homeIcon.display();
     homeIcon.overlap();
 
-    butterflyIcon.display();
-    butterflyIcon.overlap();
+    // butterflyIcon.display();
+    // butterflyIcon.overlap();
 
     teleportIcon.display();
     teleportIcon.overlap();
@@ -471,9 +471,14 @@ function mousePressed() {
 
   if (state === `inside-pod`) {
     homeIcon.mousePressed();
-    butterflyIcon.mousePressed();
+    // butterflyIcon.mousePressed();
     teleportIcon.mousePressed();
     seedIcon.mousePressed();
+
+    for (let i = 0; i < visitGarden.length; i++) {
+      let plant = visitGarden[i];
+      plant.mousePressed();
+    }
   }
 }
 

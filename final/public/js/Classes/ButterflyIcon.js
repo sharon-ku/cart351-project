@@ -39,7 +39,7 @@ class ButterflyIcon extends Icon {
       mouseY > this.y &&
       mouseY < this.y + this.size
     ) {
-      document.getElementById("MessagingForm").style.display = "block";
+      // document.getElementById("MessagingForm").style.display = "block";
     }
   }
 }
