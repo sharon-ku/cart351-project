@@ -274,16 +274,13 @@ function setup() {
     canvasWidth
   );
 
-  // draw butterfly icon
-  // place butterfly icon on right side of the screen
-  // butterflyIconProperties.x += windowWidth;
   let iconX_L = windowWidth - iconSize * 1.1 - 30;
-  let iconY_L = windowHeight * 0.1;
+  let iconY_L = windowHeight * 0.02;
 
   let seedIcon_Y = iconX_R + iconSize * 1.4;
   seedIcon = new SeedIcon(
     iconX_L,
-    seedIcon_Y,
+    iconY_L,
     seedIconImg,
     iconSize,
     visitGarden.length
@@ -449,12 +446,6 @@ function insidePod() {
     homeIcon.display();
     homeIcon.overlap();
 
-    // butterflyIcon.display();
-    // butterflyIcon.overlap();
-
-    // teleportIcon.display();
-    // teleportIcon.overlap();
-
     seedIcon.display();
     seedIcon.overlap();
   }
@@ -474,8 +465,7 @@ function mousePressed() {
 
   if (state === `inside-pod`) {
     homeIcon.mousePressed();
-    // butterflyIcon.mousePressed();
-    // teleportIcon.mousePressed();
+
     seedIcon.mousePressed();
 
     for (let i = 0; i < visitGarden.length; i++) {
@@ -484,7 +474,6 @@ function mousePressed() {
 
       // Store currentSendMessagePlant info so we can find this plant in DB
       currentSendMessagePlant = visitPlantsData[i];
-      // console.log(currentSendMessagePlant);
     }
   }
 }
@@ -550,7 +539,7 @@ $("#submitSeedChoice").click(function () {
     seedX: seedX,
     seedY: seedY,
   });
-  // get the visit pod's data: user info, plant info, pod info
+
   clientSocket.emit("getAllVisitPodData", {
     x: visitPodData.x,
     y: visitPodData.y,

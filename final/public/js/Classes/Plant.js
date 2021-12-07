@@ -13,7 +13,7 @@ class Plant {
     this.numMessagesNeededToGrow = numMessagesNeededToGrow;
 
     // to add to constructor
-    this.message = true;
+    this.readState = true;
   }
 
   display() {
@@ -21,7 +21,7 @@ class Plant {
     imageMode(CENTER);
 
     // shake and change color
-    if (this.message) {
+    if (!this.readState) {
       tint(255, 240, 0);
       translate(random(-2, 2), random(-2, 2));
     }
@@ -34,13 +34,20 @@ class Plant {
   mousePressed() {
     this.imageWidth = this.plantImages[this.growthStage].width / 2;
     this.imageHeight = this.plantImages[this.growthStage].height / 2;
+
     if (
       mouseX > this.x - this.imageWidth &&
       mouseX < this.x + this.imageWidth &&
       mouseY > this.y - this.imageHeight &&
       mouseY < this.y + this.imageHeight
     ) {
-      document.getElementById("MessagingForm").style.display = "block";
+      // if message has not been read, display message received on click
+      if (!this.readState) {
+        document.getElementById("receivedMessageForm").style.display = "block";
+      } else if (this.readState) {
+        // if message has been read, display send message form
+        document.getElementById("MessagingForm").style.display = "block";
+      }
     }
   }
 }
