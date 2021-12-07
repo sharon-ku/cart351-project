@@ -112,12 +112,12 @@ class Greenhouse {
       // Request the user greenhouse positions to be found
       clientSocket.emit("getUserPodPositions");
 
+      // change tint color to magenta
+      this.setUserPodTint();
+
       // wait 5 seconds to cue next state
       // fyi when using setInterval inside a class, we need to add ".bind(this)" to end of function
       setInterval(this.changeStateToPodNavigation.bind(this), 5000);
-
-      // change tint color to magenta
-      this.setUserPodTint();
     } else {
       console.log(`sorry, pod is taken already`);
     }
@@ -125,6 +125,9 @@ class Greenhouse {
 
   // change state from `new-user` to `pod-navigation`
   changeStateToPodNavigation() {
+    // make new user pod taken
+    this.taken = true;
+
     // change state
     state = `pod-navigation`;
   }
