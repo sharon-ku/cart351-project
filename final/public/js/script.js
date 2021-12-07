@@ -307,13 +307,13 @@ function setup() {
   clientSocket.on("foundUserVisited", function (result) {
     visitUserData = result;
     console.log(`currently visiting:` + visitUserData.username);
-
-    // if this is the user's pod:
-    if (userPodX === visitPodData.x && userPodY == visitPodData.y) {
-      // check if there are messages
-      console.log(`this is user's house`);
-      clientSocket.emit("getUserMessages");
-    }
+    console.log(visitUserData);
+    // // if this is the user's pod:
+    // if (userPodX === visitPodData.x && userPodY == visitPodData.y) {
+    //   // check if there are messages
+    //   console.log(`this is user's house`);
+    //   clientSocket.emit("getUserMessages");
+    // }
   });
 
   // if user messages found, store array of messages
@@ -344,6 +344,13 @@ function setup() {
         userMessagesReceived = 0;
         // create p5 plants by passing messages into it
         createP5Plants();
+      }
+
+      // if this is the user's pod:
+      if (userPodX === visitPodData.x && userPodY == visitPodData.y) {
+        // check if there are messages
+        console.log(`this is user's house`);
+        clientSocket.emit("getUserMessages");
       }
 
       //
@@ -393,6 +400,7 @@ function setup() {
 }
 
 function createP5Plants() {
+  console.log(visitPlantsData);
   for (let i = 0; i < visitPlantsData.length; i++) {
     let plant = {
       name: visitPlantsData[i].name,

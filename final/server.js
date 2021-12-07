@@ -204,6 +204,7 @@ function newConnection(socket) {
   socket.on("getAllVisitPodData", function (data) {
     let x = data.x;
     let y = data.y;
+    console.log(data);
 
     // Find pod data
     Greenhouse.findOne({ x: x, y: y }).then((visitPodResult) => {
