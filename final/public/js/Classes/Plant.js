@@ -1,5 +1,11 @@
 class Plant {
-  constructor(plantImages, growthStage, numMessagesNeededToGrow, position) {
+  constructor(
+    plantImages,
+    growthStage,
+    numMessagesNeededToGrow,
+    messages,
+    position
+  ) {
     this.x = position.x;
     this.y = position.y;
     this.scale = 0.5;
@@ -14,6 +20,7 @@ class Plant {
     this.numMessagesNeededToGrow = numMessagesNeededToGrow;
 
     // to add to constructor
+    this.messages = messages;
     this.readState = true;
 
     this.imageWidth = this.plantImages[this.growthStage].width / 2;
@@ -25,7 +32,7 @@ class Plant {
     imageMode(CENTER);
 
     // shake and change color
-    if (!this.readState) {
+    if (this.messages.length > 0) {
       tint(255, 240, 0);
       translate(random(-2, 2), random(-2, 2));
     }
@@ -50,10 +57,21 @@ class Plant {
         y: this.y,
       });
 
-      // if message has not been read, display message received on click
-      if (!this.readState) {
-        document.getElementById("receivedMessageForm").style.display = "block";
-      } else if (this.readState) {
+      // if you are in your pod
+      if (userPodX === visitPodData.x && userPodY == visitPodData.y) {
+        console.log(`working`);
+        console.log(this.messages);
+        // if message has not been read, display message received on click
+        if (this.messages.length > 0) {
+          console.log(`you got messages`);
+          document.getElementById("receivedMessageForm").style.display =
+            "block";
+        }
+      }
+      // else, if you're in someone else's pod, you can only send messages
+      else {
+        console.log(`no spies`);
+        console.log(`cannot see messages in someone else's pod`);
         // if message has been read, display send message form
         document.getElementById("MessagingForm").style.display = "block";
       }

@@ -316,6 +316,16 @@ function setup() {
     }
   });
 
+  // if user messages found, store array of messages
+  clientSocket.on("foundUserMessages", function (messageResults) {
+    // store messages in userMessagesReceived
+    userMessagesReceived = messageResults;
+    console.log(`messages:` + messageResults);
+
+    // create p5 plants by passing messages into it
+    createP5Plants();
+  });
+
   // display plants from database
   clientSocket.on("foundPlants", function (results) {
     // reset visit plants data to grab new plants
@@ -328,38 +338,47 @@ function setup() {
       // Store all plant results inside visitPlantsData array
       visitPlantsData.push(results[i]);
 
-      let plant = {
-        name: results[i].name,
-        images: undefined,
-        growthStage: results[i].growthStage,
-        numMessagesNeededToGrow: results[i].numMessagesNeededToGrow,
-        position: {
-          x: results[i].position.x,
-          y: results[i].position.y,
-        },
-      };
-
-      // set images based on plant type
-      if (plant.name === "cherry") {
-        plant.images = cherryImages;
-      } else if (plant.name === "dragon") {
-        plant.images = dragonImages;
-      } else if (plant.name === "cactus") {
-        plant.images = cactusImages;
+      // If it's not user's pod, create p5 plants
+      if (userPodX != visitPodData.x && userPodY != visitPodData.y) {
+        // you cannot view other people's messages
+        userMessagesReceived = 0;
+        // create p5 plants by passing messages into it
+        createP5Plants();
       }
 
-      // create a new plant
-      let newPlant = new Plant(
-        plant.images,
-        plant.growthStage,
-        plant.numMessagesNeededToGrow,
-        plant.position
-      );
-
-      // add this plant to visitGarden
-      visitGarden.push(newPlant);
+      //
+      // let plant = {
+      //   name: results[i].name,
+      //   images: undefined,
+      //   growthStage: results[i].growthStage,
+      //   numMessagesNeededToGrow: results[i].numMessagesNeededToGrow,
+      //   position: {
+      //     x: results[i].position.x,
+      //     y: results[i].position.y,
+      //   },
+      // };
+      //
+      // // set images based on plant type
+      // if (plant.name === "cherry") {
+      //   plant.images = cherryImages;
+      // } else if (plant.name === "dragon") {
+      //   plant.images = dragonImages;
+      // } else if (plant.name === "cactus") {
+      //   plant.images = cactusImages;
+      // }
+      //
+      // // create a new plant
+      // let newPlant = new Plant(
+      //   plant.images,
+      //   plant.growthStage,
+      //   plant.numMessagesNeededToGrow,
+      //   plant.position
+      // );
+      //
+      // // add this plant to visitGarden
+      // visitGarden.push(newPlant);
     }
-  });
+  }); // client socket
 
   // Check if user is new using their pod id value:
   if (userInfo.podId.length === 0) {
@@ -370,6 +389,44 @@ function setup() {
     // user already has a greenhouse
     console.log(`yes greenhouse`);
     state = `pod-navigation`;
+  }
+}
+
+function createP5Plants() {
+  for (let i = 0; i < visitPlantsData.length; i++) {
+    let plant = {
+      name: visitPlantsData[i].name,
+      images: undefined,
+      growthStage: visitPlantsData[i].growthStage,
+      numMessagesNeededToGrow: visitPlantsData[i].numMessagesNeededToGrow,
+      messages: userMessagesReceived,
+      position: {
+        x: visitPlantsData[i].position.x,
+        y: visitPlantsData[i].position.y,
+      },
+    };
+
+    // set images based on plant type
+    if (plant.name === "cherry") {
+      plant.images = cherryImages;
+    } else if (plant.name === "dragon") {
+      plant.images = dragonImages;
+    } else if (plant.name === "cactus") {
+      plant.images = cactusImages;
+    }
+
+    // create a new plant
+    let newPlant = new Plant(
+      plant.images,
+      plant.growthStage,
+      plant.numMessagesNeededToGrow,
+      plant.messages,
+      plant.position
+    );
+
+    // add this plant to visitGarden
+    visitGarden.push(newPlant);
+    console.log(visitGarden);
   }
 }
 
@@ -498,6 +555,11 @@ function mousePressed() {
     for (let i = 0; i < visitGarden.length; i++) {
       let plant = visitGarden[i];
       plant.mousePressed();
+
+      // // if you are in your pod
+      // if (userPodX === visitPodData.x && userPodY == visitPodData.y) {
+      //   console.log(`working actually`);
+      // }
 
       // Store currentSendMessagePlant info so we can find this plant in DB
       currentSendMessagePlant = visitPlantsData[i];

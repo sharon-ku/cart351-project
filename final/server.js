@@ -222,14 +222,6 @@ function newConnection(socket) {
     }); //greenhouse find one
   }); //socket on
 
-  // grab all messages belonging to the user
-  socket.on("getUserMessages", function () {
-    Message.find({ receiverId: userDB.id }).then((messageResults) => {
-      console.log(messageResults);
-      socket.emit("foundUserMessages", messageResults);
-    }); // message find
-  }); // socket on
-
   // send messages to database
   socket.on("sendMessage", function (data) {
     let messageToSend = data.message;
@@ -256,6 +248,14 @@ function newConnection(socket) {
       }); //user findOne
     }); //plant findOne
   }); //socket on sendMessage
+
+  // grab all messages belonging to the user
+  socket.on("getUserMessages", function () {
+    Message.find({ receiverId: userDB.id }).then((messageResults) => {
+      console.log(messageResults);
+      socket.emit("foundUserMessages", messageResults);
+    }); // message find
+  }); // socket on
 
   // get seed choice
   socket.on("selectSeed", function (data) {
