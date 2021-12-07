@@ -44,7 +44,12 @@ class Plant {
       mouseY > this.y - this.imageHeight &&
       mouseY < this.y + this.imageHeight
     ) {
-      clientSocket.emit("getAllPlantData");
+      // get the visit plant's data
+      clientSocket.emit("getAllPlantData", {
+        x: this.x,
+        y: this.y,
+      });
+
       // if message has not been read, display message received on click
       if (!this.readState) {
         document.getElementById("receivedMessageForm").style.display = "block";

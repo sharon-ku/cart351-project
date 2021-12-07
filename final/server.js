@@ -273,6 +273,10 @@ function newConnection(socket) {
       }); //user findone
     });
   }); //socket on
+
+  socket.on("getAllPlantData", function (data) {
+    console.log(data);
+  });
 } //io.on
 
 // serve anything from this dir ...
