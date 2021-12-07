@@ -216,63 +216,73 @@ function newConnection(socket) {
         // Find plant data that has user id
         Plant.find({ userId: visitUserResult._id }).then((plantResults) => {
           socket.emit("foundPlants", plantResults);
+          // console.log(plantResults);
         }); // plant find
       }); // user find one
     }); //greenhouse find one
+  }); //socket on
 
-    // send messages to database
-    socket.on("sendMessage", function (data) {
-      let messageToSend = data.message;
-      let plant = data.plant;
-      console.log(data);
+  // send messages to database
+  socket.on("sendMessage", function (data) {
+    let messageToSend = data.message;
+    let plant = data.plant;
+    console.log(data);
 
-      // find all plant data
-      Plant.findOne({ _id: plant._id }).then((plantResult) => {
-        // find user data
-        User.findOne({ _id: plantResult.userId }).then((userResult) => {
-          // create a new message entry in database
-          const message = new Message({
-            receiverId: userResult._id,
-            receiverUsername: userResult.username,
-            senderId: userDB.id,
-            senderUsername: userDB.username,
-            plantID: plantResult._id,
-            readState: false,
-            message: messageToSend.message,
-          });
-
-          // save to database
-          message.save().then((result) => {});
-        }); //user findOne
-      }); //plant findOne
-    }); //socket on sendMessage
-
-    // get seed choice
-    socket.on("selectSeed", function (data) {
-      let seedChosen = data.seed.seed;
-      let visitUser = data.visitUser;
-      console.log(data);
-      console.log("seedChosen " + seedChosen);
-      console.log("visitUser : " + visitUser.username);
-
-      User.findOne({ _id: data.visitUser.id }).then((seedRecipient) => {
-        console.log("seedRecipient" + seedRecipient);
-        const addSeed = new Plant({
-          userId: seedRecipient._id,
-          name: seedChosen,
-          growthStage: 1,
-          numMessagesNeededToGrow: 2,
-          position: {
-            x: data.seedX,
-            y: data.seedY,
-          },
-        }); //addSeed
+    // find all plant data
+    Plant.findOne({ _id: plant._id }).then((plantResult) => {
+      // find user data
+      User.findOne({ _id: plantResult.userId }).then((userResult) => {
+        // create a new message entry in database
+        const message = new Message({
+          receiverId: userResult._id,
+          receiverUsername: userResult.username,
+          senderId: userDB.id,
+          senderUsername: userDB.username,
+          plantID: plantResult._id,
+          readState: false,
+          message: messageToSend.message,
+        });
 
         // save to database
-        addSeed.save().then((result) => {});
-      }); //user findone
-    });
-  }); //socket on
+        message.save().then((result) => {});
+      }); //user findOne
+    }); //plant findOne
+  }); //socket on sendMessage
+
+  // get seed choice
+  socket.on("selectSeed", function (data) {
+    let seedChosen = data.seed.seed;
+    let visitUser = data.visitUser;
+    console.log(data);
+    console.log("seedChosen " + seedChosen);
+    console.log("visitUser : " + visitUser.username);
+
+    let counter = 0;
+
+    User.findOne({ username: visitUser.username }).then((seedRecipient) => {
+      // User.findById(visitUser.id).then((seedRecipient) => {
+      // console.log(user);
+      // console.log(error);
+
+      console.log("seedRecipient" + seedRecipient);
+      counter++;
+      console.log(counter);
+
+      const addSeed = new Plant({
+        userId: seedRecipient._id,
+        name: seedChosen,
+        growthStage: 1,
+        numMessagesNeededToGrow: 2,
+        position: {
+          x: data.seedX,
+          y: data.seedY,
+        },
+      }); //addSeed
+
+      // save to database
+      addSeed.save().then((result) => {});
+    }); //user findone
+  });
 } //io.on
 
 // serve anything from this dir ...

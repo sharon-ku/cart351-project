@@ -306,6 +306,10 @@ function setup() {
 
   // display plants from database
   clientSocket.on("foundPlants", function (results) {
+    // reset visit plants data to grab new plants
+    visitPlantsData = [];
+    visitGarden = [];
+
     for (let i = 0; i < results.length; i++) {
       console.log(results[i]);
 
@@ -555,4 +559,6 @@ $("#submitSeedChoice").click(function () {
     x: visitPodData.x,
     y: visitPodData.y,
   });
+
+  document.getElementById(`selectSeed`).reset();
 });
