@@ -246,6 +246,31 @@ function newConnection(socket) {
         }); //user findOne
       }); //plant findOne
     }); //socket on sendMessage
+
+    // get seed choice
+    socket.on("selectSeed", function (data) {
+      let seedChosen = data.seed[0];
+      let visitUser = data.visitUser;
+      console.log(data);
+      console.log("visitUser : " + visitUser.username);
+
+      User.findOne({ _id: data.visitUser.id }).then((seedRecipient) => {
+        console.log("seedRecipient" + seedRecipient);
+        const addSeed = new Plant({
+          userId: seedRecipient._id,
+          name: seedChosen,
+          growthStage: 1,
+          numMessagesNeededToGrow: 2,
+          position: {
+            x: data.seedX,
+            y: data.seedY,
+          },
+        }); //addSeed
+
+        // save to database
+        addSeed.save().then((result) => {});
+      }); //user findone
+    });
   }); //socket on
 } //io.on
 

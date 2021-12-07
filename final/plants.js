@@ -24,7 +24,6 @@ let plantSchema = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
-  orderGrown: Number,
   name: String,
   growthStage: Number,
   numMessagesNeededToGrow: Number,

@@ -279,26 +279,6 @@ function setup() {
   // butterflyIconProperties.x += windowWidth;
   let iconX_L = windowWidth - iconSize * 1.1 - 30;
   let iconY_L = windowHeight * 0.1;
-  //console.log($("#MessagingForm"));
-
-  // butterflyIcon = new ButterflyIcon(
-  //   iconX_L,
-  //   iconX_R,
-  //   butterflyIconImg,
-  //   iconSize
-  // );
-
-  // draw teleport  icon
-  // place  teleport icon on right side of the screen
-  //
-  // let teleportIcon_Y = iconX_R + iconSize * 2.7;
-  //
-  // teleportIcon = new TeleportIcon(
-  //   iconX_L,
-  //   teleportIcon_Y,
-  //   teleportIconImg,
-  //   iconSize
-  // );
 
   let seedIcon_Y = iconX_R + iconSize * 1.4;
   seedIcon = new SeedIcon(
@@ -545,4 +525,29 @@ $("#submitMsg").click(function () {
 
   // deletes text in search bar
   // $("#messageBox").empty();
+});
+
+// submit seed choice
+$("#submitSeedChoice").click(function () {
+  event.preventDefault();
+  let closeMessageForm = new FormData($("#selectSeed")[0]);
+
+  let seed = {};
+
+  // Display the key/value pairs
+  for (var pair of closeMessageForm.entries()) {
+    console.log(pair[0] + ", " + pair[1]);
+    seed[pair[0]] = pair[1];
+  }
+  let seedX = 200 + Math.floor(Math.random() * (windowWidth - 200));
+  let seedY = 200 + Math.floor(Math.random() * (windowHeight - 200));
+
+  console.log(seed);
+
+  clientSocket.emit(`selectSeed`, {
+    seed: seed,
+    visitUser: visitUserData,
+    seedX: seedX,
+    seedY: seedY,
+  });
 });

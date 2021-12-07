@@ -70,25 +70,32 @@
 }
 
 .sr-only {
-  clip: rect(0 0 0 0);
+  /* clip: rect(0 0 0 0);
   clip-path: inset(100%);
   height: 1px;
   overflow: hidden;
   position: absolute;
   white-space: nowrap;
-  width: 1px;
+  width: 1px; */
+
+  position: fixed;
+  opacity: 0;
+  pointer-events: none;
 }
 
-.seedOptions label {
-  cursor: pointer;
+.seedOptions {
+  margin: 5%;
+}
+.seedOptions img {
+  /* cursor: pointer; */
   filter: grayscale(100%);
 }
 
-.seedOptions label:hover {
+/* .seedOptions img:hover {
   filter: grayscale(0);
-}
+} */
 
-.seedOptions input[type="radio"]:checked + label {
+.seedOptions input[type="radio"]:checked + img {
   filter: grayscale(0);
 }
 
