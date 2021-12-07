@@ -511,4 +511,7 @@ $("#submitMsg").click(function () {
   console.log(message);
 
   clientSocket.emit(`sendMessage`, message);
+
+  // deletes text in search bar
+  // $("#messageBox").empty();
 });

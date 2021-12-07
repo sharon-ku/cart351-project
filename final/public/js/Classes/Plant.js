@@ -17,13 +17,6 @@ class Plant {
   }
 
   display() {
-    // looking for reference point
-    push();
-    stroke(0);
-    strokeWeight(8);
-    point(this.x, this.y);
-    pop();
-
     push();
     imageMode(CENTER);
 
