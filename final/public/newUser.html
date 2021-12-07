@@ -10,7 +10,7 @@
       user-scalable="0"
     />
 
-    <title>Greenhouse Hub</title>
+    <title>Star Sprout</title>
 
     <!-- CSS stylesheets -->
     <link rel="stylesheet" type="text/css" href="css/style.css" />
@@ -26,95 +26,43 @@
 
   <body>
     <div id="content">
-      <!-- HTML would go here if needed. -->
-      <h3>
-        Hello traveller. <br />
-        What’s your name?
-      </h3>
-
-      <h1>REGISTER USER</h1>
       <div id="container">
         <form id="form_userIn" action="">
+          <h3>
+            Hello traveller. <br />
+            What’s your name?
+          </h3>
           <p>
-            <label> USERNAME:</label>
-            <input id="username" type="text" value="default" name="username" />
+            <input
+              id="username"
+              type="text"
+              value=""
+              name="username"
+              placeholder="new username"
+              class="inputUsername"
+            />
           </p>
 
           <p>
-            <label> PASS:</label>
             <input
               id="password"
               type="password"
-              value="default"
+              value=""
               name="password"
+              placeholder="new password"
+              class="inputUsername"
             />
           </p>
-          <p><input id="register" type="submit" value="REGISTER" /></p>
+
+          <p><input id="registerBtn" type="submit" value="Register" /></p>
         </form>
 
-        <p id="mess">a message</p>
+        <p id="mess"></p>
       </div>
-
-      <!-- OLD CODE BELOW -->
-      <!-- <div class="form">
-        <input type="text" id="inputUsername" placeholder="new username" />
-        <br />
-        <input type="text" id="inputUsername" placeholder="new password" />
-        <br />
-      </div> -->
-
-      <!-- <div> -->
-      <!-- fake button to be replaced to validate username input -->
-      <!-- <a href="greenhouses.html">
-          <img
-            id="loginBtn"
-            alt="login"
-            src="assets/images/welcome/leaf-arrow.png"
-          />
-        </a>
-      </div> -->
 
       <nav>
         <a id="backBtn" href="index.html"> < back</a>
       </nav>
-
-      <!-- HTML would go here if needed. -->
-      <!-- <nav>
-      <a id="backBtn" href="index.html"> < back</a>
-    </nav>
-
-    <div id="formPosition">
-      <form id="newUserForm">
-        <div class="tab">
-          <h3>
-            Hello traveler. <br />
-            What’s your name?
-          </h3>
-          <p>
-            <input id="username" placeholder="username" />
-          </p>
-        </div>
-
-        <div class="tab">
-          <h3>
-            Choose a password.
-          </h3>
-          <p>
-            <input id="password" placeholder="password" />
-          </p>
-        </div>
-
-        <div style="float: right;">
-          <button type="button" id="prevBtn" onclick="nextPrev(-1)">
-            Previous
-          </button>
-          <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
-        </div>
-      </form>
-    </div> -->
     </div>
-
-    <!-- My script(s) -->
-    <!-- <script src="js/newUserForm.js"></script> -->
   </body>
 </html>

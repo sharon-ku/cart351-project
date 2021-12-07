@@ -10,7 +10,7 @@
       user-scalable="0"
     />
 
-    <title>Greenhouse Hub</title>
+    <title>Star Sprout</title>
 
     <!-- CSS stylesheets -->
     <link rel="stylesheet" type="text/css" href="css/style.css" />
@@ -26,59 +26,45 @@
 
   <body>
     <div id="content">
-      <!-- HTML would go here if needed. -->
       <h1 id="welcome">Welcome to</h1>
-      <h1 id="title">Greenhouse Hub</h1>
+      <h1 id="title">Star Sprout</h1>
 
+      <!-- LOGIN FORM -->
       <div id="form-wrapper" class="form">
-        <h1>LOGIN USER</h1>
         <div id="container">
           <form id="form_login" action="">
             <p>
-              <label> USERNAME:</label>
               <input
                 id="username"
                 type="text"
-                value="username"
+                value=""
                 placeholder="username"
                 name="username"
                 class="inputUsername"
               />
             </p>
             <p>
-              <label> PASSWORD:</label>
               <input
                 id="password"
                 type="password"
-                value="agoodpassword"
-                placeholder="**********"
+                value=""
+                placeholder="password"
                 name="password"
                 class="inputUsername"
               />
             </p>
             <p>
-              <input class="loginBtn" id="login" type="submit" value="LOGIN" />
+              <input id="loginBtn" id="login" type="submit" value="LOGIN" />
             </p>
           </form>
 
           <p id="mess"></p>
         </div>
-      </div>
 
-      <!-- <div class="form">
-        <input type="text" id="inputUsername" placeholder="username" /> <br />
-        <input type="text" id="inputUsername" placeholder="password" /> <br />
-        <form id="form_login" action="">
-          <input id="login" type="submit" value="LOGIN" />
-          <a href="greenhouses.html">
-            <img
-              id="loginBtn"
-              alt="login"
-              src="assets/images/welcome/leaf-arrow.png"
-            />
-          </a>
-        </form>
-      </div> -->
+        <a id="firstTime" href="newUser.html"
+          >This is my first time visiting!</a
+        >
+      </div>
 
       <div>
         <!-- fake button to be replaced to validate username input -->
@@ -90,7 +76,6 @@
           />
         </a> -->
       </div>
-      <a id="firstTime" href="newUser.html">This is my first time visiting!</a>
     </div>
 
     <!-- My script(s) -->

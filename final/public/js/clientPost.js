@@ -14,10 +14,12 @@ window.onload = function () {
       function (data, status) {
         console.log(data);
         if (data === "ALREADY IN") {
-          document.getElementById("form_userIn").reset();
-          $("#mess").text("User aleady taken try again ;)");
+          // document.getElementById("form_userIn").reset();
+          $("#mess").text("Username already taken.");
         } else {
           //we have registered and so go to login ...
+          $("#form_userIn").hide();
+          $("#mess").css("font-size", "1.5rem");
           $("#mess").html(
             "Thank you for registering - click <a href = 'index.html'>here</a> to login "
           );
@@ -42,7 +44,7 @@ window.onload = function () {
         console.log(status);
         if (data === "WRONG INFO") {
           document.getElementById("form_login").reset();
-          $("#mess").text("WRONG INFO;)");
+          $("#mess").text("PLEASE TRY AGAIN");
         } else {
           console.log(data);
           console.log(status);
