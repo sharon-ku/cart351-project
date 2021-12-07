@@ -2,6 +2,7 @@ class Plant {
   constructor(plantImages, growthStage, numMessagesNeededToGrow, position) {
     this.x = position.x;
     this.y = position.y;
+    this.scale = 0.5;
     this.aqua = {
       r: 45,
       g: 227,
@@ -26,14 +27,18 @@ class Plant {
       translate(random(-2, 2), random(-2, 2));
     }
 
-    image(this.plantImages[this.growthStage], this.x, this.y);
+    translate(this.x, this.y);
+    scale(this.scale);
+    image(this.plantImages[this.growthStage], 0, 0);
 
     pop();
   }
 
   mousePressed() {
-    this.imageWidth = this.plantImages[this.growthStage].width / 2;
-    this.imageHeight = this.plantImages[this.growthStage].height / 2;
+    this.imageWidth =
+      (this.plantImages[this.growthStage].width / 2) * this.scale;
+    this.imageHeight =
+      (this.plantImages[this.growthStage].height / 2) * this.scale;
 
     if (
       mouseX > this.x - this.imageWidth &&
