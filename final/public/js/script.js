@@ -31,8 +31,9 @@ let visitPodData = {
 
 // stores all data on user we're visiting
 let visitUserData = {
-  username: undefined,
   id: undefined,
+  username: undefined,
+  podId: [],
 };
 
 // stores all data on plants inside visiting pod
@@ -238,7 +239,7 @@ function setup() {
     userPodX = result.x;
     userPodY = result.y;
 
-    console.log(userPodX, userPodY);
+    console.log(`user pod positions:${userPodX}, ${userPodY}`);
 
     // change tint color of user greenhouse
     for (let i = 0; i < pods.length; i++) {
@@ -313,6 +314,12 @@ function setup() {
     let star = new Star();
     stars.push(star);
   }
+
+  // display user visited from database
+  clientSocket.on("foundUserVisited", function (result) {
+    visitUserData = result;
+    console.log(`currently visiting:` + visitUserData.username);
+  });
 
   // display plants from database
   clientSocket.on("foundPlants", function (results) {
