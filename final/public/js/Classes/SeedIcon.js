@@ -1,13 +1,13 @@
 class SeedIcon extends Icon {
   constructor(x, y, iconImg, size, gardenSize) {
-    this.gardenSize = gardenSize;
-    const MAXPLANTS = 15;
     super(x, y, iconImg, size);
+    this.gardenSize = gardenSize;
+    this.maxPlants = 15;
   }
 
   display() {
     // only display icon if there is less than 3 plants in the garden
-    if (gardenSize < MAXPLANTS) {
+    if (this.gardenSize < this.maxPlants) {
       super.display();
     }
   }

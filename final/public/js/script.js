@@ -35,8 +35,14 @@ let visitUserData = {
   id: undefined,
 };
 
+// stores all data on plants inside visiting pod
+let visitPlantsData = [];
+
 // stores all plants in current visited pod
 let visitGarden = [];
+
+// stores the id of plant who has a "send message" modal opened
+let currentSendMessagePlant = undefined;
 
 let bkg;
 let canvasWidth = 3000;
@@ -312,6 +318,10 @@ function setup() {
   clientSocket.on("foundPlants", function (results) {
     for (let i = 0; i < results.length; i++) {
       console.log(results[i]);
+
+      // Store all plant results inside visitPlantsData array
+      visitPlantsData.push(results[i]);
+
       let plant = {
         name: results[i].name,
         images: undefined,
@@ -455,8 +465,8 @@ function insidePod() {
     // butterflyIcon.display();
     // butterflyIcon.overlap();
 
-    teleportIcon.display();
-    teleportIcon.overlap();
+    // teleportIcon.display();
+    // teleportIcon.overlap();
 
     seedIcon.display();
     seedIcon.overlap();
@@ -478,12 +488,16 @@ function mousePressed() {
   if (state === `inside-pod`) {
     homeIcon.mousePressed();
     // butterflyIcon.mousePressed();
-    teleportIcon.mousePressed();
+    // teleportIcon.mousePressed();
     seedIcon.mousePressed();
 
     for (let i = 0; i < visitGarden.length; i++) {
       let plant = visitGarden[i];
       plant.mousePressed();
+
+      // Store currentSendMessagePlant info so we can find this plant in DB
+      currentSendMessagePlant = visitPlantsData[i];
+      // console.log(currentSendMessagePlant);
     }
   }
 }
@@ -517,7 +531,10 @@ $("#submitMsg").click(function () {
 
   console.log(message);
 
-  clientSocket.emit(`sendMessage`, message);
+  clientSocket.emit(`sendMessage`, {
+    message: message,
+    plant: currentSendMessagePlant,
+  });
 
   // deletes text in search bar
   // $("#messageBox").empty();

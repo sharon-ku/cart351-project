@@ -222,21 +222,23 @@ function newConnection(socket) {
 
     // send messages to database
     socket.on("sendMessage", function (data) {
+      let messageToSend = data.message;
+      let plant = data.plant;
       console.log(data);
 
       // find all plant data
-      Plant.findOne({}).then((result) => {
+      Plant.findOne({ _id: plant._id }).then((plantResult) => {
         // find user data
-        User.findOne({ _id: result.userId }).then((userResult) => {
+        User.findOne({ _id: plantResult.userId }).then((userResult) => {
           // create a new message entry in database
           const message = new Message({
-            receiverId: result.userId,
+            receiverId: userResult._id,
             receiverUsername: userResult.username,
             senderId: userDB.id,
             senderUsername: userDB.username,
-            plantID: result._id,
+            plantID: plantResult._id,
             readState: false,
-            message: data.message,
+            message: messageToSend.message,
           });
 
           // save to database
