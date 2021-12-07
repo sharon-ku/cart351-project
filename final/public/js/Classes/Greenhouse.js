@@ -115,9 +115,12 @@ class Greenhouse {
       // change tint color to magenta
       this.setUserPodTint();
 
+      // cue fade in/out transition
+      cueRectangleTransition();
+
       // wait 5 seconds to cue next state
       // fyi when using setInterval inside a class, we need to add ".bind(this)" to end of function
-      setInterval(this.changeStateToPodNavigation.bind(this), 5000);
+      setTimeout(this.changeStateToPodNavigation.bind(this), 5000);
     } else {
       console.log(`sorry, pod is taken already`);
     }

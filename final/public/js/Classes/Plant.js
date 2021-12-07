@@ -2,6 +2,7 @@ class Plant {
   constructor(plantImages, growthStage, numMessagesNeededToGrow, position) {
     this.x = position.x;
     this.y = position.y;
+    this.scale = 0.5;
     this.aqua = {
       r: 45,
       g: 227,
@@ -29,7 +30,9 @@ class Plant {
       translate(random(-2, 2), random(-2, 2));
     }
 
-    image(this.plantImages[this.growthStage], this.x, this.y);
+    translate(this.x, this.y);
+    scale(this.scale);
+    image(this.plantImages[this.growthStage], 0, 0);
 
     pop();
   }

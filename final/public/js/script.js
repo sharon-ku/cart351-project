@@ -106,6 +106,9 @@ let teleportIcon;
 let seedIconImg;
 let seedIcon;
 
+// rectangle that fades in and out between states
+let rectangleTransition;
+
 // bkg Music
 let bkgMusic;
 
@@ -292,6 +295,9 @@ function setup() {
     stars.push(star);
   }
 
+  // Create rectangle transition
+  rectangleTransition = new RectangleTransition();
+
   // display user visited from database
   clientSocket.on("foundUserVisited", function (result) {
     visitUserData = result;
@@ -418,6 +424,11 @@ function podNavigation() {
     //   cursor("default");
     // }
   }
+}
+
+// cue fade in/out transition
+function cueRectangleTransition() {
+  rectangleTransition.update();
 }
 
 function insidePod() {
