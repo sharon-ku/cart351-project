@@ -142,26 +142,6 @@ $("#closeReceivedMessageForm").click(function () {
   // $("#messageBody").empty();
 });
 
-// let sendMessage = document.getElementById("MessagingForm");
-// let chooseSeed = document.getElementById("SeedForm");
-// let receiveMessage = document.getElementById("receivedMessageForm");
-//
-// // click anywhere on window to close modal
-// window.onclick = function (event) {
-//   if (event.target == sendMessage) {
-//     sendMessage.style.display = "none";
-//   }
-//   if (event.target == chooseSeed) {
-//     chooseSeed.style.display = "none";
-//   }
-//   if (event.target == receiveMessage) {
-//     receiveMessage.style.display = "none";
-//
-//     // reset message box when modal is closed
-//     // $("#messageBody").empty();
-//   }
-// };
-
 function preload() {
   // load pod images
   for (let i = 0; i < NUM_POD_IMG; i++) {
@@ -528,15 +508,6 @@ function podNavigation() {
   for (let i = 0; i < pods.length; i++) {
     let pod = pods[i];
     pod.update();
-
-    // if (pod.overlap()) {
-    //   console.log("overlap");
-    //   // change cursor type
-    //   // cursor("pointer");
-    //   noCursor();
-    // } else {
-    //   cursor("default");
-    // }
   }
 }
 
