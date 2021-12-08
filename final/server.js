@@ -287,13 +287,13 @@ function newConnection(socket) {
 
     User.findOne({ username: visitUser.username }).then((seedRecipient) => {
       // User.findById(visitUser.id).then((seedRecipient) => {
-
+      let randomGrowthStage = Math.floor(Math.random() * 4);
       // console.log("seedRecipient" + seedRecipient);
 
       const addSeed = new Plant({
         userId: seedRecipient._id,
         name: seedChosen,
-        growthStage: 1,
+        growthStage: randomGrowthStage,
         numMessagesNeededToGrow: 2,
         position: {
           x: data.seedX,
