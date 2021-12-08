@@ -205,6 +205,7 @@ function newConnection(socket) {
     let x = data.x;
     let y = data.y;
     console.log(data);
+    console.log(`checking visit pod data`);
 
     // Find pod data
     Greenhouse.findOne({ x: x, y: y }).then((visitPodResult) => {
@@ -292,18 +293,18 @@ function newConnection(socket) {
   }); // socket on select seed
 
   // get the visit plant's data
-  // socket.on("getAllPlantData", function (data) {
-  // let x = data.x;
-  // let y = data.y;
-  // console.log("getAllPlantData : " + data);
-  //
-  // Plant.findOne({ x: x, y: y }).then((plantClicked) => {
-  //   console.log("this was clicked" + plantClicked);
-  //   Message.find({ plantId: plantClicked._id }).then((message) => {
-  //     // console.log("All messages in same plant" + message);
-  //   });
-  // });
-  // }); //socket on getallplantdata
+  socket.on("getAllPlantData", function (data) {
+    let x = data.x;
+    let y = data.y;
+    console.log("getAllPlantData : " + data);
+
+    Plant.findOne({ x: x, y: y }).then((plantClicked) => {
+      console.log("this was clicked" + plantClicked);
+      Message.find({ plantId: plantClicked._id }).then((message) => {
+        // console.log("All messages in same plant" + message);
+      });
+    });
+  }); //socket on getallplantdata
 } //io.on
 
 // serve anything from this dir ...

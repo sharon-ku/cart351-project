@@ -45,39 +45,46 @@ class Plant {
     pop();
   }
 
-  mousePressed() {
+  overlap() {
     if (
       mouseX > this.x - this.imageWidth &&
       mouseX < this.x + this.imageWidth &&
       mouseY > this.y - this.imageHeight &&
       mouseY < this.y + this.imageHeight
     ) {
-      // get the visit plant's data
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  mousePressed() {
+    if (this.overlap()) {
+      // // get the visit plant's data
       // clientSocket.emit("getAllPlantData", {
       //   x: this.x,
       //   y: this.y,
       // });
 
-      console.log("pressed");
-
       // if you are in your pod
       if (userPodX === visitPodData.x && userPodY == visitPodData.y) {
         console.log(`working`);
         console.log(this.messages);
-        console.log(visitPlantsData);
 
         // if message has not been read, display message received on click
         if (this.messages.length > 0) {
+          // if (this.messages[0])
+
           console.log(`you got messages`);
           document.getElementById("receivedMessageForm").style.display =
             "block";
 
           document.getElementById("senderName").innerHTML =
-            "Sent by :" + this.messages[this.messageIndex].senderUsername;
+            "Sent by :" + this.messages[0].senderUsername;
 
-          document.getElementById("messageReceived").innerHTML = this.messages[
-            this.messageIndex
-          ].message;
+          document.getElementById(
+            "messageReceived"
+          ).innerHTML = this.messages[0].message;
 
           // for (let i = 0; i < this.messages.length; i++) {
           // create a title
