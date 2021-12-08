@@ -46,6 +46,8 @@ class SeedIcon extends Icon {
       mouseY < this.y + this.size
     ) {
       document.getElementById("SeedForm").style.display = "block";
+      modalSeedOpen = true;
+      console.log(modalSeedOpen);
     }
   }
 }

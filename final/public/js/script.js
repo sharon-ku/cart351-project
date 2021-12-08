@@ -121,12 +121,16 @@ let rectangleTransition;
 // bkg Music
 let bkgMusic;
 
+// prevent 2 modal windows from opening at the same time
+let modalSeedOpen = false;
+
 // close modal windows
 $("#closeMessageForm").click(function () {
   $("#MessagingForm").toggle();
 });
 $("#closeSeedForm").click(function () {
   $("#SeedForm").toggle();
+  modalSeedOpen = false;
 });
 $("#closeReceivedMessageForm").click(function () {
   $("#receivedMessageForm").toggle();
