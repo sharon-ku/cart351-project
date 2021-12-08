@@ -457,8 +457,8 @@ function draw() {
   if (running) {
     // background(teal.r, teal.g, teal.b);
     background(31, 80, 80);
-    // add music - to activate later
-    // music();
+
+    music();
     // States setup:
     if (state === `new-user`) {
       newUser();
