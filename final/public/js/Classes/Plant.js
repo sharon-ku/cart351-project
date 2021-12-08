@@ -25,6 +25,7 @@ class Plant {
 
     this.imageWidth = this.plantImages[this.growthStage].width / 2;
     this.imageHeight = this.plantImages[this.growthStage].height / 2;
+    this.messageIndex = 0;
   }
 
   display() {
@@ -52,20 +53,51 @@ class Plant {
       mouseY < this.y + this.imageHeight
     ) {
       // get the visit plant's data
-      clientSocket.emit("getAllPlantData", {
-        x: this.x,
-        y: this.y,
-      });
+      // clientSocket.emit("getAllPlantData", {
+      //   x: this.x,
+      //   y: this.y,
+      // });
+
+      console.log("pressed");
 
       // if you are in your pod
       if (userPodX === visitPodData.x && userPodY == visitPodData.y) {
         console.log(`working`);
         console.log(this.messages);
+        console.log(visitPlantsData);
+
         // if message has not been read, display message received on click
         if (this.messages.length > 0) {
           console.log(`you got messages`);
           document.getElementById("receivedMessageForm").style.display =
             "block";
+
+          document.getElementById("senderName").innerHTML =
+            "Sent by :" + this.messages[this.messageIndex].senderUsername;
+
+          document.getElementById("messageReceived").innerHTML = this.messages[
+            this.messageIndex
+          ].message;
+
+          // for (let i = 0; i < this.messages.length; i++) {
+          // create a title
+          // this.createTitle = document.createElement("h2");
+          // // create title content
+          // this.sender = document.createTextNode(
+          //   this.messages[0].senderUsername + " : "
+          // );
+          // // append title content to h2
+          // this.createTitle.appendChild(this.sender);
+          // document.getElementById("messageBody").appendChild(this.createTitle);
+          //
+          // // create a paragraph for message body
+          // this.createPara = document.createElement("p");
+          // this.messageContent = document.createTextNode(
+          //   this.messages[0].message
+          // );
+          // this.createTitle.appendChild(this.messageContent);
+          // document.getElementById("messageBody").appendChild(this.createPara);
+          // }
         }
       }
       // else, if you're in someone else's pod, you can only send messages

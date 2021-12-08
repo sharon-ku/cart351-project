@@ -124,6 +124,9 @@ $("#closeSeedForm").click(function () {
 });
 $("#closeReceivedMessageForm").click(function () {
   $("#receivedMessageForm").toggle();
+
+  // reset message box when modal is closed
+  $("#messageBody").empty();
 });
 
 let sendMessage = document.getElementById("MessagingForm");
@@ -140,6 +143,9 @@ window.onclick = function (event) {
   }
   if (event.target == receiveMessage) {
     receiveMessage.style.display = "none";
+
+    // reset message box when modal is closed
+    $("#messageBody").empty();
   }
 };
 

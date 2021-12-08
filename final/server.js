@@ -252,10 +252,12 @@ function newConnection(socket) {
 
   // grab all messages belonging to the user
   socket.on("getUserMessages", function () {
-    Message.find({ receiverId: userDB.id }).then((messageResults) => {
-      console.log(messageResults);
-      socket.emit("foundUserMessages", messageResults);
-    }); // message find
+    Message.find({ receiverId: userDB.id, readState: false }).then(
+      (messageResults) => {
+        console.log(messageResults);
+        socket.emit("foundUserMessages", messageResults);
+      }
+    ); // message find
   }); // socket on
 
   // get seed choice
@@ -290,9 +292,18 @@ function newConnection(socket) {
   }); // socket on select seed
 
   // get the visit plant's data
-  socket.on("getAllPlantData", function (data) {
-    console.log(data);
-  }); //socket on getallplantdata
+  // socket.on("getAllPlantData", function (data) {
+  // let x = data.x;
+  // let y = data.y;
+  // console.log("getAllPlantData : " + data);
+  //
+  // Plant.findOne({ x: x, y: y }).then((plantClicked) => {
+  //   console.log("this was clicked" + plantClicked);
+  //   Message.find({ plantId: plantClicked._id }).then((message) => {
+  //     // console.log("All messages in same plant" + message);
+  //   });
+  // });
+  // }); //socket on getallplantdata
 } //io.on
 
 // serve anything from this dir ...
