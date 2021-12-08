@@ -23,6 +23,9 @@ let userPodY = undefined;
 // Store all of user's messages
 let userMessagesReceived = [];
 
+// Message displayed upon entering a pod
+let welcomeMessageString = `Welcome Home !`;
+
 // stores data related to pod we're visiting
 let visitPodData = {
   // id
@@ -336,13 +339,9 @@ function setup() {
   clientSocket.on("foundUserVisited", function (result) {
     visitUserData = result;
     console.log(`currently visiting:` + visitUserData.username);
-    // console.log(visitUserData);
-    // // if this is the user's pod:
-    // if (userPodX === visitPodData.x && userPodY == visitPodData.y) {
-    //   // check if there are messages
-    //   console.log(`this is user's house`);
-    //   clientSocket.emit("getUserMessages");
-    // }
+
+    // display welcome home message
+    welcomeMessageString = `Welcome to ${visitUserData.username}'s pod!`;
   });
 
   // if user messages found, store array of messages
@@ -542,17 +541,13 @@ function insidePod() {
     star.update();
   }
 
-  push();
-  textSize(24);
-  textFont(font);
-  fill(aqua.r, aqua.g, aqua.b);
-  text("Welcome Home !", windowWidth * 0.025, windowHeight * 0.95);
-  pop();
-
   // if at home
   if (userPodX === visitPodData.x && userPodY == visitPodData.y) {
     homeIcon.display();
     homeIcon.overlap();
+
+    // display welcome home message
+    welcomeMessageString = `Welcome Home !`;
 
     // EMIT USER MESSAGES HERE
   } else {
@@ -568,6 +563,19 @@ function insidePod() {
     let plant = visitGarden[i];
     plant.display();
   }
+
+  // Display welcome message
+  displayWelcomeMessage(welcomeMessageString);
+}
+
+// Display welcome message when entering a pod
+function displayWelcomeMessage(messageString) {
+  push();
+  textSize(24);
+  textFont(font);
+  fill(aqua.r, aqua.g, aqua.b);
+  text(messageString, windowWidth * 0.025, windowHeight * 0.95);
+  pop();
 }
 
 function mousePressed() {
