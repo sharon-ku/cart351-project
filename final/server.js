@@ -228,7 +228,7 @@ function newConnection(socket) {
   socket.on("sendMessage", function (data) {
     let messageToSend = data.message;
     let plant = data.plant;
-    console.log(data);
+    console.log(`plant` + data);
 
     // find all plant data
     Plant.findOne({ _id: plant._id }).then((plantResult) => {

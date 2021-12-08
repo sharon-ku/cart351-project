@@ -346,14 +346,14 @@ function setup() {
 
       // Store all plant results inside visitPlantsData array
       visitPlantsData.push(results[i]);
+    }
 
-      // If it's not user's pod, create p5 plants
-      if (userPodX != visitPodData.x && userPodY != visitPodData.y) {
-        // you cannot view other people's messages
-        userMessagesReceived = 0;
-        // create p5 plants by passing messages into it
-        createP5Plants();
-      }
+    // If it's not user's pod, create p5 plants
+    if (userPodX != visitPodData.x && userPodY != visitPodData.y) {
+      // you cannot view other people's messages
+      userMessagesReceived = 0;
+      // create p5 plants by passing messages into it
+      createP5Plants();
     }
 
     // if this is the user's pod:
@@ -589,6 +589,8 @@ $("#submitMsg").click(function () {
   }
 
   console.log(message);
+
+  console.log(`current message` + currentSendMessagePlant);
 
   clientSocket.emit(`sendMessage`, {
     message: message,
