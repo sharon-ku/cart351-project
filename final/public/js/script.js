@@ -532,8 +532,6 @@ function insidePod() {
 
     // display welcome home message
     welcomeMessageString = `Welcome Home !`;
-
-    // EMIT USER MESSAGES HERE
   } else {
     homeIcon.display();
     homeIcon.overlap();
@@ -582,11 +580,6 @@ function mousePressed() {
         // console.log(`currentplantclicked` + currentPlantClicked.name);
         // console.log(currentPlantClicked._id);
       }
-
-      // // if you are in your pod
-      // if (userPodX === visitPodData.x && userPodY == visitPodData.y) {
-      //   console.log(`working actually`);
-      // }
 
       // Store currentSendMessagePlant info so we can find this plant in DB
       currentSendMessagePlant = visitPlantsData[i];
@@ -657,6 +650,11 @@ $("#submitSeedChoice").click(function () {
     visitUser: visitUserData,
     seedX: seedX,
     seedY: seedY,
+  });
+
+  clientSocket.emit("getAllVisitPodData", {
+    x: visitPodData.x,
+    y: visitPodData.y,
   });
 
   document.getElementById(`selectSeed`).reset();
