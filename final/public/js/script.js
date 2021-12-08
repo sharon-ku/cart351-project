@@ -453,6 +453,7 @@ function draw() {
     } else if (state === `pod-navigation`) {
       podNavigation();
     } else if (state === `inside-pod`) {
+      resizeCanvas(windowWidth, windowHeight);
       insidePod();
     }
   }
