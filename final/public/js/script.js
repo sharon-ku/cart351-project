@@ -62,8 +62,8 @@ let canvasWidth = 3000;
 // let state = `pod-navigation`;
 let state = undefined;
 
-// state when inside pod: can either be `visiting` or `home`
-let podState = undefined;
+// state when inside pod: booleancan either be `visiting` or `home`
+let podBelongsToUser = undefined;
 
 let teal = {
   r: 8,
@@ -354,6 +354,9 @@ function setup() {
     userMessagesReceived = messageResults;
     console.log(`messages:` + messageResults);
 
+    // set this to true so that we can create plants with this info
+    podBelongsToUser = true;
+
     // create p5 plants by passing messages into it
     createP5Plants();
   });
@@ -375,6 +378,10 @@ function setup() {
     if (userPodX != visitPodData.x && userPodY != visitPodData.y) {
       // you cannot view other people's messages
       userMessagesReceived = 0;
+
+      // set this to false so that we can create plants with this info
+      podBelongsToUser = false;
+
       // create p5 plants by passing messages into it
       createP5Plants();
     }
@@ -408,6 +415,7 @@ function createP5Plants() {
   for (let i = 0; i < visitPlantsData.length; i++) {
     console.log(`usermessagesrece` + userMessagesReceived[0]);
 
+    // store plant messages inside here
     let thisPlantMessages = [];
 
     for (let j = 0; j < userMessagesReceived.length; j++) {
@@ -448,6 +456,7 @@ function createP5Plants() {
     // create a new plant
     let newPlant = new Plant(
       plant.id,
+      podBelongsToUser,
       plant.images,
       plant.growthStage,
       plant.numMessagesNeededToGrow,
@@ -565,7 +574,7 @@ function insidePod() {
   // display garden
   for (let i = 0; i < visitGarden.length; i++) {
     let plant = visitGarden[i];
-    plant.display();
+    plant.update();
   }
 
   // Display welcome message

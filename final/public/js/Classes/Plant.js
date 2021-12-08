@@ -1,6 +1,7 @@
 class Plant {
   constructor(
     id,
+    podBelongsToUser,
     plantImages,
     growthStage,
     numMessagesNeededToGrow,
@@ -8,6 +9,12 @@ class Plant {
     position
   ) {
     this.id = id;
+
+    // for setting the correct hover instructions: contains a boolean
+    this.podBelongsToUser = podBelongsToUser;
+    // contians instructions when hovering over plant
+    this.hoverInstructions = undefined;
+
     this.x = position.x;
     this.y = position.y;
     this.scale = 0.5;
@@ -17,6 +24,7 @@ class Plant {
       b: 240,
     };
     this.font = `quicksand,sans-serif`;
+
     this.plantImages = plantImages;
     this.growthStage = growthStage;
     this.numMessagesNeededToGrow = numMessagesNeededToGrow;
@@ -28,6 +36,37 @@ class Plant {
     this.imageWidth = this.plantImages[this.growthStage].width / 2;
     this.imageHeight = this.plantImages[this.growthStage].height / 2;
     this.messageIndex = 0;
+  }
+
+  // update all behaviour of plant
+  update() {
+    // display the plant
+    this.display();
+
+    // if mouse hovering over plant, show instructions
+    if (this.overlap()) {
+      console.log(`showing hover instructions`);
+      this.showHoverInstructions();
+    }
+  }
+
+  // show instructions to send message when hovering over a plant
+  showHoverInstructions() {
+    if (this.podBelongsToUser) {
+      this.hoverInstructions = ``;
+    }
+    // Else, if pod does not belong to user
+    else {
+      this.hoverInstructions = `Click on this plant to
+send a message to it!`;
+    }
+
+    push();
+    fill(aqua.r, aqua.g, aqua.b);
+    textFont(font);
+    textAlign(CENTER);
+    text(this.hoverInstructions, this.x, this.y - 110);
+    pop();
   }
 
   display() {
