@@ -640,8 +640,8 @@ $("#submitSeedChoice").click(function () {
     console.log(pair[0] + ", " + pair[1]);
     seed[pair[0]] = pair[1];
   }
-  let seedX = 200 + Math.floor(Math.random() * (windowWidth - 200));
-  let seedY = 200 + Math.floor(Math.random() * (windowHeight - 200));
+  let seedX = 300 + Math.floor(Math.random() * (windowWidth - 300));
+  let seedY = 300 + Math.floor(Math.random() * (windowHeight - 300));
 
   console.log(seed);
 
