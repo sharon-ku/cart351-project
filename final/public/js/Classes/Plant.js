@@ -1,11 +1,13 @@
 class Plant {
   constructor(
+    id,
     plantImages,
     growthStage,
     numMessagesNeededToGrow,
     messages,
     position
   ) {
+    this.id = id;
     this.x = position.x;
     this.y = position.y;
     this.scale = 0.5;

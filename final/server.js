@@ -256,11 +256,13 @@ function newConnection(socket) {
     let plantId = data._id;
     console.log(plantId);
 
-    Message.updateOne({ plantId: plantId }, { readState: true }).then(
-      (result) => {
-        console.log(`message state updated`);
-      }
-    ); // message update one
+    Message.updateOne(
+      { plantId: plantId, readState: false },
+      { readState: true }
+    ).then((result) => {
+      console.log(`message state updated`);
+      socket.emit("spliceMessage", plantId);
+    }); // message update one
   }); //socket on sendMessage
 
   // grab all messages belonging to the user

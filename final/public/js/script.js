@@ -315,6 +315,23 @@ function setup() {
   // Create rectangle transition
   rectangleTransition = new RectangleTransition();
 
+  // display greenhouses from database
+  clientSocket.on("spliceMessage", function (plantId) {
+    console.log(`splicing`);
+    // remove first message of that plant
+    for (let i = 0; i < visitGarden.length; i++) {
+      let plant = visitGarden[i];
+      console.log(`visitGarden` + visitGarden[i]);
+      console.log(`plant` + plant.id);
+      if (plant.id === plantId) {
+        console.log(`splice the first message`);
+        // splice the first message
+        plant.messages.splice(0, 1);
+        console.log(`plantmessages` + plant.messages);
+      }
+    }
+  });
+
   // display user visited from database
   clientSocket.on("foundUserVisited", function (result) {
     visitUserData = result;
@@ -404,6 +421,7 @@ function createP5Plants() {
     }
 
     let plant = {
+      id: visitPlantsData[i]._id,
       name: visitPlantsData[i].name,
       images: undefined,
       growthStage: visitPlantsData[i].growthStage,
@@ -426,6 +444,7 @@ function createP5Plants() {
 
     // create a new plant
     let newPlant = new Plant(
+      plant.id,
       plant.images,
       plant.growthStage,
       plant.numMessagesNeededToGrow,
