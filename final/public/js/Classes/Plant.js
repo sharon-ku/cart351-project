@@ -53,7 +53,12 @@ class Plant {
   // show instructions to send message when hovering over a plant
   showHoverInstructions() {
     if (this.podBelongsToUser) {
-      this.hoverInstructions = ``;
+      if (this.messages.length > 0) {
+        this.hoverInstructions = `Your plant is eager to say something.
+  Click on it.`;
+      } else {
+        this.hoverInstructions = ``;
+      }
     }
     // Else, if pod does not belong to user
     else {
