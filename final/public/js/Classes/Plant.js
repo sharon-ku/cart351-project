@@ -15,6 +15,11 @@ class Plant {
     // contians instructions when hovering over plant
     this.hoverInstructions = undefined;
 
+    // for rotation
+    this.angle = 0;
+    this.rotationSpeed = random(0.002, 0.005);
+    this.maxAngle = 0.05;
+
     this.x = position.x;
     this.y = position.y;
     this.scale = 0.5;
@@ -82,9 +87,20 @@ send a message to it!`;
     if (this.messages.length > 0) {
       tint(255, 240, 0);
       translate(random(-2, 2), random(-2, 2));
+    } else {
+      // if (this.angle > this.maxAngle) {
+      //   this.rotationSpeed *= -1;
+      // }
+      // this.angle += this.rotationSpeed;
+      // rotate(this.angle);
     }
 
     translate(this.x, this.y);
+    if (this.angle > this.maxAngle || this.angle < -this.maxAngle) {
+      this.rotationSpeed *= -1;
+    }
+    this.angle += this.rotationSpeed;
+    rotate(this.angle);
     scale(this.scale);
     image(this.plantImages[this.growthStage], 0, 0);
 
