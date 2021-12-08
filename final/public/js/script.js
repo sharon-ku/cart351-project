@@ -659,10 +659,5 @@ $("#submitSeedChoice").click(function () {
     seedY: seedY,
   });
 
-  // clientSocket.emit("getAllVisitPodData", {
-  //   x: visitPodData.x,
-  //   y: visitPodData.y,
-  // });
-
   document.getElementById(`selectSeed`).reset();
 });

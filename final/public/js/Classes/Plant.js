@@ -122,7 +122,7 @@ send a message to it!`;
               "block";
 
             document.getElementById("senderName").innerHTML =
-              "Sent by :" + this.messages[0].senderUsername;
+              "Sent by : " + this.messages[0].senderUsername;
 
             document.getElementById(
               "messageReceived"
