@@ -251,6 +251,18 @@ function newConnection(socket) {
     }); //plant findOne
   }); //socket on sendMessage
 
+  // update message readState
+  socket.on("updateMessageReadStatus", function (data) {
+    let plantId = data._id;
+    console.log(plantId);
+
+    Message.updateOne({ plantId: plantId }, { readState: true }).then(
+      (result) => {
+        console.log(`message state updated`);
+      }
+    ); // message update one
+  }); //socket on sendMessage
+
   // grab all messages belonging to the user
   socket.on("getUserMessages", function () {
     Message.find({ receiverId: userDB.id, readState: false }).then(

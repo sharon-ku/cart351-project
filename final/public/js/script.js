@@ -128,29 +128,32 @@ $("#closeSeedForm").click(function () {
 $("#closeReceivedMessageForm").click(function () {
   $("#receivedMessageForm").toggle();
 
+  // set message readStatus to true
+  clientSocket.emit(`updateMessageReadStatus`, currentPlantClicked);
+
   // reset message box when modal is closed
   // $("#messageBody").empty();
 });
 
-let sendMessage = document.getElementById("MessagingForm");
-let chooseSeed = document.getElementById("SeedForm");
-let receiveMessage = document.getElementById("receivedMessageForm");
-
-// click anywhere on window to close modal
-window.onclick = function (event) {
-  if (event.target == sendMessage) {
-    sendMessage.style.display = "none";
-  }
-  if (event.target == chooseSeed) {
-    chooseSeed.style.display = "none";
-  }
-  if (event.target == receiveMessage) {
-    receiveMessage.style.display = "none";
-
-    // reset message box when modal is closed
-    // $("#messageBody").empty();
-  }
-};
+// let sendMessage = document.getElementById("MessagingForm");
+// let chooseSeed = document.getElementById("SeedForm");
+// let receiveMessage = document.getElementById("receivedMessageForm");
+//
+// // click anywhere on window to close modal
+// window.onclick = function (event) {
+//   if (event.target == sendMessage) {
+//     sendMessage.style.display = "none";
+//   }
+//   if (event.target == chooseSeed) {
+//     chooseSeed.style.display = "none";
+//   }
+//   if (event.target == receiveMessage) {
+//     receiveMessage.style.display = "none";
+//
+//     // reset message box when modal is closed
+//     // $("#messageBody").empty();
+//   }
+// };
 
 function preload() {
   // load pod images
@@ -565,7 +568,8 @@ function mousePressed() {
 
       if (plant.overlap()) {
         currentPlantClicked = visitPlantsData[i];
-        // console.log(visitPlantsData[i]);
+        // console.log(`currentplantclicked` + currentPlantClicked.name);
+        // console.log(currentPlantClicked._id);
       }
 
       // // if you are in your pod
