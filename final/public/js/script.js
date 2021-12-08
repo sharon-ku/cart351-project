@@ -129,7 +129,7 @@ $("#closeReceivedMessageForm").click(function () {
   $("#receivedMessageForm").toggle();
 
   // reset message box when modal is closed
-  $("#messageBody").empty();
+  // $("#messageBody").empty();
 });
 
 let sendMessage = document.getElementById("MessagingForm");
@@ -148,7 +148,7 @@ window.onclick = function (event) {
     receiveMessage.style.display = "none";
 
     // reset message box when modal is closed
-    $("#messageBody").empty();
+    // $("#messageBody").empty();
   }
 };
 
@@ -316,7 +316,7 @@ function setup() {
   clientSocket.on("foundUserVisited", function (result) {
     visitUserData = result;
     console.log(`currently visiting:` + visitUserData.username);
-    console.log(visitUserData);
+    // console.log(visitUserData);
     // // if this is the user's pod:
     // if (userPodX === visitPodData.x && userPodY == visitPodData.y) {
     //   // check if there are messages
@@ -342,7 +342,7 @@ function setup() {
     visitGarden = [];
 
     for (let i = 0; i < results.length; i++) {
-      console.log(results[i]);
+      // console.log(results[i]);
 
       // Store all plant results inside visitPlantsData array
       visitPlantsData.push(results[i]);
@@ -362,7 +362,7 @@ function setup() {
       console.log(`this is user's house`);
       clientSocket.emit("getUserMessages");
 
-      console.log(`getting user message`);
+      // console.log(`getting user message`);
     }
   }); // client socket
 
@@ -379,15 +379,33 @@ function setup() {
 }
 
 function createP5Plants() {
-  console.log(`creating a plant`);
+  // console.log(`creating a plant`);
+
   // console.log(visitPlantsData);
   for (let i = 0; i < visitPlantsData.length; i++) {
+    console.log(`usermessagesrece` + userMessagesReceived[0]);
+
+    let thisPlantMessages = [];
+
+    for (let j = 0; j < userMessagesReceived.length; j++) {
+      console.log(`id platn` + visitPlantsData[i]._id);
+      if (userMessagesReceived[j].plantId === visitPlantsData[i]._id) {
+        let thisPlantMessage = userMessagesReceived[j];
+
+        thisPlantMessages.push(thisPlantMessage);
+        // console.log(userMessagesReceived[j].message);
+        // console.log(userMessagesReceived[j].plantId);
+
+        console.log(thisPlantMessage);
+      }
+    }
+
     let plant = {
       name: visitPlantsData[i].name,
       images: undefined,
       growthStage: visitPlantsData[i].growthStage,
       numMessagesNeededToGrow: visitPlantsData[i].numMessagesNeededToGrow,
-      messages: userMessagesReceived,
+      messages: thisPlantMessages,
       position: {
         x: visitPlantsData[i].position.x,
         y: visitPlantsData[i].position.y,
@@ -411,10 +429,10 @@ function createP5Plants() {
       plant.messages,
       plant.position
     );
-    console.log(newPlant);
+    // console.log(newPlant);
     // add this plant to visitGarden
     visitGarden.push(newPlant);
-    console.log(visitGarden);
+    // console.log(visitGarden);
   }
 }
 
@@ -547,7 +565,7 @@ function mousePressed() {
 
       if (plant.overlap()) {
         currentPlantClicked = visitPlantsData[i];
-        console.log(visitPlantsData[i]);
+        // console.log(visitPlantsData[i]);
       }
 
       // // if you are in your pod

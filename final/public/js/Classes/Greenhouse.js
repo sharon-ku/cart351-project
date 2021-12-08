@@ -144,7 +144,7 @@ class Greenhouse {
       }
       // else if inside taken greenhouse
       else if (state === `pod-navigation` && this.taken) {
-        console.log(`clicking`);
+        // console.log(`clicking`);
         // get the visit pod's data: user info, plant info, pod info
         clientSocket.emit("getAllVisitPodData", {
           x: this.x,
