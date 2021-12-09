@@ -120,7 +120,7 @@ class Greenhouse {
 
       // wait 5 seconds to cue next state
       // fyi when using setInterval inside a class, we need to add ".bind(this)" to end of function
-      setTimeout(this.changeStateToPodNavigation.bind(this), 5000);
+      setTimeout(this.changeStateToPodNavigation.bind(this), 3000);
     } else {
       console.log(`sorry, pod is taken already`);
     }
@@ -145,6 +145,10 @@ class Greenhouse {
       // else if inside taken greenhouse
       else if (state === `pod-navigation` && this.taken) {
         // console.log(`clicking`);
+
+        // Request the user greenhouse positions to be found
+        clientSocket.emit("getUserPodPositions");
+
         // get the visit pod's data: user info, plant info, pod info
         clientSocket.emit("getAllVisitPodData", {
           x: this.x,
