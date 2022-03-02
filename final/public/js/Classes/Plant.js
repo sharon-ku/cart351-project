@@ -152,9 +152,10 @@ send a message to it!`;
         }
         // else, if you're in someone else's pod, you can only send messages
         else {
-          console.log(`no spies`);
           console.log(`cannot see messages in someone else's pod`);
           // if message has been read, display send message form
+          document.getElementById("messageFormHeader").innerHTML =
+            "Send a message to " + visitUserData.username;
           document.getElementById("MessagingForm").style.display = "block";
         }
       }

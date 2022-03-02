@@ -33,18 +33,27 @@
     <div id="MessagingForm" class="modal">
       <div class="form_content">
         <span id="closeMessageForm" class="close">&times;</span>
-        <h2 id="messageFormHeader">Send message</h2>
+        <h2 id="messageFormHeader">Send a message</h2>
 
         <form id="messageForm" action="">
           <section class="messageBody">
             <p id="messageBox">
               <label> Message : </label>
-              <input
+              <textarea
+                name="message"
+                id="messageContainer"
+                form="messageForm"
+                rows="6"
+                placeholder="Type message here"
+                required
+              ></textarea>
+
+              <!-- <input
                 id="messageContainer"
                 type="text"
                 name="message"
                 required
-              />
+              /> -->
             </p>
 
             <p>

@@ -22,13 +22,15 @@
   padding: 20px;
   border: 1px solid white;
   width: 80%;
+  max-width: 1300px;
 }
 /* The Close Button */
 .close {
   color: #aaaaaa;
   float: right;
-  font-size: 28px;
+  font-size: 40px;
   font-weight: bold;
+  margin-right: 2%;
 }
 
 .close:hover,
@@ -41,7 +43,9 @@
 
 .form_content h2 {
   margin: 2%;
+  font-size: 2rem;
 }
+
 #sendTo,
 #messageBox {
   margin: 2%;
@@ -51,11 +55,12 @@
   width: 30%;
 }
 
-#messageBox input {
+#messageBox textarea {
   margin-top: 10px;
+  font-family: "Quicksand", sans-serif;
   width: 100%;
-  font-size: 1.3em;
-  padding-bottom: 20%;
+  font-size: 1.5rem;
+  padding: 1%;
 }
 
 #messageBox label {
@@ -76,6 +81,7 @@
 .submitBtn:hover {
   cursor: pointer;
   background-color: #08747b;
+  border: black solid 1px;
 }
 
 .sr-only {

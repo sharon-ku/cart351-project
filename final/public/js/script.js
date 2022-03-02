@@ -127,6 +127,7 @@ let modalSeedOpen = false;
 // close modal windows
 $("#closeMessageForm").click(function () {
   $("#MessagingForm").toggle();
+  document.getElementById(`messageForm`).reset();
 });
 $("#closeSeedForm").click(function () {
   $("#SeedForm").toggle();

@@ -21,10 +21,8 @@ class Greenhouse {
     this.display();
 
     if (this.overlap()) {
-      console.log(`overlap yes`);
       this.scale = 1.2;
     } else {
-      console.log(`no overlap`);
       this.scale = 1;
     }
   }
@@ -81,6 +79,7 @@ class Greenhouse {
       mouseY > this.y - (this.podImage.height * this.scale) / 2 &&
       mouseY < this.y + (this.podImage.height * this.scale) / 2
     ) {
+      cursor("pointer");
       return true;
     } else {
       return false;
