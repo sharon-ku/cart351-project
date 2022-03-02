@@ -38,6 +38,7 @@ class Icon {
       mouseY > this.y &&
       mouseY < this.y + this.size
     ) {
+      cursor("pointer");
       // console.log("hovering");
       push();
       imageMode(CORNER);

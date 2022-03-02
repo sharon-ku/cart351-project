@@ -3,9 +3,8 @@ class Greenhouse {
     this.x = x;
     this.y = y;
     this.podImage = podImage;
-    this.width = 50;
-    this.height = this.width * 1.2;
     // this.alpha = undefined; // image transparency
+    this.scale = 1;
     this.taken = taken;
     this.tint = {
       r: 255,
@@ -22,25 +21,18 @@ class Greenhouse {
     this.display();
 
     if (this.overlap()) {
-      this.width = 60;
-      this.height = this.width * 1.2;
+      console.log(`overlap yes`);
+      this.scale = 1.2;
     } else {
-      this.width = 50;
-      this.height = this.width * 1.2;
+      console.log(`no overlap`);
+      this.scale = 1;
     }
   }
 
   display() {
-    // looking for reference point
-    // push();
-    // stroke(0);
-    // strokeWeight(8);
-    // point(this.x, this.y);
-    // pop();
-
     push();
-    // imageMode(CENTER);
-    imageMode(CORNER);
+    imageMode(CENTER);
+
     // If new user, we want unoccupied to be full opacity and occupied to be transparent
     if (state === `new-user`) {
       // if taken = false
@@ -67,7 +59,9 @@ class Greenhouse {
     }
 
     tint(this.tint.r, this.tint.g, this.tint.b, this.tint.alpha);
-    image(this.podImage, this.x, this.y, this.width, this.height);
+    translate(this.x, this.y);
+    scale(this.scale);
+    image(this.podImage, 0, 0);
 
     pop();
   }
@@ -82,10 +76,10 @@ class Greenhouse {
   // Check if mouse overlaps pod
   overlap() {
     if (
-      mouseX > this.x &&
-      mouseX < this.x + this.podImage.width / 8 &&
-      mouseY > this.y &&
-      mouseY < this.y + this.podImage.height / 8
+      mouseX > this.x - (this.podImage.width * this.scale) / 2 &&
+      mouseX < this.x + (this.podImage.width * this.scale) / 2 &&
+      mouseY > this.y - (this.podImage.height * this.scale) / 2 &&
+      mouseY < this.y + (this.podImage.height * this.scale) / 2
     ) {
       return true;
     } else {
@@ -122,7 +116,7 @@ class Greenhouse {
       // fyi when using setInterval inside a class, we need to add ".bind(this)" to end of function
       setTimeout(this.changeStateToPodNavigation.bind(this), 3000);
     } else {
-      console.log(`sorry, pod is taken already`);
+      alert(`sorry, pod is taken already`);
     }
   }
 
