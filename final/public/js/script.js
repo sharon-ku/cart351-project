@@ -24,7 +24,7 @@ let userPodY = undefined;
 let userMessagesReceived = [];
 
 // Message displayed upon entering a pod
-let welcomeMessageString = `Welcome Home !`;
+let welcomeMessageString = `Welcome Home!`;
 
 // stores data related to pod we're visiting
 let visitPodData = {
@@ -532,7 +532,7 @@ function insidePod() {
     homeIcon.overlap();
 
     // display welcome home message
-    welcomeMessageString = `Welcome Home !`;
+    welcomeMessageString = `Welcome Home, ${userInfo.username}!`;
   } else {
     homeIcon.display();
     homeIcon.overlap();
